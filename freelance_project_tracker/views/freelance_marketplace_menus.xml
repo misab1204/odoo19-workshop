@@ -1,0 +1,7 @@
+<odoo>
+    <menuitem id="freelance_market_menu_root" name="Freelance Marketplace" />
+    <!-- <menuitem id="freelance_market_first_level_menu" name="Freelance Projects" parent="freelance_market_menu_root" action="freelance_project_action"/>
+    <menuitem id="freelance_market_second_level_menu" name="Configurations" parent="freelance_market_menu_root" />
+    <menuitem id = "freelance_market_category_submenu" name = "Project Categories" parent = "freelance_market_second_level_menu" action="project_category_action" />
+    <menuitem id = "freelance_market_tag_submenu" name = "Project Tags" parent = "freelance_market_second_level_menu" action="project_tag_action" /> -->
+</odoo>

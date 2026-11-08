@@ -1,0 +1,23 @@
+<odoo>
+    <!-- ACTION Definition -->
+    <record id="animal_type_action" model="ir.actions.act_window">
+        <field name="name">Animal Types</field>
+        <field name="res_model">animal.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Form VIEW -->
+    <!-- <record id="animal_type_view_form" model="ir.ui.view">
+        <field name="name">animal.type.form</field>
+        <field name="model">animal.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                    
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record> -->
+</odoo>

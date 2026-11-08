@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_animals,access_animals,model_animals,base.group_user,1,1,1,1
+access_animal_type,access_animal_type,model_animal_type,base.group_user,1,1,1,1
+access_animal_vaccine,access_animal_vaccine,model_animal_vaccine,base.group_user,1,1,1,1
+access_animal_location,access_animal_location,model_animal_location,base.group_user,1,1,1,1
+access_animal_vaccination,access_animal_vaccination,model_animal_vaccination,base.group_user,1,1,1,1

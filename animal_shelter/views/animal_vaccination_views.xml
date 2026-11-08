@@ -1,0 +1,29 @@
+<odoo>
+    <!-- LIST VIEW -->
+    <record id="animal_vaccination_view_list" model="ir.ui.view">
+        <field name="name">animal.vaccination.list</field>
+        <field name="model">animal.vaccination</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name = "animal_id"/>
+                <field name = "vaccine_id"/>
+                <field name = "status"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FORM VIEW -->
+    <record id="animal_vaccination_view_form" model="ir.ui.view">
+        <field name="name">animal.vaccination.form</field>
+        <field name="model">animal.vaccination</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name = "animal_id" readonly = "1"/>
+                    <field name = "vaccine_id" />
+                    <field name = "status"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

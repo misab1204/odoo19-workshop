@@ -1,0 +1,10 @@
+<odoo>
+    <record id="animal_location_view_form_maintenance" model="ir.ui.view">
+        <field name="name">animal.location.form.maintenance</field>
+        <field name="model">animal.location</field>
+        <field name="inherit_id" ref="animal.animal_location_view_form"/>
+        <field name="arch" type="xml">
+
+        </field>
+    </record>
+</odoo>

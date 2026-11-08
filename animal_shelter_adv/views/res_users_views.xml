@@ -1,0 +1,10 @@
+<odoo>
+    <record id="res_users_view_form_shelters" model="ir.ui.view">
+        <field name="name">res.users.form.shelters</field>
+        <field name="model">res.users</field>
+
+        <field name="arch" type="xml">
+           
+        </field>
+    </record>
+</odoo>
