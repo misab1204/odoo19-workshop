@@ -60,10 +60,14 @@
                         </page>
                         <page string="Vaccines">
                             <field name="animal_vaccination_ids">
-                                <list>
+                                <list 
+                                    decoration-danger = "status == 'not_vaccinated'" 
+                                    decoration-success = "status == 'vaccinated'" >
+                                    <!-- no need to learn all these deco byheart, juz search in google for odoo decorations -->
+
                                     <field name = "vaccine_id"/>
                                     <field name = "status"/>
-                                    <button name = "vaccinated_action" type = "object" string ="Vaccinated" invisible = "status == 'vaccinated'"/>
+                                    <button name = "vaccinated_action" type = "object" string ="Mark as Vaccinated" invisible = "status == 'vaccinated'"/>
                                 </list>
                             </field>
                         </page>

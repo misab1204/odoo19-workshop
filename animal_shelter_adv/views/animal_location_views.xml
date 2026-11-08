@@ -2,9 +2,11 @@
     <record id="animal_location_view_form_maintenance" model="ir.ui.view">
         <field name="name">animal.location.form.maintenance</field>
         <field name="model">animal.location</field>
-        <field name="inherit_id" ref="animal.animal_location_view_form"/>
+        <field name="inherit_id" ref="animal_shelter.animal_location_view_form"/>
         <field name="arch" type="xml">
-
+            <xpath expr="//sheet/group" position="inside">
+                <field name="cleaner_user_id"/>
+            </xpath>
         </field>
     </record>
 </odoo>

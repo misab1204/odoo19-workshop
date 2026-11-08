@@ -1,4 +1,7 @@
 from odoo import api, models, fields
+from odoo.exceptions import UserError, ValidationError
+from datetime import time
+from odoo.tools.date_utils import float_to_time
 
 class Animals(models.Model):
     _name = "animals"
@@ -31,7 +34,7 @@ class Animals(models.Model):
     )
 
     _check_animal_weight = models.Constraint("CHECK(weight > 0)", "Animal weight must be greater than 0!")
-    
+
     def at_center(self):
         for record in self:
             if record.animal_status == "released":
@@ -49,3 +52,13 @@ class Animals(models.Model):
     def _compute_all_vaccinated(self):
         for animal in self:
             animal.all_vaccinated = bool(animal.animal_vaccination_ids) and all(vaccination.status == "vaccinated" for vaccination in animal.animal_vaccination_ids)
+
+    @api.constrains("feeding_time")
+    def _check_feeding_time(self):
+        for record in self:
+            if not(0 <= record.feeding_time < 24):
+                raise ValidationError("Feeding time must be between 00:00 and 23:59")
+            
+            feeding_time = float_to_time(record.feeding_time)
+            if time(12,30) <= feeding_time <= time(13,30):
+                raise ValidationError("Animals cannot be fed during the cleaning period")
