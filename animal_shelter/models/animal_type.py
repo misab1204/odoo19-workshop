@@ -5,3 +5,5 @@ class AnimalType(models.Model):
     _description = "Animal Types"
 
     name = fields.Char(string = "Animal Type", required = True)
+
+    _unique_animal_type = models.Constraint("UNIQUE(name)", "The Animal type must be unique")
