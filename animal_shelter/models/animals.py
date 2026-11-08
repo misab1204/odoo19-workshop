@@ -30,6 +30,8 @@ class Animals(models.Model):
         default="not_received"
     )
 
+    _check_animal_weight = models.Constraint("CHECK(weight > 0)", "Animal weight must be greater than 0!")
+    
     def at_center(self):
         for record in self:
             if record.animal_status == "released":
@@ -43,7 +45,7 @@ class Animals(models.Model):
         record.animal_status = "released"
 
 
-    @api.depends("animal_vaccinated_ids.status")
+    @api.depends("animal_vaccination_ids.status")
     def _compute_all_vaccinated(self):
         for animal in self:
             animal.all_vaccinated = bool(animal.animal_vaccination_ids) and all(vaccination.status == "vaccinated" for vaccination in animal.animal_vaccination_ids)
