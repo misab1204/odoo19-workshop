@@ -9,58 +9,64 @@
             <title>AdaptFit ERP — Command Center</title>
             <style>
                 :root {
-                    --af-navy-deep: #0F1633;
-                    --af-navy: #18224A;
-                    --af-indigo: #222F61;
-                    --af-grad-card: linear-gradient(145deg, #111838 0%, #18224A 55%, #222F61 100%);
-                    --af-grad-bar: linear-gradient(175deg, #0F1633 0%, #18224A 55%, #222F61 100%);
-                    --af-cream: #EEEBDA;
-                    --af-cream-soft: #F7F5EA;
-                    --af-blue: #18224A;
-                    --af-blue-bright: #3B529E;
-                    --af-cyan: #EEEBDA;
+                    --af-navy-deep: #1E293B;
+                    --af-navy: #0F172A;
+                    --af-indigo: #4F46E5;
+                    --af-grad-card: linear-gradient(145deg, rgba(255,255,255,0.74) 0%, rgba(240,244,255,0.48) 100%);
+                    --af-grad-bar: linear-gradient(135deg, #3B82F6 0%, #4F46E5 100%);
+                    --af-cream: #FFFFFF;
+                    --af-cream-soft: #F8FAFC;
+                    --af-blue: #3B82F6;
+                    --af-blue-bright: #6366F1;
+                    --af-cyan: #3B82F6;
                     --af-emerald: #10B981;
                     --af-amber: #F59E0B;
                     --af-rose: #EF4444;
-                    --af-text-light: #EEEBDA;
-                    --af-text-muted: #D5D2C3;
-                    --af-text-dark: #18224A;
-                    --af-border-glow: rgba(238, 235, 218, 0.22);
-                    --af-float-shadow: 0 20px 42px -10px rgba(22, 32, 68, 0.45), 0 8px 18px -4px rgba(22, 32, 68, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-                    --af-float-shadow-hover: 0 26px 50px -10px rgba(22, 32, 68, 0.55), 0 10px 24px -4px rgba(238, 235, 218, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                    --af-text-light: #FFFFFF;
+                    --af-text-muted: #64748B;
+                    --af-text-dark: #0F172A;
+                    --af-border-glow: rgba(255, 255, 255, 0.78);
+                    --af-float-shadow: 0 12px 30px rgba(30, 41, 90, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.88);
+                    --af-float-shadow-hover: 0 18px 36px rgba(30, 41, 90, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.95);
                 }
 
                 * { box-sizing: border-box; }
                 html {
-                    background: #0F1633;
+                    background: #DCE3F0;
                 }
                 body {
                     margin: 0;
                     font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-                    background: linear-gradient(145deg, #0F1633 0%, #18224A 52%, #222F61 100%);
+                    background: linear-gradient(135deg, #D5DDE9 0%, #E7ECF5 55%, #CED8EC 100%);
                     background-attachment: fixed;
-                    color: #EEEBDA;
+                    color: #0F172A;
                     display: flex;
                     min-height: 100vh;
                 }
 
-                /* Shell Sidebar (AeuxGlobal Style) */
+                /* Astra Frosted Glass Sidebar */
                 .af-sidebar {
                     width: 248px;
-                    background: transparent;
-                    color: var(--af-text-light);
+                    background: linear-gradient(175deg, rgba(244, 247, 255, 0.86) 0%, rgba(226, 233, 250, 0.74) 55%, rgba(155, 168, 232, 0.58) 100%);
+                    backdrop-filter: blur(22px);
+                    -webkit-backdrop-filter: blur(22px);
+                    color: #0F172A;
                     display: flex;
                     flex-direction: column;
                     position: fixed;
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    padding: 20px 14px;
+                    top: 14px;
+                    bottom: 14px;
+                    left: 14px;
+                    border-radius: 24px 0 0 24px;
+                    border: 3px solid rgba(79, 110, 247, 0.58);
+                    border-right: 1px solid rgba(15, 23, 42, 0.08);
+                    padding: 18px 12px;
                     z-index: 40;
+                    box-shadow: 0 24px 55px rgba(30, 41, 90, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.85);
                 }
                 .af-brand {
-                    padding: 22px 20px;
-                    border-bottom: 1px solid rgba(255,255,255,0.08);
+                    padding: 18px 16px;
+                    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
                     display: flex;
                     align-items: center;
                     gap: 12px;
@@ -68,21 +74,21 @@
                 .af-brand-badge {
                     width: 38px;
                     height: 38px;
-                    border-radius: 10px;
-                    background: linear-gradient(135deg, #EEEBDA 0%, #DFD9BE 100%);
+                    border-radius: 11px;
+                    background: linear-gradient(135deg, #3B82F6 0%, #6366F1 100%);
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     font-weight: 800;
                     font-size: 16px;
-                    color: #282B4A;
-                    box-shadow: 0 4px 12px rgba(10, 12, 28, 0.35);
+                    color: #FFFFFF;
+                    box-shadow: 0 6px 14px rgba(59, 130, 246, 0.30);
                 }
-                .af-brand-title { font-weight: 700; font-size: 16px; letter-spacing: 0.3px; color: #EEEBDA; }
-                .af-brand-sub { font-size: 11px; color: rgba(238, 235, 218, 0.72); text-transform: uppercase; letter-spacing: 1px; }
+                .af-brand-title { font-weight: 800; font-size: 15px; letter-spacing: 0.2px; color: #0F172A; }
+                .af-brand-sub { font-size: 10px; color: #475569; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
 
                 .af-nav {
-                    padding: 16px 12px;
+                    padding: 16px 8px;
                     flex: 1;
                     display: flex;
                     flex-direction: column;
@@ -93,29 +99,29 @@
                     align-items: center;
                     gap: 11px;
                     padding: 11px 14px;
-                    border-radius: 10px;
-                    color: rgba(238, 235, 218, 0.72);
+                    border-radius: 12px;
+                    color: #334155;
                     text-decoration: none;
-                    font-size: 14px;
+                    font-size: 13.5px;
                     font-weight: 500;
                     transition: all 0.18s ease;
                     border: 1px solid transparent;
                 }
                 .af-nav-item:hover {
-                    background: rgba(238, 235, 218, 0.08);
-                    color: #EEEBDA;
+                    background: rgba(255, 255, 255, 0.55);
+                    color: #0F172A;
                 }
                 .af-nav-item.active {
-                    background: rgba(238, 235, 218, 0.14);
-                    color: #EEEBDA;
-                    font-weight: 600;
-                    border: 1px solid rgba(238, 235, 218, 0.22);
-                    box-shadow: 0 4px 14px rgba(10, 12, 28, 0.25);
+                    background: rgba(255, 255, 255, 0.88);
+                    color: #0F172A;
+                    font-weight: 700;
+                    border: 1px solid rgba(255, 255, 255, 0.95);
+                    box-shadow: 0 6px 16px rgba(30, 41, 90, 0.08);
                 }
 
                 .af-sidebar-footer {
-                    padding: 14px 12px 18px;
-                    border-top: 1px solid rgba(255,255,255,0.08);
+                    padding: 14px 8px 8px;
+                    border-top: 1px solid rgba(15, 23, 42, 0.08);
                     display: flex;
                     flex-direction: column;
                     gap: 8px;
@@ -123,90 +129,107 @@
                 .af-ext-link {
                     display: block;
                     padding: 9px 12px;
-                    border-radius: 8px;
-                    background: rgba(255,255,255,0.05);
-                    border: 1px solid rgba(255,255,255,0.1);
-                    color: var(--af-cream);
+                    border-radius: 10px;
+                    background: rgba(255, 255, 255, 0.55);
+                    border: 1px solid rgba(255, 255, 255, 0.8);
+                    color: #0F172A;
                     text-decoration: none;
-                    font-size: 13px;
-                    font-weight: 500;
+                    font-size: 12.5px;
+                    font-weight: 600;
                     text-align: center;
                 }
                 .af-ext-link:hover {
-                    border-color: var(--af-cyan);
-                    color: #fff;
+                    background: rgba(255, 255, 255, 0.85);
+                    color: #3B82F6;
                 }
 
-                /* Main Rounded Cream Sheet with Vignette and Depth */
+                /* Main Astra Frosted Glass Sheet */
                 .af-main {
-                    margin-left: 248px;
+                    margin-left: 262px;
                     margin-top: 14px;
                     margin-right: 14px;
                     margin-bottom: 14px;
+                    height: calc(100vh - 28px);
+                    box-sizing: border-box;
                     flex: 1;
                     display: flex;
                     flex-direction: column;
                     min-width: 0;
                     background:
-                        radial-gradient(ellipse at 50% 35%, rgba(255, 253, 245, 0.92) 0%, rgba(238, 235, 218, 0.55) 60%, rgba(214, 208, 184, 0.72) 100%),
-                        linear-gradient(165deg, #FAF8F0 0%, #EEEBDA 60%, #E0DAC0 100%);
-                    color: #18224A;
-                    border-radius: 26px;
-                    border: 1px solid rgba(255, 255, 255, 0.65);
+                        radial-gradient(circle at 92% 18%, rgba(79, 110, 247, 0.45) 0%, transparent 50%),
+                        radial-gradient(circle at 84% 86%, rgba(109, 92, 231, 0.36) 0%, transparent 48%),
+                        linear-gradient(155deg, #EDF1FA 0%, #E0E7F7 55%, #C9D3F2 100%);
+                    color: #0F172A;
+                    border-radius: 0 24px 24px 0;
+                    border: 3px solid rgba(79, 110, 247, 0.58);
+                    border-left: none;
                     box-shadow:
-                        0 28px 65px rgba(8, 12, 30, 0.55),
-                        inset 0 0 80px rgba(168, 158, 124, 0.24),
-                        inset 0 2px 0 rgba(255, 255, 255, 0.85);
+                        0 24px 55px rgba(30, 41, 90, 0.14),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.85);
                     overflow: hidden;
                 }
                 .af-topbar {
-                    background: transparent;
-                    color: #282B4A;
-                    padding: 18px 28px 10px;
+                    flex-shrink: 0;
+                    z-index: 25;
+                    background: rgba(255, 255, 255, 0.24);
+                    backdrop-filter: blur(14px);
+                    -webkit-backdrop-filter: blur(14px);
+                    color: #0F172A;
+                    padding: 16px 28px;
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
                     gap: 16px;
-                    border-bottom: 1px solid rgba(40, 43, 74, 0.08);
+                    border-bottom: 1px solid rgba(99, 102, 241, 0.12);
                 }
                 .af-search-form {
                     display: flex;
                     align-items: center;
-                    gap: 8px;
+                    gap: 10px;
                     flex: 1;
-                    max-width: 380px;
+                    min-width: 0;
+                    max-width: 480px;
                 }
                 .af-search-input {
-                    width: 100%;
-                    background: #FFFFFF;
-                    border: 1px solid rgba(40, 43, 74, 0.14);
-                    color: #282B4A;
-                    padding: 8px 14px;
-                    border-radius: 10px;
+                    flex: 1;
+                    min-width: 0;
+                    box-sizing: border-box;
+                    background: rgba(255, 255, 255, 0.82);
+                    border: 1px solid rgba(255, 255, 255, 0.92);
+                    color: #0F172A;
+                    padding: 9px 16px;
+                    border-radius: 12px;
                     font-size: 13px;
+                    text-overflow: ellipsis;
                     outline: none;
+                    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.06);
                 }
                 .af-search-input:focus {
-                    border-color: #282B4A;
-                    box-shadow: 0 0 0 2px rgba(40, 43, 74, 0.1);
+                    border-color: #3B82F6;
+                    background: #FFFFFF;
+                    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.16);
                 }
                 .af-user-pill {
                     display: flex;
                     align-items: center;
                     gap: 8px;
-                    background: #FFFFFF;
-                    color: #282B4A;
-                    padding: 6px 14px;
+                    background: rgba(255, 255, 255, 0.82);
+                    color: #0F172A;
+                    padding: 7px 14px;
                     border-radius: 999px;
-                    border: 1px solid rgba(40, 43, 74, 0.12);
+                    border: 1px solid rgba(255, 255, 255, 0.92);
                     font-size: 12px;
                     font-weight: 600;
+                    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.06);
+                    flex-shrink: 0;
                 }
 
                 .af-content {
                     padding: 24px 28px 44px;
                     background: transparent;
                     flex: 1;
+                    overflow-y: auto;
+                    min-height: 0;
                 }
 
                 /* Alerts */
@@ -241,7 +264,7 @@
                     margin: 0;
                     font-size: 24px;
                     font-weight: 800;
-                    color: #282B4A;
+                    color: #0F172A;
                     letter-spacing: -0.3px;
                 }
                 .af-page-sub {
@@ -265,11 +288,11 @@
                     transition: all 0.15s ease;
                 }
                 .af-btn-primary {
-                    background: linear-gradient(135deg, #282B4A, #3A4070);
-                    color: #EEEBDA;
-                    box-shadow: 0 4px 12px rgba(40, 43, 74, 0.22);
+                    background: linear-gradient(135deg, #3B82F6 0%, #4F46E5 100%);
+                    color: #FFFFFF;
+                    box-shadow: 0 6px 18px rgba(79, 70, 229, 0.25);
                 }
-                .af-btn-primary:hover { filter: brightness(1.12); }
+                .af-btn-primary:hover { filter: brightness(1.08); color: #FFFFFF; }
 
                 /* Bento Dashboard Cards (AeuxGlobal Style) */
                 .af-bento-3 {
@@ -291,78 +314,92 @@
                     margin-bottom: 22px;
                 }
                 .af-stat-box {
-                    background: linear-gradient(145deg, #0F1633 0%, #18224A 55%, #222F61 100%);
-                    border: 1px solid rgba(238, 235, 218, 0.16);
-                    border-radius: 16px;
+                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(241, 245, 255, 0.56) 100%);
+                    backdrop-filter: blur(20px);
+                    -webkit-backdrop-filter: blur(20px);
+                    border: 1px solid rgba(255, 255, 255, 0.85);
+                    border-radius: 18px;
                     padding: 18px 20px;
                     display: flex;
                     justify-content: space-between;
                     align-items: flex-end;
                     gap: 12px;
-                    color: #EEEBDA;
-                    box-shadow: 0 12px 26px rgba(22, 32, 68, 0.22);
+                    color: #0F172A;
+                    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.90);
                 }
-                .af-stat-label { font-size: 12px; color: rgba(238, 235, 218, 0.75); font-weight: 600; margin-bottom: 6px; }
-                .af-stat-val { font-size: 26px; font-weight: 800; color: #EEEBDA; letter-spacing: -0.5px; }
-                .af-stat-sub { font-size: 11px; color: #34D399; font-weight: 600; margin-top: 6px; }
+                .af-stat-label { font-size: 12px; color: #475569; font-weight: 600; margin-bottom: 6px; }
+                .af-stat-val { font-size: 26px; font-weight: 800; color: #0F172A; letter-spacing: -0.5px; }
+                .af-stat-sub { font-size: 11px; color: #10B981; font-weight: 700; margin-top: 6px; }
                 .af-bento-card {
-                    background: linear-gradient(145deg, #0F1633 0%, #18224A 55%, #222F61 100%);
-                    border: 1px solid rgba(238, 235, 218, 0.16);
-                    border-radius: 16px;
+                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(241, 245, 255, 0.56) 100%);
+                    backdrop-filter: blur(20px);
+                    -webkit-backdrop-filter: blur(20px);
+                    border: 1px solid rgba(255, 255, 255, 0.85);
+                    border-radius: 18px;
                     padding: 20px;
-                    color: #EEEBDA;
-                    box-shadow: 0 12px 26px rgba(22, 32, 68, 0.22);
+                    color: #0F172A;
+                    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.90);
                     display: flex;
                     flex-direction: column;
                 }
-                .af-bento-title { font-size: 14px; font-weight: 700; color: #EEEBDA; margin: 0 0 10px; }
+                .af-bento-title { font-size: 14px; font-weight: 700; color: #0F172A; margin: 0 0 10px; }
                 .af-dot-row {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     font-size: 12px;
                     padding: 5px 0;
-                    color: rgba(238, 235, 218, 0.85);
+                    color: #334155;
                 }
                 .af-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 8px; }
                 .af-ring-pill {
-                    border-radius: 16px;
+                    border-radius: 18px;
                     padding: 16px 20px;
                     display: flex;
                     align-items: center;
                     gap: 16px;
-                    box-shadow: 0 10px 24px rgba(22, 32, 68, 0.2);
+                    backdrop-filter: blur(20px);
+                    -webkit-backdrop-filter: blur(20px);
+                    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.85);
                 }
                 .af-ring-dark {
-                    background: linear-gradient(135deg, #0F1633 0%, #18224A 58%, #222F61 100%);
-                    color: #EEEBDA;
-                    border: 1px solid rgba(238, 235, 218, 0.16);
+                    background: linear-gradient(135deg, rgba(59, 130, 246, 0.92) 0%, rgba(79, 70, 229, 0.88) 100%);
+                    color: #FFFFFF;
+                    border: 1px solid rgba(255, 255, 255, 0.45);
                 }
                 .af-ring-light {
-                    background: linear-gradient(145deg, #0F1633 0%, #18224A 55%, #222F61 100%);
-                    color: #EEEBDA;
-                    border: 1px solid rgba(238, 235, 218, 0.16);
+                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(241, 245, 255, 0.56) 100%);
+                    color: #0F172A;
+                    border: 1px solid rgba(255, 255, 255, 0.85);
                 }
                 .af-feature-card {
-                    background: linear-gradient(135deg, #0F1633 0%, #18224A 55%, #222F61 100%);
-                    color: #EEEBDA;
+                    background: linear-gradient(135deg, rgba(59, 130, 246, 0.92) 0%, rgba(79, 70, 229, 0.88) 100%);
+                    backdrop-filter: blur(20px);
+                    -webkit-backdrop-filter: blur(20px);
+                    color: #FFFFFF;
                     border-radius: 18px;
                     padding: 22px 24px;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-                    box-shadow: 0 12px 28px rgba(22, 32, 68, 0.25);
+                    border: 1px solid rgba(255, 255, 255, 0.45);
+                    box-shadow: 0 12px 30px rgba(79, 70, 229, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.45);
                     text-decoration: none;
                 }
                 @media (max-width: 1100px) {
                     .af-bento-3, .af-bento-mid, .af-bento-bot { grid-template-columns: 1fr; }
                 }
                 .af-btn-navy {
-                    background: var(--af-navy);
-                    color: var(--af-cream);
-                    border: 1px solid var(--af-border-glow);
+                    background: rgba(255, 255, 255, 0.80);
+                    color: #0F172A;
+                    border: 1px solid rgba(99, 102, 241, 0.24);
+                    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.08);
                 }
-                .af-btn-navy:hover { background: var(--af-navy-deep); color: #fff; }
+                .af-btn-navy:hover {
+                    background: #FFFFFF;
+                    color: #3B82F6;
+                    border-color: #3B82F6;
+                }
                 .af-btn-emerald { background: var(--af-emerald); color: #fff; }
                 .af-btn-rose { background: var(--af-rose); color: #fff; }
                 .af-btn-sm { padding: 6px 11px; font-size: 12px; border-radius: 7px; }
@@ -429,27 +466,29 @@
                 .af-pipe-count { font-size: 22px; font-weight: 800; color: var(--af-cyan); }
                 .af-pipe-name { font-size: 12px; color: #E2E8F0; }
 
-                /* Floating Vanilla Cream Panel + Midnight Indigo Header */
+                /* Astra Frosted Milky-White Glass Panel + Cobalt-Indigo Header */
                 .af-panel {
-                    background: linear-gradient(165deg, #F7F5EA 0%, #EEEBDA 100%);
-                    color: #282B4A;
+                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(241, 245, 255, 0.56) 100%);
+                    backdrop-filter: blur(20px);
+                    -webkit-backdrop-filter: blur(20px);
+                    color: #0F172A;
                     border-radius: 18px;
-                    border: 1px solid rgba(40, 43, 74, 0.18);
+                    border: 1px solid rgba(255, 255, 255, 0.85);
                     overflow: hidden;
-                    box-shadow: var(--af-float-shadow);
+                    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.90);
                     margin-bottom: 24px;
                 }
                 .af-panel-head {
                     padding: 16px 22px;
-                    background: linear-gradient(90deg, #0F1633 0%, #18224A 65%, #222F61 100%);
-                    border-bottom: 1px solid var(--af-border-glow);
+                    background: linear-gradient(90deg, rgba(59, 130, 246, 0.92) 0%, rgba(79, 70, 229, 0.90) 100%);
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     flex-wrap: wrap;
                     gap: 10px;
                 }
-                .af-panel-title { font-size: 15px; font-weight: 700; margin: 0; color: #EEEBDA; }
+                .af-panel-title { font-size: 15px; font-weight: 700; margin: 0; color: #FFFFFF; }
 
                 .af-table-wrap { overflow-x: auto; }
                 table.af-table {
@@ -460,21 +499,21 @@
                 table.af-table th {
                     text-align: left;
                     padding: 12px 16px;
-                    background: #282B4A;
-                    color: #EEEBDA;
+                    background: rgba(226, 232, 248, 0.65);
+                    color: #475569;
                     font-size: 11px;
                     text-transform: uppercase;
                     letter-spacing: 0.7px;
-                    border-bottom: 2px solid rgba(238, 235, 218, 0.25);
+                    border-bottom: 1px solid rgba(99, 102, 241, 0.16);
                 }
                 table.af-table td {
                     padding: 13px 16px;
-                    border-bottom: 1px solid rgba(40, 43, 74, 0.12);
-                    color: #282B4A;
+                    border-bottom: 1px solid rgba(99, 102, 241, 0.10);
+                    color: #0F172A;
                     vertical-align: middle;
                 }
                 table.af-table tr:hover td {
-                    background: rgba(40, 43, 74, 0.06);
+                    background: rgba(255, 255, 255, 0.45);
                 }
 
                 /* Badges */
@@ -498,13 +537,15 @@
                     gap: 18px;
                 }
                 .af-card {
-                    background: linear-gradient(145deg, #0F1633 0%, #18224A 55%, #222F61 100%);
-                    color: #EEEBDA;
+                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(241, 245, 255, 0.56) 100%);
+                    backdrop-filter: blur(20px);
+                    -webkit-backdrop-filter: blur(20px);
+                    color: #0F172A;
                     border-radius: 18px;
                     padding: 22px;
-                    border: 1px solid rgba(238, 235, 218, 0.16);
-                    border-top: 4px solid #EEEBDA;
-                    box-shadow: var(--af-float-shadow);
+                    border: 1px solid rgba(255, 255, 255, 0.85);
+                    border-top: 3px solid #4F46E5;
+                    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.90);
                     display: flex;
                     flex-direction: column;
                     gap: 14px;
@@ -582,25 +623,30 @@
                 .af-pill {
                     padding: 7px 14px;
                     border-radius: 999px;
-                    background: var(--af-navy);
-                    color: var(--af-cream);
+                    background: rgba(255, 255, 255, 0.76);
+                    color: #334155;
                     text-decoration: none;
                     font-size: 12px;
                     font-weight: 600;
-                    border: 1px solid var(--af-border-glow);
+                    border: 1px solid rgba(255, 255, 255, 0.92);
+                    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.06);
                 }
                 .af-pill.active {
-                    background: var(--af-blue);
-                    color: #fff;
-                    border-color: var(--af-cyan);
+                    background: linear-gradient(135deg, #3B82F6 0%, #4F46E5 100%);
+                    color: #FFFFFF;
+                    border-color: rgba(255, 255, 255, 0.45);
+                    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.24);
                 }
 
-                /* Full-Screen Modal */
+                /* Full-Screen Astra Frosted Glass Modal */
                 .af-modal-backdrop {
                     display: none;
                     position: fixed;
                     inset: 0;
-                    background: linear-gradient(145deg, #0F1633 0%, #18224A 55%, #222F61 100%);
+                    background:
+                        radial-gradient(circle at 90% 15%, rgba(79, 110, 247, 0.40) 0%, transparent 50%),
+                        radial-gradient(circle at 12% 85%, rgba(109, 92, 231, 0.30) 0%, transparent 48%),
+                        linear-gradient(155deg, #EDF1FA 0%, #E0E7F7 55%, #C9D3F2 100%);
                     z-index: 100;
                     align-items: stretch;
                     justify-content: center;
@@ -608,8 +654,8 @@
                 }
                 .af-modal-backdrop.open { display: flex; }
                 .af-modal {
-                    background: linear-gradient(145deg, #0F1633 0%, #18224A 55%, #222F61 100%);
-                    color: #EEEBDA;
+                    background: transparent;
+                    color: #0F172A;
                     border: none;
                     border-radius: 0;
                     width: 100vw;
@@ -618,37 +664,80 @@
                     max-height: 100vh;
                     padding: 36px 48px;
                     overflow-y: auto;
+                    box-sizing: border-box;
                 }
-                .af-modal > div:first-child,
-                .af-modal > form {
+                .af-modal > div:first-child {
                     max-width: 760px;
                     margin-left: auto;
                     margin-right: auto;
                 }
+                .af-modal > div:first-child h3 {
+                    color: #0F172A;
+                    font-size: 22px;
+                    font-weight: 800;
+                    letter-spacing: -0.3px;
+                }
+                .af-modal > form {
+                    max-width: 760px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.84) 0%, rgba(241, 245, 255, 0.68) 100%);
+                    backdrop-filter: blur(22px);
+                    -webkit-backdrop-filter: blur(22px);
+                    border: 2px solid rgba(79, 110, 247, 0.38);
+                    border-radius: 22px;
+                    padding: 28px 32px;
+                    box-shadow: 0 22px 55px rgba(30, 41, 90, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+                }
                 .af-form-group { margin-bottom: 16px; }
                 .af-form-group label {
                     display: block;
-                    font-size: 12px;
-                    font-weight: 600;
-                    color: #EEEBDA;
+                    font-size: 12.5px;
+                    font-weight: 700;
+                    color: #1E293B;
                     margin-bottom: 6px;
                 }
                 .af-input, .af-select, .af-textarea {
                     width: 100%;
-                    background: rgba(15, 22, 48, 0.72);
-                    border: 1px solid rgba(238, 235, 218, 0.24);
-                    color: #EEEBDA;
-                    padding: 11px 14px;
-                    border-radius: 9px;
-                    font-size: 14px;
-                    border-radius: 8px;
-                    font-size: 13px;
+                    box-sizing: border-box;
+                    background: rgba(255, 255, 255, 0.88);
+                    border: 1px solid rgba(99, 102, 241, 0.22);
+                    color: #0F172A;
+                    padding: 10px 14px;
+                    border-radius: 12px;
+                    font-size: 13.5px;
+                    outline: none;
+                    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.04);
+                    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+                }
+                .af-input:focus, .af-select:focus, .af-textarea:focus {
+                    border-color: #3B82F6;
+                    background: #FFFFFF;
+                    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.16);
                 }
                 .af-check-grid {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
+                    gap: 10px;
+                    font-size: 12.5px;
+                }
+                .af-check-grid label {
+                    display: flex;
+                    align-items: center;
                     gap: 8px;
-                    font-size: 12px;
+                    margin-bottom: 0;
+                    padding: 9px 12px;
+                    background: rgba(255, 255, 255, 0.72);
+                    border: 1px solid rgba(99, 102, 241, 0.18);
+                    border-radius: 10px;
+                    color: #0F172A;
+                    font-weight: 600;
+                    cursor: pointer;
+                }
+                .af-check-grid input[type="checkbox"] {
+                    accent-color: #4F46E5;
+                    width: 15px;
+                    height: 15px;
                 }
 
                 @media (max-width: 900px) {
@@ -743,14 +832,14 @@
                                 <div>
                                     <div class="af-stat-label">Active Workshop Orders</div>
                                     <div class="af-stat-val"><t t-esc="kpi['active_count']"/></div>
-                                    <div class="af-stat-sub" style="color:#FBBF24;"><t t-esc="kpi['rush_count']"/> Clinical Rush</div>
+                                    <div class="af-stat-sub" style="color:#D97706;"><t t-esc="kpi['rush_count']"/> Clinical Rush</div>
                                 </div>
                                 <svg width="68" height="38" viewBox="0 0 68 38">
-                                    <rect x="2" y="16" width="8" height="22" rx="3" fill="rgba(238,235,218,0.22)"/>
-                                    <rect x="16" y="22" width="8" height="16" rx="3" fill="rgba(238,235,218,0.22)"/>
-                                    <rect x="30" y="10" width="8" height="28" rx="3" fill="#60A5FA"/>
-                                    <rect x="44" y="18" width="8" height="20" rx="3" fill="rgba(238,235,218,0.35)"/>
-                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#EEEBDA"/>
+                                    <rect x="2" y="16" width="8" height="22" rx="3" fill="rgba(99,102,241,0.22)"/>
+                                    <rect x="16" y="22" width="8" height="16" rx="3" fill="rgba(99,102,241,0.22)"/>
+                                    <rect x="30" y="10" width="8" height="28" rx="3" fill="#3B82F6"/>
+                                    <rect x="44" y="18" width="8" height="20" rx="3" fill="rgba(99,102,241,0.35)"/>
+                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#4F46E5"/>
                                 </svg>
                             </div>
                             <div class="af-stat-box">
@@ -760,25 +849,25 @@
                                     <div class="af-stat-sub">De-identified IDs active</div>
                                 </div>
                                 <svg width="68" height="38" viewBox="0 0 68 38">
-                                    <rect x="2" y="20" width="8" height="18" rx="3" fill="rgba(238,235,218,0.22)"/>
-                                    <rect x="16" y="14" width="8" height="24" rx="3" fill="#34D399"/>
-                                    <rect x="30" y="22" width="8" height="16" rx="3" fill="rgba(238,235,218,0.22)"/>
-                                    <rect x="44" y="8" width="8" height="30" rx="3" fill="#34D399"/>
-                                    <rect x="58" y="12" width="8" height="26" rx="3" fill="#EEEBDA"/>
+                                    <rect x="2" y="20" width="8" height="18" rx="3" fill="rgba(99,102,241,0.22)"/>
+                                    <rect x="16" y="14" width="8" height="24" rx="3" fill="#10B981"/>
+                                    <rect x="30" y="22" width="8" height="16" rx="3" fill="rgba(99,102,241,0.22)"/>
+                                    <rect x="44" y="8" width="8" height="30" rx="3" fill="#3B82F6"/>
+                                    <rect x="58" y="12" width="8" height="26" rx="3" fill="#4F46E5"/>
                                 </svg>
                             </div>
                             <div class="af-stat-box">
                                 <div>
                                     <div class="af-stat-label">CO₂ Prevented (ESG)</div>
-                                    <div class="af-stat-val"><t t-esc="kpi['total_co2']"/> <span style="font-size:15px;font-weight:600;color:rgba(238,235,218,0.72);">kg</span></div>
+                                    <div class="af-stat-val"><t t-esc="kpi['total_co2']"/> <span style="font-size:15px;font-weight:600;color:#475569;">kg</span></div>
                                     <div class="af-stat-sub"><t t-esc="kpi['total_water']"/> L water saved</div>
                                 </div>
                                 <svg width="68" height="38" viewBox="0 0 68 38">
-                                    <rect x="2" y="24" width="8" height="14" rx="3" fill="rgba(238,235,218,0.22)"/>
-                                    <rect x="16" y="18" width="8" height="20" rx="3" fill="rgba(238,235,218,0.28)"/>
-                                    <rect x="30" y="14" width="8" height="24" rx="3" fill="#60A5FA"/>
-                                    <rect x="44" y="10" width="8" height="28" rx="3" fill="#34D399"/>
-                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#EEEBDA"/>
+                                    <rect x="2" y="24" width="8" height="14" rx="3" fill="rgba(99,102,241,0.22)"/>
+                                    <rect x="16" y="18" width="8" height="20" rx="3" fill="rgba(99,102,241,0.32)"/>
+                                    <rect x="30" y="14" width="8" height="24" rx="3" fill="#3B82F6"/>
+                                    <rect x="44" y="10" width="8" height="28" rx="3" fill="#10B981"/>
+                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#4F46E5"/>
                                 </svg>
                             </div>
                         </div>
@@ -787,71 +876,71 @@
                         <div class="af-bento-mid">
                             <div class="af-bento-card" style="align-items:center;text-align:center;">
                                 <h3 class="af-bento-title" style="align-self:flex-start;">Clinical QA Readiness</h3>
-                                <div style="font-size:34px;font-weight:800;color:#EEEBDA;margin:6px 0 8px;">
-                                    <t t-esc="kpi['delivered_count']"/> <span style="font-size:14px;font-weight:600;color:rgba(238,235,218,0.72);">Delivered</span>
+                                <div style="font-size:34px;font-weight:800;color:#0F172A;margin:6px 0 8px;">
+                                    <t t-esc="kpi['delivered_count']"/> <span style="font-size:14px;font-weight:600;color:#475569;">Delivered</span>
                                 </div>
                                 <svg width="160" height="88" viewBox="0 0 160 88">
-                                    <path d="M 16 80 A 64 64 0 0 1 144 80" fill="none" stroke="rgba(238,235,218,0.18)" stroke-width="18" stroke-linecap="round"/>
-                                    <path d="M 16 80 A 64 64 0 0 1 118 28" fill="none" stroke="#EEEBDA" stroke-width="18" stroke-linecap="round"/>
+                                    <path d="M 16 80 A 64 64 0 0 1 144 80" fill="none" stroke="rgba(99,102,241,0.16)" stroke-width="18" stroke-linecap="round"/>
+                                    <path d="M 16 80 A 64 64 0 0 1 118 28" fill="none" stroke="#4F46E5" stroke-width="18" stroke-linecap="round"/>
                                 </svg>
-                                <div style="font-size:12px;color:rgba(238,235,218,0.72);margin-top:4px;"><t t-esc="kpi['pending_qa_count']"/> Pending Clinical QA Audits</div>
+                                <div style="font-size:12px;color:#475569;margin-top:4px;"><t t-esc="kpi['pending_qa_count']"/> Pending Clinical QA Audits</div>
                             </div>
 
                             <div class="af-bento-card">
                                 <h3 class="af-bento-title">Workshop Stages</h3>
-                                <div style="font-size:32px;font-weight:800;color:#EEEBDA;margin-bottom:8px;">
-                                    <t t-esc="kpi['total_yardage']"/> <span style="font-size:14px;font-weight:600;color:rgba(238,235,218,0.72);">m fabric</span>
+                                <div style="font-size:32px;font-weight:800;color:#0F172A;margin-bottom:8px;">
+                                    <t t-esc="kpi['total_yardage']"/> <span style="font-size:14px;font-weight:600;color:#475569;">m fabric</span>
                                 </div>
                                 <div style="flex:1;">
                                     <t t-foreach="stage_counts[:4]" t-as="st">
                                         <div class="af-dot-row">
-                                            <span><span class="af-dot" style="background:#EEEBDA;"/><t t-esc="st['label']"/></span>
-                                            <strong style="color:#EEEBDA;"><t t-esc="st['count']"/></strong>
+                                            <span><span class="af-dot" style="background:#4F46E5;"/><t t-esc="st['label']"/></span>
+                                            <strong style="color:#0F172A;"><t t-esc="st['count']"/></strong>
                                         </div>
                                     </t>
                                 </div>
-                                <a href="/adaptfit/admin?tab=orders" class="af-btn af-btn-sm" style="margin-top:10px;justify-content:center;border:1px solid rgba(238,235,218,0.24);color:#EEEBDA;background:rgba(238,235,218,0.10);">View Order Desk</a>
+                                <a href="/adaptfit/admin?tab=orders" class="af-btn af-btn-sm" style="margin-top:10px;justify-content:center;border:1px solid rgba(99,102,241,0.22);color:#1E293B;background:rgba(255,255,255,0.65);">View Order Desk</a>
                             </div>
 
                             <div class="af-bento-card">
                                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
                                     <h3 class="af-bento-title" style="margin:0;">Production Pipeline</h3>
-                                    <a href="/adaptfit/admin?tab=orders" style="font-size:12px;font-weight:600;color:#93C5FD;text-decoration:none;">Filter →</a>
+                                    <a href="/adaptfit/admin?tab=orders" style="font-size:12px;font-weight:700;color:#2563EB;text-decoration:none;">Filter →</a>
                                 </div>
                                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;">
                                     <t t-foreach="stage_counts" t-as="st">
-                                        <a t-attf-href="/adaptfit/admin?tab=orders&amp;stage={{st['key']}}" style="background:rgba(238,235,218,0.10);border:1px solid rgba(238,235,218,0.16);border-radius:10px;padding:10px 12px;text-decoration:none;color:#EEEBDA;display:flex;justify-content:space-between;align-items:center;">
+                                        <a t-attf-href="/adaptfit/admin?tab=orders&amp;stage={{st['key']}}" style="background:rgba(255,255,255,0.58);border:1px solid rgba(255,255,255,0.85);border-radius:10px;padding:10px 12px;text-decoration:none;color:#0F172A;display:flex;justify-content:space-between;align-items:center;">
                                             <span style="font-size:12px;font-weight:600;"><t t-esc="st['label']"/></span>
-                                            <strong style="font-size:16px;color:#93C5FD;"><t t-esc="st['count']"/></strong>
+                                            <strong style="font-size:16px;color:#4F46E5;"><t t-esc="st['count']"/></strong>
                                         </a>
                                     </t>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Row 3: 2 Bottom Cards (Ring Pills + Navy Gradient Feature Card) -->
+                        <!-- Row 3: 2 Bottom Cards (Ring Pills + Cobalt-Indigo Glass Feature Card) -->
                         <div class="af-bento-bot">
                             <div style="display:flex;flex-direction:column;gap:12px;">
                                 <div class="af-ring-pill af-ring-dark">
                                     <svg width="52" height="52" viewBox="0 0 52 52">
-                                        <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(238,235,218,0.18)" stroke-width="5"/>
-                                        <circle cx="26" cy="26" r="20" fill="none" stroke="#F59E0B" stroke-width="5" stroke-dasharray="95 126" stroke-linecap="round" transform="rotate(-90 26 26)"/>
-                                        <text x="26" y="30" text-anchor="middle" fill="#EEEBDA" font-size="11" font-weight="700"><t t-esc="kpi['active_count']"/></text>
+                                        <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="5"/>
+                                        <circle cx="26" cy="26" r="20" fill="none" stroke="#FBBF24" stroke-width="5" stroke-dasharray="95 126" stroke-linecap="round" transform="rotate(-90 26 26)"/>
+                                        <text x="26" y="30" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700"><t t-esc="kpi['active_count']"/></text>
                                     </svg>
                                     <div>
                                         <div style="font-weight:700;font-size:14px;">Pending Artisan Settlements</div>
-                                        <div style="font-size:12px;color:rgba(238,235,218,0.75);"><t t-esc="kpi['pending_payout_total']"/> AED awaiting payout approval</div>
+                                        <div style="font-size:12px;color:rgba(255,255,255,0.82);"><t t-esc="kpi['pending_payout_total']"/> AED awaiting payout approval</div>
                                     </div>
                                 </div>
                                 <div class="af-ring-pill af-ring-light">
                                     <svg width="52" height="52" viewBox="0 0 52 52">
-                                        <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(238,235,218,0.18)" stroke-width="5"/>
-                                        <circle cx="26" cy="26" r="20" fill="none" stroke="#34D399" stroke-width="5" stroke-dasharray="105 126" stroke-linecap="round" transform="rotate(-90 26 26)"/>
-                                        <text x="26" y="30" text-anchor="middle" fill="#EEEBDA" font-size="11" font-weight="700"><t t-esc="kpi['patient_count']"/></text>
+                                        <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(99,102,241,0.18)" stroke-width="5"/>
+                                        <circle cx="26" cy="26" r="20" fill="none" stroke="#10B981" stroke-width="5" stroke-dasharray="105 126" stroke-linecap="round" transform="rotate(-90 26 26)"/>
+                                        <text x="26" y="30" text-anchor="middle" fill="#0F172A" font-size="11" font-weight="700"><t t-esc="kpi['patient_count']"/></text>
                                     </svg>
                                     <div>
                                         <div style="font-weight:700;font-size:14px;">Patient Dignity Profiles</div>
-                                        <div style="font-size:12px;color:rgba(238,235,218,0.75);">1-click photo upload &amp; asymmetric measurements</div>
+                                        <div style="font-size:12px;color:#475569;">1-click photo upload &amp; asymmetric measurements</div>
                                     </div>
                                 </div>
                             </div>
@@ -1050,10 +1139,10 @@
                                             </label>
                                         </form>
                                         <div style="flex:1;">
-                                            <div style="font-size:17px;font-weight:700;color:#EEEBDA;"><t t-esc="p.name"/></div>
-                                            <div style="font-size:12px;color:#93C5FD;font-weight:700;"><t t-esc="p.patient_identifier"/></div>
-                                            <div style="font-size:12px;color:rgba(238,235,218,0.75);margin-top:4px;"><t t-esc="p.adaptive_order_count"/> Adaptive Order(s)</div>
-                                            <div style="font-size:11px;color:#93C5FD;margin-top:4px;font-weight:600;">Click photo to upload</div>
+                                            <div style="font-size:17px;font-weight:700;color:#0F172A;"><t t-esc="p.name"/></div>
+                                            <div style="font-size:12px;color:#2563EB;font-weight:700;"><t t-esc="p.patient_identifier"/></div>
+                                            <div style="font-size:12px;color:#475569;margin-top:4px;"><t t-esc="p.adaptive_order_count"/> Adaptive Order(s)</div>
+                                            <div style="font-size:11px;color:#4F46E5;margin-top:4px;font-weight:600;">Click photo to upload</div>
                                         </div>
                                         <button type="button" class="af-btn af-btn-primary af-btn-sm"
                                             onclick="openEditPatient(this)"
@@ -1080,7 +1169,7 @@
                                         <span t-if="p.pref_magnetic_closures" class="af-tag">Magnetic Closures</span>
                                     </div>
 
-                                    <div t-if="p.medical_notes" style="font-size:12px;color:#EEEBDA;background:rgba(238,235,218,0.08);border:1px solid rgba(238,235,218,0.16);padding:10px;border-radius:8px;">
+                                    <div t-if="p.medical_notes" style="font-size:12px;color:#1E293B;background:rgba(255,255,255,0.55);border:1px solid rgba(99,102,241,0.18);padding:10px;border-radius:8px;">
                                         <t t-esc="p.medical_notes"/>
                                     </div>
                                 </div>
@@ -1106,10 +1195,10 @@
                                             <t t-esc="qa.state.upper()"/>
                                         </span>
                                     </div>
-                                    <div style="font-size:13px;color:#EEEBDA;">
+                                    <div style="font-size:13px;color:#0F172A;">
                                         Order: <strong><t t-esc="qa.order_id.name"/></strong> · Patient Ref: <t t-esc="qa.patient_ref"/>
                                     </div>
-                                    <div style="font-size:12px;color:rgba(238,235,218,0.75);display:flex;flex-direction:column;gap:4px;">
+                                    <div style="font-size:12px;color:#475569;display:flex;flex-direction:column;gap:4px;">
                                         <div><span t-attf-style="font-weight:700;color:#{'#10B981' if qa.tactile_seam_audit else '#94A3B8'};"><t t-esc="'[PASS]' if qa.tactile_seam_audit else '[ ]'"/></span> Tactile Seam Audit (Zero Chafing)</div>
                                         <div><span t-attf-style="font-weight:700;color:#{'#10B981' if qa.magnetic_polarity_test else '#94A3B8'};"><t t-esc="'[PASS]' if qa.magnetic_polarity_test else '[ ]'"/></span> Magnetic Polarity &amp; One-Handed Snap</div>
                                         <div><span t-attf-style="font-weight:700;color:#{'#10B981' if qa.port_access_clearance else '#94A3B8'};"><t t-esc="'[PASS]' if qa.port_access_clearance else '[ ]'"/></span> Port Access Clearance Verified</div>
