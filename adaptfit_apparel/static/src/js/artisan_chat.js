@@ -37,18 +37,37 @@
         if (!msg.is_me) {
             html += '<div class="ac-msg-author">' + escapeHtml(msg.author) + '</div>';
         }
-        if (msg.body) {
-            html += '<div class="ac-msg-body">' + escapeHtml(msg.body) + '</div>';
-        }
         if (msg.image_ids && msg.image_ids.length) {
             msg.image_ids.forEach(function (imgId) {
                 html += '<img class="ac-msg-img" src="/web/image/' + encodeURIComponent(imgId) + '" alt="Seam photo"/>';
             });
         }
-        html += '<div class="ac-msg-time">' + escapeHtml(msg.time) + '</div>';
+        html += '<div class="ac-msg-content">';
+        if (msg.body) {
+            html += '<span class="ac-msg-body">' + escapeHtml(msg.body) + '</span>';
+        }
+        html += '<span class="ac-msg-time">' + escapeHtml(msg.time) + '</span>';
+        html += '</div>';
 
         wrap.innerHTML = html;
         return wrap;
+    }
+
+    function updateStagePills(newState) {
+        const order = ['draft', 'pattern', 'stitching', 'transit'];
+        const activeIdx = order.indexOf(newState);
+        document.querySelectorAll('.ac-stage-pill[data-step-state]').forEach(function (btn) {
+            const stepState = btn.getAttribute('data-step-state');
+            const idx = order.indexOf(stepState);
+            btn.classList.remove('is-active', 'is-done');
+            btn.disabled = false;
+            if (idx === activeIdx) {
+                btn.classList.add('is-active');
+                btn.disabled = true;
+            } else if (activeIdx !== -1 && idx !== -1 && idx < activeIdx) {
+                btn.classList.add('is-done');
+            }
+        });
     }
 
     function initDetail() {
@@ -62,13 +81,46 @@
         }
         scrollToBottom();
 
-        // Toggle Specs Panel
+        // WhatsApp-Style Right Order Specs Pane
+        const infoPane = document.getElementById('ac-info-pane');
         const toggleBtn = document.getElementById('ac-toggle-specs');
-        const specsPanel = document.getElementById('ac-specs-panel');
-        if (toggleBtn && specsPanel) {
+        const closeBtn = document.getElementById('ac-close-specs');
+
+        function setSpecsOpen(open) {
+            if (!infoPane) {
+                return;
+            }
+            infoPane.classList.toggle('is-closed', !open);
+            if (toggleBtn) {
+                toggleBtn.classList.toggle('is-active', open);
+                toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+        }
+
+        if (infoPane) {
+            setSpecsOpen(window.innerWidth >= 1100);
+        }
+        if (toggleBtn && infoPane) {
             toggleBtn.addEventListener('click', function () {
-                const hidden = specsPanel.classList.toggle('is-hidden');
-                toggleBtn.textContent = hidden ? 'View Specs' : 'Hide Specs';
+                setSpecsOpen(infoPane.classList.contains('is-closed'));
+            });
+        }
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function () {
+                setSpecsOpen(false);
+            });
+        }
+
+        // Copy Specs
+        const copyBtn = document.getElementById('ac-copy-specs');
+        const specsRows = document.getElementById('ac-specs-copy-source');
+        if (copyBtn && specsRows && navigator.clipboard) {
+            copyBtn.addEventListener('click', function () {
+                navigator.clipboard.writeText(specsRows.innerText.trim()).then(function () {
+                    const orig = copyBtn.textContent;
+                    copyBtn.textContent = 'Copied';
+                    setTimeout(function () { copyBtn.textContent = orig; }, 1400);
+                });
             });
         }
 
@@ -182,10 +234,18 @@
                         if (!resp.ok) {
                             throw new Error('HTTP ' + resp.status);
                         }
+                        const ct = resp.headers.get('content-type') || '';
+                        if (ct.indexOf('application/json') === -1) {
+                            window.location.reload();
+                            return null;
+                        }
                         return resp.json();
                     })
                     .then(function (data) {
-                        if (data && data.message) {
+                        if (!data) {
+                            return;
+                        }
+                        if (data.message) {
                             thread.appendChild(renderMessageNode(data.message));
                             scrollToBottom();
                         }
@@ -205,14 +265,18 @@
             });
         }
 
-        // Stage Dropdown Auto-Update
+        // Segmented Stage Pills
         const stageForm = document.getElementById('ac-stage-form');
-        const stageSelect = document.getElementById('ac-stage-select');
-        if (stageForm && stageSelect) {
-            stageSelect.addEventListener('change', function () {
+        if (stageForm) {
+            stageForm.addEventListener('submit', function (ev) {
+                const submitter = ev.submitter;
+                if (!submitter || !submitter.value) {
+                    return;
+                }
+                ev.preventDefault();
                 const formData = new FormData(stageForm);
+                formData.set('target_state', submitter.value);
                 formData.append('ajax', '1');
-                stageSelect.disabled = true;
 
                 fetch(stageForm.action, {
                     method: 'POST',
@@ -224,19 +288,27 @@
                         if (!resp.ok) {
                             throw new Error('HTTP ' + resp.status);
                         }
+                        const ct = resp.headers.get('content-type') || '';
+                        if (ct.indexOf('application/json') === -1) {
+                            window.location.reload();
+                            return null;
+                        }
                         return resp.json();
                     })
                     .then(function (data) {
-                        if (data && data.message) {
+                        if (!data) {
+                            return;
+                        }
+                        if (data.state) {
+                            updateStagePills(data.state);
+                        }
+                        if (data.message) {
                             thread.appendChild(renderMessageNode(data.message));
                             scrollToBottom();
                         }
                     })
                     .catch(function () {
-                        stageForm.submit();
-                    })
-                    .finally(function () {
-                        stageSelect.disabled = false;
+                        window.location.reload();
                     });
             });
         }
