@@ -27,14 +27,14 @@
                 <t t-if="not order_cards">
                     <div class="ac-empty">No active orders.</div>
                 </t>
-                <t t-foreach="order_cards" t-as="card">
+                <t t-foreach="order_cards or []" t-as="card">
                     <t t-set="o" t-value="card['order']"/>
                     <a t-attf-href="/adaptfit/artisan/#{o.id}"
                        t-attf-class="ac-order-row #{'is-selected' if active_order_id == o.id else ''}"
-                       t-att-data-search="#{o.name} #{card['garment_label']} #{card['state_label']} #{card['preview']}">
+                       t-attf-data-search="#{o.name} #{card['garment_label']} #{card['state_label']} #{card['preview']}">
                         <div class="ac-row-head">
                             <span class="ac-row-name">#<t t-esc="o.name"/></span>
-                            <span class="ac-row-time"><t t-esc="card['last_time']"/></span>
+                            <span class="ac-row-time"><t t-esc="card.get('last_time', '')"/></span>
                         </div>
                         <div class="ac-row-garment">
                             <span><t t-esc="card['garment_label']"/> · <t t-esc="card['state_label']"/></span>
@@ -139,7 +139,7 @@
                     <!-- Chat Messages -->
                     <div id="ac-chat-thread" class="ac-thread">
                         <t t-foreach="chat_messages" t-as="msg">
-                            <t t-if="msg['is_system']">
+                            <t t-if="msg.get('is_system', False)">
                                 <div class="ac-system-event">
                                     <t t-esc="msg['body']"/> · <t t-esc="msg['time']"/>
                                 </div>
