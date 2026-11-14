@@ -1,0 +1,1599 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="admin_portal_template" name="AdaptFit Admin Command Center">
+        &lt;!DOCTYPE html&gt;
+        <html lang="en">
+        <head>
+            <meta charset="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>AdaptFit ERP — Command Center</title>
+            <style>
+                :root {
+                    --af-navy-deep: #1F223D;
+                    --af-navy: #282B4A;
+                    --af-indigo: #33375E;
+                    --af-grad-card: linear-gradient(145deg, #212440 0%, #282B4A 58%, #343860 100%);
+                    --af-grad-bar: linear-gradient(175deg, #1F223D 0%, #282B4A 60%, #33375E 100%);
+                    --af-cream: #EEEBDA;
+                    --af-cream-soft: #F7F5EA;
+                    --af-blue: #3B82F6;
+                    --af-blue-bright: #60A5FA;
+                    --af-cyan: #EEEBDA;
+                    --af-emerald: #10B981;
+                    --af-amber: #F59E0B;
+                    --af-rose: #EF4444;
+                    --af-text-light: #EEEBDA;
+                    --af-text-muted: #D5D2C3;
+                    --af-text-dark: #282B4A;
+                    --af-border-glow: rgba(238, 235, 218, 0.22);
+                    --af-float-shadow: 0 20px 42px -10px rgba(24, 26, 48, 0.55), 0 8px 18px -4px rgba(24, 26, 48, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+                    --af-float-shadow-hover: 0 26px 50px -10px rgba(24, 26, 48, 0.65), 0 10px 24px -4px rgba(238, 235, 218, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                }
+
+                * { box-sizing: border-box; }
+                html {
+                    background: #191C36;
+                }
+                body {
+                    margin: 0;
+                    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+                    background: linear-gradient(145deg, #191C36 0%, #282B4A 52%, #353B68 100%);
+                    background-attachment: fixed;
+                    color: #EEEBDA;
+                    display: flex;
+                    min-height: 100vh;
+                }
+
+                /* Shell Sidebar (AeuxGlobal Style) */
+                .af-sidebar {
+                    width: 248px;
+                    background: transparent;
+                    color: var(--af-text-light);
+                    display: flex;
+                    flex-direction: column;
+                    position: fixed;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    padding: 20px 14px;
+                    z-index: 40;
+                }
+                .af-brand {
+                    padding: 22px 20px;
+                    border-bottom: 1px solid rgba(255,255,255,0.08);
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                }
+                .af-brand-badge {
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 10px;
+                    background: linear-gradient(135deg, #EEEBDA 0%, #DFD9BE 100%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 800;
+                    font-size: 16px;
+                    color: #282B4A;
+                    box-shadow: 0 4px 12px rgba(10, 12, 28, 0.35);
+                }
+                .af-brand-title { font-weight: 700; font-size: 16px; letter-spacing: 0.3px; color: #EEEBDA; }
+                .af-brand-sub { font-size: 11px; color: rgba(238, 235, 218, 0.72); text-transform: uppercase; letter-spacing: 1px; }
+
+                .af-nav {
+                    padding: 16px 12px;
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+                }
+                .af-nav-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 11px;
+                    padding: 11px 14px;
+                    border-radius: 10px;
+                    color: rgba(238, 235, 218, 0.72);
+                    text-decoration: none;
+                    font-size: 14px;
+                    font-weight: 500;
+                    transition: all 0.18s ease;
+                    border: 1px solid transparent;
+                }
+                .af-nav-item:hover {
+                    background: rgba(238, 235, 218, 0.08);
+                    color: #EEEBDA;
+                }
+                .af-nav-item.active {
+                    background: rgba(238, 235, 218, 0.14);
+                    color: #EEEBDA;
+                    font-weight: 600;
+                    border: 1px solid rgba(238, 235, 218, 0.22);
+                    box-shadow: 0 4px 14px rgba(10, 12, 28, 0.25);
+                }
+
+                .af-sidebar-footer {
+                    padding: 14px 12px 18px;
+                    border-top: 1px solid rgba(255,255,255,0.08);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                }
+                .af-ext-link {
+                    display: block;
+                    padding: 9px 12px;
+                    border-radius: 8px;
+                    background: rgba(255,255,255,0.05);
+                    border: 1px solid rgba(255,255,255,0.1);
+                    color: var(--af-cream);
+                    text-decoration: none;
+                    font-size: 13px;
+                    font-weight: 500;
+                    text-align: center;
+                }
+                .af-ext-link:hover {
+                    border-color: var(--af-cyan);
+                    color: #fff;
+                }
+
+                /* Main Rounded Cream Sheet */
+                .af-main {
+                    margin-left: 248px;
+                    margin-top: 14px;
+                    margin-right: 14px;
+                    margin-bottom: 14px;
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    min-width: 0;
+                    background: linear-gradient(165deg, #FAF8F0 0%, #EEEBDA 100%);
+                    color: #282B4A;
+                    border-radius: 26px;
+                    box-shadow: 0 24px 60px rgba(10, 14, 34, 0.45);
+                    overflow: hidden;
+                }
+                .af-topbar {
+                    background: transparent;
+                    color: #282B4A;
+                    padding: 18px 28px 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 16px;
+                    border-bottom: 1px solid rgba(40, 43, 74, 0.08);
+                }
+                .af-search-form {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    flex: 1;
+                    max-width: 380px;
+                }
+                .af-search-input {
+                    width: 100%;
+                    background: #FFFFFF;
+                    border: 1px solid rgba(40, 43, 74, 0.14);
+                    color: #282B4A;
+                    padding: 8px 14px;
+                    border-radius: 10px;
+                    font-size: 13px;
+                    outline: none;
+                }
+                .af-search-input:focus {
+                    border-color: #282B4A;
+                    box-shadow: 0 0 0 2px rgba(40, 43, 74, 0.1);
+                }
+                .af-user-pill {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    background: #FFFFFF;
+                    color: #282B4A;
+                    padding: 6px 14px;
+                    border-radius: 999px;
+                    border: 1px solid rgba(40, 43, 74, 0.12);
+                    font-size: 12px;
+                    font-weight: 600;
+                }
+
+                .af-content {
+                    padding: 24px 28px 44px;
+                    background: transparent;
+                    flex: 1;
+                }
+
+                /* Alerts */
+                .af-alert {
+                    padding: 12px 16px;
+                    border-radius: 10px;
+                    margin-bottom: 18px;
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+                .af-alert-ok {
+                    background: #064E3B;
+                    color: #ECFDF5;
+                    border: 1px solid #10B981;
+                }
+                .af-alert-err {
+                    background: #7F1D1D;
+                    color: #FEF2F2;
+                    border: 1px solid #EF4444;
+                }
+
+                /* Section Header */
+                .af-page-head {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 12px;
+                    margin-bottom: 22px;
+                }
+                .af-page-title {
+                    margin: 0;
+                    font-size: 24px;
+                    font-weight: 800;
+                    color: #282B4A;
+                    letter-spacing: -0.3px;
+                }
+                .af-page-sub {
+                    margin: 4px 0 0;
+                    font-size: 13px;
+                    color: #475569;
+                }
+
+                /* Buttons */
+                .af-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 6px;
+                    padding: 9px 16px;
+                    border-radius: 9px;
+                    border: none;
+                    font-size: 13px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    text-decoration: none;
+                    transition: all 0.15s ease;
+                }
+                .af-btn-primary {
+                    background: linear-gradient(135deg, #282B4A, #3A4070);
+                    color: #EEEBDA;
+                    box-shadow: 0 4px 12px rgba(40, 43, 74, 0.22);
+                }
+                .af-btn-primary:hover { filter: brightness(1.12); }
+
+                /* Bento Dashboard Cards (AeuxGlobal Style) */
+                .af-bento-3 {
+                    display: grid;
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                    gap: 16px;
+                    margin-bottom: 16px;
+                }
+                .af-bento-mid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1.35fr;
+                    gap: 16px;
+                    margin-bottom: 16px;
+                }
+                .af-bento-bot {
+                    display: grid;
+                    grid-template-columns: 1.15fr 1fr;
+                    gap: 16px;
+                    margin-bottom: 22px;
+                }
+                .af-stat-box {
+                    background: #FFFFFF;
+                    border: 1px solid rgba(40, 43, 74, 0.08);
+                    border-radius: 16px;
+                    padding: 18px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-end;
+                    gap: 12px;
+                    color: #282B4A;
+                    box-shadow: 0 4px 14px rgba(40, 43, 74, 0.05);
+                }
+                .af-stat-label { font-size: 12px; color: #64748B; font-weight: 600; margin-bottom: 6px; }
+                .af-stat-val { font-size: 26px; font-weight: 800; color: #282B4A; letter-spacing: -0.5px; }
+                .af-stat-sub { font-size: 11px; color: #10B981; font-weight: 600; margin-top: 6px; }
+                .af-bento-card {
+                    background: #FFFFFF;
+                    border: 1px solid rgba(40, 43, 74, 0.08);
+                    border-radius: 16px;
+                    padding: 20px;
+                    color: #282B4A;
+                    box-shadow: 0 4px 14px rgba(40, 43, 74, 0.05);
+                    display: flex;
+                    flex-direction: column;
+                }
+                .af-bento-title { font-size: 14px; font-weight: 700; color: #282B4A; margin: 0 0 10px; }
+                .af-dot-row {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-size: 12px;
+                    padding: 5px 0;
+                    color: #334155;
+                }
+                .af-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+                .af-ring-pill {
+                    border-radius: 16px;
+                    padding: 16px 20px;
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    box-shadow: 0 6px 18px rgba(40, 43, 74, 0.08);
+                }
+                .af-ring-dark {
+                    background: linear-gradient(135deg, #1E213D 0%, #282B4A 100%);
+                    color: #EEEBDA;
+                    border: 1px solid rgba(238, 235, 218, 0.16);
+                }
+                .af-ring-light {
+                    background: #FFFFFF;
+                    color: #282B4A;
+                    border: 1px solid rgba(40, 43, 74, 0.08);
+                }
+                .af-feature-card {
+                    background: linear-gradient(135deg, #1E213D 0%, #282B4A 55%, #3B4378 100%);
+                    color: #EEEBDA;
+                    border-radius: 18px;
+                    padding: 22px 24px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    box-shadow: 0 12px 28px rgba(40, 43, 74, 0.25);
+                    text-decoration: none;
+                }
+                @media (max-width: 1100px) {
+                    .af-bento-3, .af-bento-mid, .af-bento-bot { grid-template-columns: 1fr; }
+                }
+                .af-btn-navy {
+                    background: var(--af-navy);
+                    color: var(--af-cream);
+                    border: 1px solid var(--af-border-glow);
+                }
+                .af-btn-navy:hover { background: var(--af-navy-deep); color: #fff; }
+                .af-btn-emerald { background: var(--af-emerald); color: #fff; }
+                .af-btn-rose { background: var(--af-rose); color: #fff; }
+                .af-btn-sm { padding: 6px 11px; font-size: 12px; border-radius: 7px; }
+
+                /* KPI Grid */
+                .af-kpi-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+                    gap: 16px;
+                    margin-bottom: 24px;
+                }
+                .af-kpi-card {
+                    background: var(--af-grad-card);
+                    color: var(--af-text-light);
+                    border-radius: 18px;
+                    padding: 20px 22px;
+                    border: 1px solid var(--af-border-glow);
+                    box-shadow: var(--af-float-shadow);
+                    transition: transform 0.22s ease, box-shadow 0.22s ease;
+                }
+                .af-kpi-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: var(--af-float-shadow-hover);
+                }
+                .af-kpi-label {
+                    font-size: 12px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.7px;
+                    color: var(--af-text-muted);
+                    margin-bottom: 8px;
+                }
+                .af-kpi-val {
+                    font-size: 28px;
+                    font-weight: 800;
+                    color: #fff;
+                }
+                .af-kpi-accent {
+                    margin-top: 8px;
+                    font-size: 12px;
+                    color: var(--af-cyan);
+                }
+
+                /* Pipeline Strip */
+                .af-pipeline {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                    gap: 12px;
+                    margin-bottom: 24px;
+                }
+                .af-pipe-step {
+                    background: var(--af-grad-card);
+                    color: var(--af-text-light);
+                    padding: 16px;
+                    border-radius: 16px;
+                    border: 1px solid var(--af-border-glow);
+                    box-shadow: var(--af-float-shadow);
+                    text-decoration: none;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+                    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+                }
+                .af-pipe-step:hover { border-color: var(--af-cyan); transform: translateY(-5px); box-shadow: var(--af-float-shadow-hover); }
+                .af-pipe-count { font-size: 22px; font-weight: 800; color: var(--af-cyan); }
+                .af-pipe-name { font-size: 12px; color: #E2E8F0; }
+
+                /* Floating Vanilla Cream Panel + Midnight Indigo Header */
+                .af-panel {
+                    background: linear-gradient(165deg, #F7F5EA 0%, #EEEBDA 100%);
+                    color: #282B4A;
+                    border-radius: 18px;
+                    border: 1px solid rgba(40, 43, 74, 0.18);
+                    overflow: hidden;
+                    box-shadow: var(--af-float-shadow);
+                    margin-bottom: 24px;
+                }
+                .af-panel-head {
+                    padding: 16px 22px;
+                    background: linear-gradient(90deg, #1F223D 0%, #282B4A 65%, #343860 100%);
+                    border-bottom: 1px solid var(--af-border-glow);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                }
+                .af-panel-title { font-size: 15px; font-weight: 700; margin: 0; color: #EEEBDA; }
+
+                .af-table-wrap { overflow-x: auto; }
+                table.af-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    font-size: 13px;
+                }
+                table.af-table th {
+                    text-align: left;
+                    padding: 12px 16px;
+                    background: #282B4A;
+                    color: #EEEBDA;
+                    font-size: 11px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.7px;
+                    border-bottom: 2px solid rgba(238, 235, 218, 0.25);
+                }
+                table.af-table td {
+                    padding: 13px 16px;
+                    border-bottom: 1px solid rgba(40, 43, 74, 0.12);
+                    color: #282B4A;
+                    vertical-align: middle;
+                }
+                table.af-table tr:hover td {
+                    background: rgba(40, 43, 74, 0.06);
+                }
+
+                /* Badges */
+                .af-badge {
+                    display: inline-block;
+                    padding: 4px 10px;
+                    border-radius: 999px;
+                    font-size: 11px;
+                    font-weight: 700;
+                    white-space: nowrap;
+                }
+                .b-rush { background: #FEE2E2; color: #B91C1C; border: 1px solid #EF4444; }
+                .b-urgent { background: #FEF3C7; color: #B45309; border: 1px solid #F59E0B; }
+                .b-std { background: #D1FAE5; color: #047857; border: 1px solid #10B981; }
+                .b-stage { background: #E0E7FF; color: #282B4A; border: 1px solid #3B82F6; }
+
+                /* Patient &amp; QA Floating Cards */
+                .af-cards-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+                    gap: 18px;
+                }
+                .af-card {
+                    background: linear-gradient(160deg, #FFFFFF 0%, #FAF8F0 100%);
+                    color: #282B4A;
+                    border-radius: 18px;
+                    padding: 22px;
+                    border: 1px solid rgba(40, 43, 74, 0.10);
+                    border-top: 4px solid #282B4A;
+                    box-shadow: 0 8px 22px rgba(40, 43, 74, 0.08);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 14px;
+                    transition: transform 0.22s ease, box-shadow 0.22s ease;
+                }
+                .af-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: var(--af-float-shadow-hover);
+                }
+                .af-patient-head {
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                }
+                .af-avatar-lg {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 16px;
+                    object-fit: cover;
+                    border: 2px solid var(--af-blue-bright);
+                    background: var(--af-indigo);
+                    flex-shrink: 0;
+                    display: block;
+                }
+                .af-avatar-upload {
+                    position: relative;
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 16px;
+                    overflow: hidden;
+                    cursor: pointer;
+                    flex-shrink: 0;
+                    display: block;
+                }
+                .af-avatar-overlay {
+                    position: absolute;
+                    inset: 0;
+                    background: rgba(27, 30, 54, 0.72);
+                    color: #fff;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 11px;
+                    font-weight: 700;
+                    gap: 3px;
+                    opacity: 0;
+                    transition: opacity 0.18s ease;
+                }
+                .af-avatar-upload:hover .af-avatar-overlay {
+                    opacity: 1;
+                }
+                .af-tag-list {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 6px;
+                }
+                .af-tag {
+                    background: #E0E7FF;
+                    color: #282B4A;
+                    border: 1px solid rgba(59, 130, 246, 0.35);
+                    padding: 3px 8px;
+                    border-radius: 6px;
+                    font-size: 11px;
+                    font-weight: 600;
+                }
+
+                /* Filter Pills */
+                .af-filter-bar {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                    margin-bottom: 16px;
+                }
+                .af-pill {
+                    padding: 7px 14px;
+                    border-radius: 999px;
+                    background: var(--af-navy);
+                    color: var(--af-cream);
+                    text-decoration: none;
+                    font-size: 12px;
+                    font-weight: 600;
+                    border: 1px solid var(--af-border-glow);
+                }
+                .af-pill.active {
+                    background: var(--af-blue);
+                    color: #fff;
+                    border-color: var(--af-cyan);
+                }
+
+                /* Modal */
+                .af-modal-backdrop {
+                    display: none;
+                    position: fixed;
+                    inset: 0;
+                    background: rgba(11, 17, 32, 0.72);
+                    backdrop-filter: blur(4px);
+                    z-index: 100;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px;
+                }
+                .af-modal-backdrop.open { display: flex; }
+                .af-modal {
+                    background: var(--af-navy);
+                    color: var(--af-text-light);
+                    border: 1px solid var(--af-cyan);
+                    border-radius: 16px;
+                    width: 100%;
+                    max-width: 540px;
+                    padding: 24px;
+                    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+                    max-height: 90vh;
+                    overflow-y: auto;
+                }
+                .af-form-group { margin-bottom: 14px; }
+                .af-form-group label {
+                    display: block;
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: var(--af-cyan);
+                    margin-bottom: 5px;
+                }
+                .af-input, .af-select, .af-textarea {
+                    width: 100%;
+                    background: var(--af-navy-deep);
+                    border: 1px solid var(--af-border-glow);
+                    color: #fff;
+                    padding: 9px 12px;
+                    border-radius: 8px;
+                    font-size: 13px;
+                }
+                .af-check-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 8px;
+                    font-size: 12px;
+                }
+
+                @media (max-width: 900px) {
+                    .af-sidebar { width: 72px; }
+                    .af-brand-text, .af-nav-label, .af-sidebar-footer { display: none; }
+                    .af-main { margin-left: 72px; }
+                }
+            </style>
+        </head>
+        <body>
+            <!-- Left Navigation Sidebar -->
+            <aside class="af-sidebar">
+                <div class="af-brand">
+                    <div class="af-brand-badge">AF</div>
+                    <div class="af-brand-text">
+                        <div class="af-brand-title">AdaptFit ERP</div>
+                        <div class="af-brand-sub">Command Center</div>
+                    </div>
+                </div>
+
+                <nav class="af-nav">
+                    <a t-attf-href="/adaptfit/admin?tab=overview" t-attf-class="af-nav-item #{'active' if tab == 'overview' else ''}">
+                        <span>⚡</span><span class="af-nav-label">Overview</span>
+                    </a>
+                    <a t-attf-href="/adaptfit/admin?tab=patients" t-attf-class="af-nav-item #{'active' if tab == 'patients' else ''}">
+                        <span>🩺</span><span class="af-nav-label">Patient Dignity Hub</span>
+                    </a>
+                    <a t-attf-href="/adaptfit/admin?tab=orders" t-attf-class="af-nav-item #{'active' if tab == 'orders' else ''}">
+                        <span>🧵</span><span class="af-nav-label">Order Desk &amp; Dispatch</span>
+                    </a>
+                    <a t-attf-href="/adaptfit/admin?tab=qa" t-attf-class="af-nav-item #{'active' if tab == 'qa' else ''}">
+                        <span>✅</span><span class="af-nav-label">Clinical Fitting &amp; QA</span>
+                    </a>
+                    <a t-attf-href="/adaptfit/admin?tab=settlements" t-attf-class="af-nav-item #{'active' if tab == 'settlements' else ''}">
+                        <span>💳</span><span class="af-nav-label">Artisan Settlements</span>
+                    </a>
+                    <a t-attf-href="/adaptfit/admin?tab=esg" t-attf-class="af-nav-item #{'active' if tab == 'esg' else ''}">
+                        <span>🌿</span><span class="af-nav-label">ESG &amp; Analytics</span>
+                    </a>
+                </nav>
+
+                <div class="af-sidebar-footer">
+                    <a href="/adaptfit/artisan" class="af-ext-link">💬 Open ArtisanChat</a>
+                    <a href="/web" class="af-ext-link">⚙️ Raw Odoo Backend</a>
+                </div>
+            </aside>
+
+            <!-- Main Workspace -->
+            <div class="af-main">
+                <header class="af-topbar">
+                    <form action="/adaptfit/admin" method="get" class="af-search-form">
+                        <input type="hidden" name="tab" t-att-value="tab if tab in ('orders', 'patients') else 'orders'"/>
+                        <input type="text" name="q" t-att-value="q" class="af-search-input" placeholder="Search order ref (AD-1049), patient ref, or name..."/>
+                        <button type="submit" class="af-btn af-btn-primary af-btn-sm">Search</button>
+                    </form>
+                    <div class="af-user-pill">
+                        <span>👤 <t t-esc="user.name"/></span>
+                    </div>
+                </header>
+
+                <main class="af-content">
+                    <t t-if="msg">
+                        <div class="af-alert af-alert-ok">✅ <t t-esc="msg"/></div>
+                    </t>
+                    <t t-if="err">
+                        <div class="af-alert af-alert-err">⚠️ <t t-esc="err"/></div>
+                    </t>
+
+                    <!-- TAB 1: OVERVIEW (AeuxGlobal Bento Style) -->
+                    <t t-if="tab == 'overview'">
+                        <div class="af-page-head">
+                            <div>
+                                <h1 class="af-page-title">Dashboard</h1>
+                                <p class="af-page-sub">Clinical adaptive apparel production, patient intake, and zero-waste ESG impact</p>
+                            </div>
+                            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                                <button type="button" class="af-btn af-btn-navy" onclick="document.getElementById('modalPatient').classList.add('open')">+ Register Patient</button>
+                                <button type="button" class="af-btn af-btn-primary" onclick="document.getElementById('modalOrder').classList.add('open')">+ New Adaptive Order</button>
+                            </div>
+                        </div>
+
+                        <!-- Row 1: 3 Clean Stat Cards with Sparkline Bars -->
+                        <div class="af-bento-3">
+                            <div class="af-stat-box">
+                                <div>
+                                    <div class="af-stat-label">Active Workshop Orders</div>
+                                    <div class="af-stat-val"><t t-esc="kpi['active_count']"/></div>
+                                    <div class="af-stat-sub" style="color:#282B4A;"><t t-esc="kpi['rush_count']"/> Clinical Rush</div>
+                                </div>
+                                <svg width="68" height="38" viewBox="0 0 68 38">
+                                    <rect x="2" y="16" width="8" height="22" rx="3" fill="#CBD5E1"/>
+                                    <rect x="16" y="22" width="8" height="16" rx="3" fill="#CBD5E1"/>
+                                    <rect x="30" y="10" width="8" height="28" rx="3" fill="#3B82F6"/>
+                                    <rect x="44" y="18" width="8" height="20" rx="3" fill="#CBD5E1"/>
+                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#282B4A"/>
+                                </svg>
+                            </div>
+                            <div class="af-stat-box">
+                                <div>
+                                    <div class="af-stat-label">Registered Patients</div>
+                                    <div class="af-stat-val"><t t-esc="kpi['patient_count']"/></div>
+                                    <div class="af-stat-sub">De-identified IDs active</div>
+                                </div>
+                                <svg width="68" height="38" viewBox="0 0 68 38">
+                                    <rect x="2" y="20" width="8" height="18" rx="3" fill="#CBD5E1"/>
+                                    <rect x="16" y="14" width="8" height="24" rx="3" fill="#10B981"/>
+                                    <rect x="30" y="22" width="8" height="16" rx="3" fill="#CBD5E1"/>
+                                    <rect x="44" y="8" width="8" height="30" rx="3" fill="#10B981"/>
+                                    <rect x="58" y="12" width="8" height="26" rx="3" fill="#282B4A"/>
+                                </svg>
+                            </div>
+                            <div class="af-stat-box">
+                                <div>
+                                    <div class="af-stat-label">CO₂ Prevented (ESG)</div>
+                                    <div class="af-stat-val"><t t-esc="kpi['total_co2']"/> <span style="font-size:15px;font-weight:600;color:#64748B;">kg</span></div>
+                                    <div class="af-stat-sub"><t t-esc="kpi['total_water']"/> L water saved</div>
+                                </div>
+                                <svg width="68" height="38" viewBox="0 0 68 38">
+                                    <rect x="2" y="24" width="8" height="14" rx="3" fill="#CBD5E1"/>
+                                    <rect x="16" y="18" width="8" height="20" rx="3" fill="#CBD5E1"/>
+                                    <rect x="30" y="14" width="8" height="24" rx="3" fill="#3B82F6"/>
+                                    <rect x="44" y="10" width="8" height="28" rx="3" fill="#10B981"/>
+                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#282B4A"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: 3 Middle Bento Cards -->
+                        <div class="af-bento-mid">
+                            <div class="af-bento-card" style="align-items:center;text-align:center;">
+                                <h3 class="af-bento-title" style="align-self:flex-start;">Clinical QA Readiness</h3>
+                                <div style="font-size:34px;font-weight:800;color:#282B4A;margin:6px 0 8px;">
+                                    <t t-esc="kpi['delivered_count']"/> <span style="font-size:14px;font-weight:600;color:#64748B;">Delivered</span>
+                                </div>
+                                <svg width="160" height="88" viewBox="0 0 160 88">
+                                    <path d="M 16 80 A 64 64 0 0 1 144 80" fill="none" stroke="#E2E8F0" stroke-width="18" stroke-linecap="round"/>
+                                    <path d="M 16 80 A 64 64 0 0 1 118 28" fill="none" stroke="#282B4A" stroke-width="18" stroke-linecap="round"/>
+                                </svg>
+                                <div style="font-size:12px;color:#64748B;margin-top:4px;"><t t-esc="kpi['pending_qa_count']"/> Pending Clinical QA Audits</div>
+                            </div>
+
+                            <div class="af-bento-card">
+                                <h3 class="af-bento-title">Workshop Stages</h3>
+                                <div style="font-size:32px;font-weight:800;color:#282B4A;margin-bottom:8px;">
+                                    <t t-esc="kpi['total_yardage']"/> <span style="font-size:14px;font-weight:600;color:#64748B;">m fabric</span>
+                                </div>
+                                <div style="flex:1;">
+                                    <t t-foreach="stage_counts[:4]" t-as="st">
+                                        <div class="af-dot-row">
+                                            <span><span class="af-dot" style="background:#282B4A;"/><t t-esc="st['label']"/></span>
+                                            <strong><t t-esc="st['count']"/></strong>
+                                        </div>
+                                    </t>
+                                </div>
+                                <a href="/adaptfit/admin?tab=orders" class="af-btn af-btn-sm" style="margin-top:10px;justify-content:center;border:1px solid rgba(40,43,74,0.2);color:#282B4A;background:#FAF8F0;">View Order Desk</a>
+                            </div>
+
+                            <div class="af-bento-card">
+                                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                                    <h3 class="af-bento-title" style="margin:0;">Production Pipeline</h3>
+                                    <a href="/adaptfit/admin?tab=orders" style="font-size:12px;font-weight:600;color:#3B82F6;text-decoration:none;">Filter →</a>
+                                </div>
+                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;">
+                                    <t t-foreach="stage_counts" t-as="st">
+                                        <a t-attf-href="/adaptfit/admin?tab=orders&amp;stage={{st['key']}}" style="background:#FAF8F0;border:1px solid rgba(40,43,74,0.08);border-radius:10px;padding:10px 12px;text-decoration:none;color:#282B4A;display:flex;justify-content:space-between;align-items:center;">
+                                            <span style="font-size:12px;font-weight:600;"><t t-esc="st['label']"/></span>
+                                            <strong style="font-size:16px;color:#3B82F6;"><t t-esc="st['count']"/></strong>
+                                        </a>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: 2 Bottom Cards (Ring Pills + Navy Gradient Feature Card) -->
+                        <div class="af-bento-bot">
+                            <div style="display:flex;flex-direction:column;gap:12px;">
+                                <div class="af-ring-pill af-ring-dark">
+                                    <svg width="52" height="52" viewBox="0 0 52 52">
+                                        <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(238,235,218,0.18)" stroke-width="5"/>
+                                        <circle cx="26" cy="26" r="20" fill="none" stroke="#F59E0B" stroke-width="5" stroke-dasharray="95 126" stroke-linecap="round" transform="rotate(-90 26 26)"/>
+                                        <text x="26" y="30" text-anchor="middle" fill="#EEEBDA" font-size="11" font-weight="700"><t t-esc="kpi['active_count']"/></text>
+                                    </svg>
+                                    <div>
+                                        <div style="font-weight:700;font-size:14px;">Pending Artisan Settlements</div>
+                                        <div style="font-size:12px;color:#CBD5E1;"><t t-esc="kpi['pending_payout_total']"/> AED awaiting payout approval</div>
+                                    </div>
+                                </div>
+                                <div class="af-ring-pill af-ring-light">
+                                    <svg width="52" height="52" viewBox="0 0 52 52">
+                                        <circle cx="26" cy="26" r="20" fill="none" stroke="#E2E8F0" stroke-width="5"/>
+                                        <circle cx="26" cy="26" r="20" fill="none" stroke="#10B981" stroke-width="5" stroke-dasharray="105 126" stroke-linecap="round" transform="rotate(-90 26 26)"/>
+                                        <text x="26" y="30" text-anchor="middle" fill="#282B4A" font-size="11" font-weight="700"><t t-esc="kpi['patient_count']"/></text>
+                                    </svg>
+                                    <div>
+                                        <div style="font-weight:700;font-size:14px;">Patient Dignity Profiles</div>
+                                        <div style="font-size:12px;color:#64748B;">1-click photo upload &amp; asymmetric measurements</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="/adaptfit/artisan" class="af-feature-card">
+                                <div style="display:flex;justify-content:space-between;align-items:center;">
+                                    <span style="font-size:12px;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;opacity:0.85;">AdaptFit Workshop</span>
+                                    <span style="font-size:18px;">↗</span>
+                                </div>
+                                <div>
+                                    <div style="font-size:21px;font-weight:800;line-height:1.25;margin-bottom:6px;">Open ArtisanChat<br/>Live Portal</div>
+                                    <div style="font-size:12px;opacity:0.85;">Discreet QR specs &amp; seam photo updates</div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="af-panel">
+                            <div class="af-panel-head">
+                                <h3 class="af-panel-title">Recent Adaptive Orders</h3>
+                                <a href="/adaptfit/admin?tab=orders" class="af-btn af-btn-primary af-btn-sm">View All Orders →</a>
+                            </div>
+                            <div class="af-table-wrap">
+                                <table class="af-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Order Ref</th>
+                                            <th>Patient</th>
+                                            <th>Garment</th>
+                                            <th>Urgency</th>
+                                            <th>Stage</th>
+                                            <th>Artisan</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="recent_orders" t-as="o">
+                                            <tr>
+                                                <td><strong><t t-esc="o.name"/></strong></td>
+                                                <td><t t-esc="o.partner_id.name"/> <span style="color:#94A3B8;font-size:11px;">(<t t-esc="o.patient_ref"/>)</span></td>
+                                                <td><t t-esc="garment_labels.get(o.garment_type, '')"/></td>
+                                                <td>
+                                                    <span t-attf-class="af-badge #{'b-rush' if o.urgency_level == 'clinical_rush' else ('b-urgent' if o.urgency_level == 'urgent' else 'b-std')}">
+                                                        <t t-esc="urgency_labels.get(o.urgency_level, '')"/>
+                                                    </span>
+                                                </td>
+                                                <td><span class="af-badge b-stage"><t t-esc="stage_labels.get(o.state, o.state)"/></span></td>
+                                                <td><t t-esc="o.artisan_id.name or 'Unassigned'"/></td>
+                                                <td>
+                                                    <button type="button" class="af-btn af-btn-primary af-btn-sm"
+                                                        onclick="openEditOrder(this)"
+                                                        t-att-data-id="o.id"
+                                                        t-att-data-name="o.name"
+                                                        t-att-data-partner="o.partner_id.id"
+                                                        t-att-data-garment="o.garment_type"
+                                                        t-att-data-fabric="o.fabric_id.id"
+                                                        t-att-data-urgency="o.urgency_level"
+                                                        t-att-data-artisan="o.artisan_id.id or ''"
+                                                        t-att-data-notes="o.clinical_notes_input or ''"
+                                                        t-att-data-total="o.total_amount"
+                                                        t-att-data-deposit="o.advance_deposit"
+                                                        t-att-data-mag="'1' if o.has_magnetic_placket else ''"
+                                                        t-att-data-port="'1' if o.has_port_access_zip else ''"
+                                                        t-att-data-flat="'1' if o.has_flatlock_frictionless else ''"
+                                                        t-att-data-rise="'1' if o.has_high_seated_rise else ''"
+                                                        t-att-data-tag="'1' if o.has_tagless_label else ''">✏️ Edit</button>
+                                                    <a t-attf-href="/report/html/adaptfit_apparel.report_discreet_job_card/{{o.id}}" target="_blank" class="af-btn af-btn-navy af-btn-sm">QR Card</a>
+                                                    <a t-attf-href="/adaptfit/artisan/{{o.id}}" class="af-btn af-btn-navy af-btn-sm">Chat</a>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+
+                    <!-- TAB 2: ORDER DESK & DISPATCH -->
+                    <t t-if="tab == 'orders'">
+                        <div class="af-page-head">
+                            <div>
+                                <h1 class="af-page-title">Adaptive Order Desk &amp; Dispatch</h1>
+                                <p class="af-page-sub">Auto-sequenced AD-XXXX orders with inline workshop stage progression</p>
+                            </div>
+                            <button type="button" class="af-btn af-btn-primary" onclick="document.getElementById('modalOrder').classList.add('open')">+ New Adaptive Order</button>
+                        </div>
+
+                        <div class="af-filter-bar">
+                            <a href="/adaptfit/admin?tab=orders" t-attf-class="af-pill #{'active' if not stage else ''}">All Stages</a>
+                            <t t-foreach="stage_counts" t-as="st">
+                                <a t-attf-href="/adaptfit/admin?tab=orders&amp;stage={{st['key']}}" t-attf-class="af-pill #{'active' if stage == st['key'] else ''}">
+                                    <t t-esc="st['label']"/> (<t t-esc="st['count']"/>)
+                                </a>
+                            </t>
+                        </div>
+
+                        <div class="af-panel">
+                            <div class="af-table-wrap">
+                                <table class="af-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Order Ref</th>
+                                            <th>Patient</th>
+                                            <th>Garment &amp; Fabric</th>
+                                            <th>Yardage / CO₂</th>
+                                            <th>Urgency</th>
+                                            <th>Stage</th>
+                                            <th>Advance Stage</th>
+                                            <th>Docs &amp; Chat</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="orders" t-as="o">
+                                            <tr>
+                                                <td><strong><t t-esc="o.name"/></strong></td>
+                                                <td>
+                                                    <div><t t-esc="o.partner_id.name"/></div>
+                                                    <div style="font-size:11px;color:#475569;"><t t-esc="o.patient_ref"/></div>
+                                                </td>
+                                                <td>
+                                                    <div><t t-esc="garment_labels.get(o.garment_type, '')"/></div>
+                                                    <div style="font-size:11px;color:#2563EB;font-weight:600;"><t t-esc="o.fabric_id.name"/></div>
+                                                </td>
+                                                <td><t t-esc="o.calculated_yardage"/> m · <t t-esc="o.eco_carbon_saved_kg"/> kg</td>
+                                                <td>
+                                                    <span t-attf-class="af-badge #{'b-rush' if o.urgency_level == 'clinical_rush' else ('b-urgent' if o.urgency_level == 'urgent' else 'b-std')}">
+                                                        <t t-esc="urgency_labels.get(o.urgency_level, '')"/>
+                                                    </span>
+                                                </td>
+                                                <td><span class="af-badge b-stage"><t t-esc="stage_labels.get(o.state, o.state)"/></span></td>
+                                                <td>
+                                                    <form t-attf-action="/adaptfit/admin/order/{{o.id}}/stage" method="post" style="display:flex;gap:6px;align-items:center;">
+                                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                        <select name="target_state" class="af-select" style="width:auto;padding:5px 8px;font-size:12px;">
+                                                            <option value="draft" t-att-selected="'selected' if o.state == 'draft' else None">Intake</option>
+                                                            <option value="pattern" t-att-selected="'selected' if o.state == 'pattern' else None">Pattern</option>
+                                                            <option value="stitching" t-att-selected="'selected' if o.state == 'stitching' else None">Assembly</option>
+                                                            <option value="transit" t-att-selected="'selected' if o.state == 'transit' else None">Transit</option>
+                                                            <option value="fitting" t-att-selected="'selected' if o.state == 'fitting' else None">Fitting</option>
+                                                            <option value="delivered" t-att-selected="'selected' if o.state == 'delivered' else None">Delivered</option>
+                                                        </select>
+                                                        <button type="submit" class="af-btn af-btn-primary af-btn-sm">Set</button>
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="af-btn af-btn-primary af-btn-sm"
+                                                        onclick="openEditOrder(this)"
+                                                        t-att-data-id="o.id"
+                                                        t-att-data-name="o.name"
+                                                        t-att-data-partner="o.partner_id.id"
+                                                        t-att-data-garment="o.garment_type"
+                                                        t-att-data-fabric="o.fabric_id.id"
+                                                        t-att-data-urgency="o.urgency_level"
+                                                        t-att-data-artisan="o.artisan_id.id or ''"
+                                                        t-att-data-notes="o.clinical_notes_input or ''"
+                                                        t-att-data-total="o.total_amount"
+                                                        t-att-data-deposit="o.advance_deposit"
+                                                        t-att-data-mag="'1' if o.has_magnetic_placket else ''"
+                                                        t-att-data-port="'1' if o.has_port_access_zip else ''"
+                                                        t-att-data-flat="'1' if o.has_flatlock_frictionless else ''"
+                                                        t-att-data-rise="'1' if o.has_high_seated_rise else ''"
+                                                        t-att-data-tag="'1' if o.has_tagless_label else ''">✏️ Edit</button>
+                                                    <a t-attf-href="/report/html/adaptfit_apparel.report_discreet_job_card/{{o.id}}" target="_blank" class="af-btn af-btn-navy af-btn-sm">QR</a>
+                                                    <a t-attf-href="/adaptfit/artisan/{{o.id}}" class="af-btn af-btn-navy af-btn-sm">Chat</a>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+
+                    <!-- TAB 3: PATIENT DIGNITY HUB -->
+                    <t t-if="tab == 'patients'">
+                        <div class="af-page-head">
+                            <div>
+                                <h1 class="af-page-title">Patient Dignity Hub</h1>
+                                <p class="af-page-sub">Confidential clinical accommodations with high-visibility profile photos</p>
+                            </div>
+                            <button type="button" class="af-btn af-btn-primary" onclick="document.getElementById('modalPatient').classList.add('open')">+ Register Patient</button>
+                        </div>
+
+                        <div class="af-cards-grid">
+                            <t t-foreach="patients" t-as="p">
+                                <div class="af-card">
+                                    <div class="af-patient-head">
+                                        <form t-attf-action="/adaptfit/admin/patient/{{p.id}}/photo" method="post" enctype="multipart/form-data" style="margin:0;">
+                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                            <label class="af-avatar-upload" title="Click to upload or change profile picture">
+                                                <img t-attf-src="/web/image/res.partner/{{p.id}}/image_1920" alt="Patient Profile" class="af-avatar-lg"/>
+                                                <div class="af-avatar-overlay">
+                                                    <span style="font-size:18px;">📷</span>
+                                                    <span>Change Photo</span>
+                                                </div>
+                                                <input type="file" name="photo" accept="image/*" style="display:none;" onchange="this.form.submit()"/>
+                                            </label>
+                                        </form>
+                                        <div style="flex:1;">
+                                            <div style="font-size:17px;font-weight:700;color:#282B4A;"><t t-esc="p.name"/></div>
+                                            <div style="font-size:12px;color:#2563EB;font-weight:700;"><t t-esc="p.patient_identifier"/></div>
+                                            <div style="font-size:12px;color:#475569;margin-top:4px;"><t t-esc="p.adaptive_order_count"/> Adaptive Order(s)</div>
+                                            <div style="font-size:11px;color:#2563EB;margin-top:4px;font-weight:600;">Click photo to upload</div>
+                                        </div>
+                                        <button type="button" class="af-btn af-btn-primary af-btn-sm"
+                                            onclick="openEditPatient(this)"
+                                            t-att-data-id="p.id"
+                                            t-att-data-name="p.name"
+                                            t-att-data-email="p.email or ''"
+                                            t-att-data-phone="p.phone or ''"
+                                            t-att-data-notes="p.medical_notes or ''"
+                                            t-att-data-amp="'1' if p.condition_amputation else ''"
+                                            t-att-data-stroke="'1' if p.condition_stroke_mobility else ''"
+                                            t-att-data-port="'1' if p.condition_medical_port else ''"
+                                            t-att-data-wheel="'1' if p.condition_wheelchair else ''"
+                                            t-att-data-sens="'1' if p.condition_sensory else ''"
+                                            t-att-data-mag="'1' if p.pref_magnetic_closures else ''"
+                                            t-att-data-flat="'1' if p.pref_flatlock_seams else ''">✏️ Edit</button>
+                                    </div>
+
+                                    <div class="af-tag-list">
+                                        <span t-if="p.condition_amputation" class="af-tag">Limb Difference</span>
+                                        <span t-if="p.condition_stroke_mobility" class="af-tag">Stroke / Dexterity</span>
+                                        <span t-if="p.condition_medical_port" class="af-tag">Medical Port</span>
+                                        <span t-if="p.condition_wheelchair" class="af-tag">Wheelchair Fit</span>
+                                        <span t-if="p.condition_sensory" class="af-tag">Sensory Safe</span>
+                                        <span t-if="p.pref_magnetic_closures" class="af-tag">Magnetic Closures</span>
+                                    </div>
+
+                                    <div t-if="p.medical_notes" style="font-size:12px;color:#282B4A;background:rgba(40,43,74,0.08);border:1px solid rgba(40,43,74,0.12);padding:10px;border-radius:8px;">
+                                        <t t-esc="p.medical_notes"/>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+
+                    <!-- TAB 4: CLINICAL FITTING & QA -->
+                    <t t-if="tab == 'qa'">
+                        <div class="af-page-head">
+                            <div>
+                                <h1 class="af-page-title">Clinical Fitting &amp; QA</h1>
+                                <p class="af-page-sub">4-Point Clinical Quality Checklist before patient discharge</p>
+                            </div>
+                        </div>
+
+                        <div class="af-cards-grid">
+                            <t t-foreach="qa_checks" t-as="qa">
+                                <div class="af-card">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                                        <strong style="font-size:16px;"><t t-esc="qa.name"/></strong>
+                                        <span t-attf-class="af-badge #{'b-std' if qa.state == 'passed' else ('b-rush' if qa.state == 'rework' else 'b-urgent')}">
+                                            <t t-esc="qa.state.upper()"/>
+                                        </span>
+                                    </div>
+                                    <div style="font-size:13px;color:#282B4A;">
+                                        Order: <strong><t t-esc="qa.order_id.name"/></strong> · Patient Ref: <t t-esc="qa.patient_ref"/>
+                                    </div>
+                                    <div style="font-size:12px;color:#475569;display:flex;flex-direction:column;gap:4px;">
+                                        <div><t t-esc="'✅' if qa.tactile_seam_audit else '⬜'"/> Tactile Seam Audit (Zero Chafing)</div>
+                                        <div><t t-esc="'✅' if qa.magnetic_polarity_test else '⬜'"/> Magnetic Polarity &amp; One-Handed Snap</div>
+                                        <div><t t-esc="'✅' if qa.port_access_clearance else '⬜'"/> Port Access Clearance Verified</div>
+                                        <div><t t-esc="'✅' if qa.asymmetric_tolerance_ok else '⬜'"/> Asymmetric Tolerance (±0.25 in)</div>
+                                    </div>
+                                    <div style="display:flex;gap:8px;margin-top:auto;flex-wrap:wrap;">
+                                        <button type="button" class="af-btn af-btn-primary af-btn-sm"
+                                            onclick="openEditQa(this)"
+                                            t-att-data-id="qa.id"
+                                            t-att-data-name="qa.name"
+                                            t-att-data-seam="'1' if qa.tactile_seam_audit else ''"
+                                            t-att-data-mag="'1' if qa.magnetic_polarity_test else ''"
+                                            t-att-data-port="'1' if qa.port_access_clearance else ''"
+                                            t-att-data-tol="'1' if qa.asymmetric_tolerance_ok else ''"
+                                            t-att-data-reason="qa.rework_reason or ''">✏️ Edit Checklist</button>
+                                        <t t-if="qa.state == 'pending'">
+                                            <form t-attf-action="/adaptfit/admin/qa/{{qa.id}}/action" method="post">
+                                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                <input type="hidden" name="action" value="pass"/>
+                                                <button type="submit" class="af-btn af-btn-emerald af-btn-sm">Pass QA</button>
+                                            </form>
+                                            <form t-attf-action="/adaptfit/admin/qa/{{qa.id}}/action" method="post">
+                                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                <input type="hidden" name="action" value="rework"/>
+                                                <button type="submit" class="af-btn af-btn-rose af-btn-sm">Flag Rework</button>
+                                            </form>
+                                        </t>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+
+                    <!-- TAB 5: ARTISAN SETTLEMENTS -->
+                    <t t-if="tab == 'settlements'">
+                        <div class="af-page-head">
+                            <div>
+                                <h1 class="af-page-title">Artisan Piece-Rate Settlements</h1>
+                                <p class="af-page-sub">Weekly artisan payouts, medical complexity bonuses, and ledger status</p>
+                            </div>
+                        </div>
+
+                        <div class="af-panel">
+                            <div class="af-table-wrap">
+                                <table class="af-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Settlement Ref</th>
+                                            <th>Master Artisan</th>
+                                            <th>Orders</th>
+                                            <th>Base Payout</th>
+                                            <th>Complexity Bonus</th>
+                                            <th>Net Total</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="settlements" t-as="s">
+                                            <tr>
+                                                <td><strong><t t-esc="s.name"/></strong></td>
+                                                <td><t t-esc="s.artisan_id.name"/></td>
+                                                <td><t t-esc="s.completed_count"/></td>
+                                                <td><t t-esc="round(s.base_payout, 2)"/></td>
+                                                <td><t t-esc="round(s.complexity_bonus, 2)"/></td>
+                                                <td><strong><t t-esc="round(s.total_payout, 2)"/></strong></td>
+                                                <td>
+                                                    <span t-attf-class="af-badge #{'b-std' if s.state == 'paid' else ('b-stage' if s.state == 'confirmed' else 'b-urgent')}">
+                                                        <t t-esc="s.state.upper()"/>
+                                                    </span>
+                                                </td>
+                                                <td style="display:flex;gap:6px;flex-wrap:wrap;">
+                                                    <button type="button" class="af-btn af-btn-primary af-btn-sm"
+                                                        onclick="openEditSettlement(this)"
+                                                        t-att-data-id="s.id"
+                                                        t-att-data-name="s.name"
+                                                        t-att-data-bonus="s.complexity_bonus"
+                                                        t-att-data-penalty="s.defect_penalty">✏️ Edit</button>
+                                                    <form t-attf-action="/adaptfit/admin/settlement/{{s.id}}/action" method="post">
+                                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                        <input type="hidden" name="action" value="fetch"/>
+                                                        <button type="submit" class="af-btn af-btn-navy af-btn-sm">Sync Orders</button>
+                                                    </form>
+                                                    <form t-if="s.state == 'draft'" t-attf-action="/adaptfit/admin/settlement/{{s.id}}/action" method="post">
+                                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                        <input type="hidden" name="action" value="confirm"/>
+                                                        <button type="submit" class="af-btn af-btn-primary af-btn-sm">Approve</button>
+                                                    </form>
+                                                    <form t-if="s.state == 'confirmed'" t-attf-action="/adaptfit/admin/settlement/{{s.id}}/action" method="post">
+                                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                        <input type="hidden" name="action" value="paid"/>
+                                                        <button type="submit" class="af-btn af-btn-emerald af-btn-sm">Mark Paid</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+
+                    <!-- TAB 6: ESG & ANALYTICS -->
+                    <t t-if="tab == 'esg'">
+                        <div class="af-page-head">
+                            <div>
+                                <h1 class="af-page-title">ESG &amp; Workshop Analytics</h1>
+                                <p class="af-page-sub">Zero-waste parametric yardage and environmental savings across all adaptive orders</p>
+                            </div>
+                        </div>
+
+                        <div class="af-kpi-grid">
+                            <div class="af-kpi-card">
+                                <div class="af-kpi-label">Total CO₂ Prevented</div>
+                                <div class="af-kpi-val"><t t-esc="kpi['total_co2']"/> kg</div>
+                                <div class="af-kpi-accent">vs conventional virgin polyester</div>
+                            </div>
+                            <div class="af-kpi-card">
+                                <div class="af-kpi-label">Total Water Saved</div>
+                                <div class="af-kpi-val"><t t-esc="kpi['total_water']"/> L</div>
+                                <div class="af-kpi-accent">Organic bamboo &amp; Tencel sourcing</div>
+                            </div>
+                            <div class="af-kpi-card">
+                                <div class="af-kpi-label">Parametric Fabric Allocated</div>
+                                <div class="af-kpi-val"><t t-esc="kpi['total_yardage']"/> m</div>
+                                <div class="af-kpi-accent">Zero-waste cut-to-measure</div>
+                            </div>
+                            <div class="af-kpi-card">
+                                <div class="af-kpi-label">Delivered &amp; Settled</div>
+                                <div class="af-kpi-val"><t t-esc="kpi['delivered_count']"/></div>
+                                <div class="af-kpi-accent">Pending payouts: <t t-esc="kpi['pending_payout_total']"/> AED</div>
+                            </div>
+                        </div>
+
+                        <div class="af-panel">
+                            <div class="af-panel-head">
+                                <h3 class="af-panel-title">Stage Distribution Breakdown</h3>
+                            </div>
+                            <div style="padding:20px;display:flex;flex-direction:column;gap:14px;">
+                                <t t-foreach="stage_counts" t-as="st">
+                                    <div>
+                                        <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;">
+                                            <span><t t-esc="st['label']"/></span>
+                                            <strong><t t-esc="st['count']"/> orders</strong>
+                                        </div>
+                                        <div style="height:10px;background:var(--af-navy-deep);border-radius:999px;overflow:hidden;">
+                                            <div t-attf-style="height:100%;width:{{ min(100, st['count'] * 20) }}%;background:linear-gradient(90deg,var(--af-blue),var(--af-cyan));border-radius:999px;"/>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </main>
+            </div>
+
+            <!-- Modal: Create Adaptive Order -->
+            <div id="modalOrder" class="af-modal-backdrop">
+                <div class="af-modal">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                        <h3 style="margin:0;">Create New Adaptive Order</h3>
+                        <button type="button" class="af-btn af-btn-navy af-btn-sm" onclick="document.getElementById('modalOrder').classList.remove('open')">✕</button>
+                    </div>
+                    <form action="/adaptfit/admin/order/create" method="post">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="af-form-group">
+                            <label>Patient</label>
+                            <select name="partner_id" class="af-select" required="required">
+                                <t t-foreach="all_patients" t-as="pat">
+                                    <option t-att-value="pat.id"><t t-esc="pat.name"/> (<t t-esc="pat.patient_identifier"/>)</option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Garment Category</label>
+                            <select name="garment_type" class="af-select">
+                                <option value="shirt_top">Adaptive Shirt / Blouse</option>
+                                <option value="trousers_pant">Adaptive Seated / Split Pants</option>
+                                <option value="post_op_recovery">Full Recovery Romper / Suit</option>
+                                <option value="compression_sleeve">Custom Pressure / Compression Sleeve</option>
+                                <option value="outerwear_jacket">Easy-On Outerwear / Coat</option>
+                            </select>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Sustainable Fabric</label>
+                            <select name="fabric_id" class="af-select" required="required">
+                                <t t-foreach="fabrics" t-as="fab">
+                                    <option t-att-value="fab.id"><t t-esc="fab.name"/></option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Urgency Priority</label>
+                            <select name="urgency_level" class="af-select">
+                                <option value="standard">Standard Schedule</option>
+                                <option value="urgent">Urgent (Fitting &lt; 48h)</option>
+                                <option value="clinical_rush">Clinical Rush (Surgery / Chemo Date)</option>
+                            </select>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Assign Master Artisan</label>
+                            <select name="artisan_id" class="af-select">
+                                <option value="">-- Unassigned --</option>
+                                <t t-foreach="artisans" t-as="art">
+                                    <option t-att-value="art.id"><t t-esc="art.name"/></option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Clinical Notes</label>
+                            <textarea name="clinical_notes_input" rows="3" class="af-textarea" placeholder="e.g., left chest port access, magnetic closures..."/>
+                        </div>
+                        <button type="submit" class="af-btn af-btn-primary" style="width:100%;justify-content:center;">Create Order (Auto-Sequence AD-XXXX)</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal: Register Patient -->
+            <div id="modalPatient" class="af-modal-backdrop">
+                <div class="af-modal">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                        <h3 style="margin:0;">Register Patient Dignity Profile</h3>
+                        <button type="button" class="af-btn af-btn-navy af-btn-sm" onclick="document.getElementById('modalPatient').classList.remove('open')">✕</button>
+                    </div>
+                    <form action="/adaptfit/admin/patient/create" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="af-form-group">
+                            <label>Full Name *</label>
+                            <input type="text" name="name" class="af-input" required="required"/>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Profile Picture</label>
+                            <input type="file" name="photo" accept="image/*" class="af-input"/>
+                        </div>
+                        <div class="af-form-group" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                            <div>
+                                <label>Email</label>
+                                <input type="email" name="email" class="af-input"/>
+                            </div>
+                            <div>
+                                <label>Phone</label>
+                                <input type="text" name="phone" class="af-input"/>
+                            </div>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Clinical Conditions &amp; Preferences</label>
+                            <div class="af-check-grid">
+                                <label><input type="checkbox" name="condition_amputation" value="1"/> Limb Difference</label>
+                                <label><input type="checkbox" name="condition_stroke_mobility" value="1"/> Stroke / Dexterity</label>
+                                <label><input type="checkbox" name="condition_medical_port" value="1"/> Medical Port</label>
+                                <label><input type="checkbox" name="condition_wheelchair" value="1"/> Wheelchair Fit</label>
+                                <label><input type="checkbox" name="condition_sensory" value="1"/> Sensory Safe</label>
+                                <label><input type="checkbox" name="pref_magnetic_closures" value="1"/> Magnetic Closures</label>
+                            </div>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Confidential Clinical Notes</label>
+                            <textarea name="medical_notes" rows="2" class="af-textarea"/>
+                        </div>
+                        <button type="submit" class="af-btn af-btn-primary" style="width:100%;justify-content:center;">Save Patient Profile</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal: Edit Adaptive Order -->
+            <div id="modalEditOrder" class="af-modal-backdrop">
+                <div class="af-modal">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                        <h3 id="editOrderTitle" style="margin:0;">Edit Order</h3>
+                        <button type="button" class="af-btn af-btn-navy af-btn-sm" onclick="document.getElementById('modalEditOrder').classList.remove('open')">✕</button>
+                    </div>
+                    <form id="formEditOrder" action="" method="post">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="af-form-group">
+                            <label>Patient</label>
+                            <select id="eo_partner" name="partner_id" class="af-select" required="required">
+                                <t t-foreach="all_patients" t-as="pat">
+                                    <option t-att-value="pat.id"><t t-esc="pat.name"/> (<t t-esc="pat.patient_identifier"/>)</option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="af-form-group" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                            <div>
+                                <label>Garment Category</label>
+                                <select id="eo_garment" name="garment_type" class="af-select">
+                                    <option value="shirt_top">Adaptive Shirt / Blouse</option>
+                                    <option value="trousers_pant">Adaptive Seated / Split Pants</option>
+                                    <option value="post_op_recovery">Full Recovery Romper / Suit</option>
+                                    <option value="compression_sleeve">Custom Pressure / Compression Sleeve</option>
+                                    <option value="outerwear_jacket">Easy-On Outerwear / Coat</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Urgency Priority</label>
+                                <select id="eo_urgency" name="urgency_level" class="af-select">
+                                    <option value="standard">Standard Schedule</option>
+                                    <option value="urgent">Urgent (Fitting &lt; 48h)</option>
+                                    <option value="clinical_rush">Clinical Rush (Surgery / Chemo Date)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="af-form-group" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                            <div>
+                                <label>Sustainable Fabric</label>
+                                <select id="eo_fabric" name="fabric_id" class="af-select" required="required">
+                                    <t t-foreach="fabrics" t-as="fab">
+                                        <option t-att-value="fab.id"><t t-esc="fab.name"/></option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Assigned Master Artisan</label>
+                                <select id="eo_artisan" name="artisan_id" class="af-select">
+                                    <option value="">-- Unassigned --</option>
+                                    <t t-foreach="artisans" t-as="art">
+                                        <option t-att-value="art.id"><t t-esc="art.name"/></option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="af-form-group" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                            <div>
+                                <label>Total Price (AED)</label>
+                                <input id="eo_total" type="number" step="0.01" name="total_amount" class="af-input"/>
+                            </div>
+                            <div>
+                                <label>Advance Deposit (AED)</label>
+                                <input id="eo_deposit" type="number" step="0.01" name="advance_deposit" class="af-input"/>
+                            </div>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Active Accommodations</label>
+                            <div class="af-check-grid">
+                                <label><input id="eo_mag" type="checkbox" name="has_magnetic_placket" value="1"/> Magnetic Placket</label>
+                                <label><input id="eo_port" type="checkbox" name="has_port_access_zip" value="1"/> 2-Way Port Zip</label>
+                                <label><input id="eo_flat" type="checkbox" name="has_flatlock_frictionless" value="1"/> Flat-Lock Seams</label>
+                                <label><input id="eo_rise" type="checkbox" name="has_high_seated_rise" value="1"/> Seated High-Rise</label>
+                                <label><input id="eo_tag" type="checkbox" name="has_tagless_label" value="1"/> Tagless Label</label>
+                            </div>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Clinical Notes</label>
+                            <textarea id="eo_notes" name="clinical_notes_input" rows="3" class="af-textarea"/>
+                        </div>
+                        <button type="submit" class="af-btn af-btn-primary" style="width:100%;justify-content:center;">Save Order Changes</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal: Edit Patient -->
+            <div id="modalEditPatient" class="af-modal-backdrop">
+                <div class="af-modal">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                        <h3 id="editPatientTitle" style="margin:0;">Edit Patient Profile</h3>
+                        <button type="button" class="af-btn af-btn-navy af-btn-sm" onclick="document.getElementById('modalEditPatient').classList.remove('open')">✕</button>
+                    </div>
+                    <form id="formEditPatient" action="" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="af-form-group">
+                            <label>Full Name *</label>
+                            <input id="ep_name" type="text" name="name" class="af-input" required="required"/>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Replace Profile Picture (optional)</label>
+                            <input type="file" name="photo" accept="image/*" class="af-input"/>
+                        </div>
+                        <div class="af-form-group" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                            <div>
+                                <label>Email</label>
+                                <input id="ep_email" type="email" name="email" class="af-input"/>
+                            </div>
+                            <div>
+                                <label>Phone</label>
+                                <input id="ep_phone" type="text" name="phone" class="af-input"/>
+                            </div>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Clinical Conditions &amp; Preferences</label>
+                            <div class="af-check-grid">
+                                <label><input id="ep_amp" type="checkbox" name="condition_amputation" value="1"/> Limb Difference</label>
+                                <label><input id="ep_stroke" type="checkbox" name="condition_stroke_mobility" value="1"/> Stroke / Dexterity</label>
+                                <label><input id="ep_port" type="checkbox" name="condition_medical_port" value="1"/> Medical Port</label>
+                                <label><input id="ep_wheel" type="checkbox" name="condition_wheelchair" value="1"/> Wheelchair Fit</label>
+                                <label><input id="ep_sens" type="checkbox" name="condition_sensory" value="1"/> Sensory Safe</label>
+                                <label><input id="ep_mag" type="checkbox" name="pref_magnetic_closures" value="1"/> Magnetic Closures</label>
+                                <label><input id="ep_flat" type="checkbox" name="pref_flatlock_seams" value="1"/> Flat-Lock Seams</label>
+                            </div>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Confidential Clinical Notes</label>
+                            <textarea id="ep_notes" name="medical_notes" rows="3" class="af-textarea"/>
+                        </div>
+                        <button type="submit" class="af-btn af-btn-primary" style="width:100%;justify-content:center;">Save Patient Changes</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal: Edit QA Checklist -->
+            <div id="modalEditQa" class="af-modal-backdrop">
+                <div class="af-modal">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                        <h3 id="editQaTitle" style="margin:0;">Edit Clinical QA Checklist</h3>
+                        <button type="button" class="af-btn af-btn-navy af-btn-sm" onclick="document.getElementById('modalEditQa').classList.remove('open')">✕</button>
+                    </div>
+                    <form id="formEditQa" action="" method="post">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="af-form-group">
+                            <label>4-Point Quality Audit</label>
+                            <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;">
+                                <label><input id="eq_seam" type="checkbox" name="tactile_seam_audit" value="1"/> Tactile Seam Audit (Zero Chafing)</label>
+                                <label><input id="eq_mag" type="checkbox" name="magnetic_polarity_test" value="1"/> Magnetic Polarity &amp; One-Handed Snap</label>
+                                <label><input id="eq_port" type="checkbox" name="port_access_clearance" value="1"/> Port Access Clearance Verified</label>
+                                <label><input id="eq_tol" type="checkbox" name="asymmetric_tolerance_ok" value="1"/> Asymmetric Dimension Tolerance (±0.25 in)</label>
+                            </div>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Defect / Rework Instructions</label>
+                            <textarea id="eq_reason" name="rework_reason" rows="3" class="af-textarea"/>
+                        </div>
+                        <button type="submit" class="af-btn af-btn-primary" style="width:100%;justify-content:center;">Save QA Checklist</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal: Edit Settlement -->
+            <div id="modalEditSettlement" class="af-modal-backdrop">
+                <div class="af-modal">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                        <h3 id="editSettlementTitle" style="margin:0;">Edit Settlement</h3>
+                        <button type="button" class="af-btn af-btn-navy af-btn-sm" onclick="document.getElementById('modalEditSettlement').classList.remove('open')">✕</button>
+                    </div>
+                    <form id="formEditSettlement" action="" method="post">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="af-form-group">
+                            <label>Medical Complexity Bonus (AED)</label>
+                            <input id="es_bonus" type="number" step="0.01" name="complexity_bonus" class="af-input"/>
+                        </div>
+                        <div class="af-form-group">
+                            <label>Rework Deductions (AED)</label>
+                            <input id="es_penalty" type="number" step="0.01" name="defect_penalty" class="af-input"/>
+                        </div>
+                        <button type="submit" class="af-btn af-btn-primary" style="width:100%;justify-content:center;">Save Settlement</button>
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                function openEditOrder(btn) {
+                    const d = btn.dataset;
+                    document.getElementById('editOrderTitle').textContent = 'Edit Order ' + d.name;
+                    document.getElementById('formEditOrder').action = '/adaptfit/admin/order/' + d.id + '/update';
+                    document.getElementById('eo_partner').value = d.partner;
+                    document.getElementById('eo_garment').value = d.garment;
+                    document.getElementById('eo_fabric').value = d.fabric;
+                    document.getElementById('eo_urgency').value = d.urgency;
+                    document.getElementById('eo_artisan').value = d.artisan || '';
+                    document.getElementById('eo_notes').value = d.notes || '';
+                    document.getElementById('eo_total').value = d.total || 0;
+                    document.getElementById('eo_deposit').value = d.deposit || 0;
+                    document.getElementById('eo_mag').checked = !!d.mag;
+                    document.getElementById('eo_port').checked = !!d.port;
+                    document.getElementById('eo_flat').checked = !!d.flat;
+                    document.getElementById('eo_rise').checked = !!d.rise;
+                    document.getElementById('eo_tag').checked = !!d.tag;
+                    document.getElementById('modalEditOrder').classList.add('open');
+                }
+                function openEditPatient(btn) {
+                    const d = btn.dataset;
+                    document.getElementById('editPatientTitle').textContent = 'Edit Patient: ' + d.name;
+                    document.getElementById('formEditPatient').action = '/adaptfit/admin/patient/' + d.id + '/update';
+                    document.getElementById('ep_name').value = d.name || '';
+                    document.getElementById('ep_email').value = d.email || '';
+                    document.getElementById('ep_phone').value = d.phone || '';
+                    document.getElementById('ep_notes').value = d.notes || '';
+                    document.getElementById('ep_amp').checked = !!d.amp;
+                    document.getElementById('ep_stroke').checked = !!d.stroke;
+                    document.getElementById('ep_port').checked = !!d.port;
+                    document.getElementById('ep_wheel').checked = !!d.wheel;
+                    document.getElementById('ep_sens').checked = !!d.sens;
+                    document.getElementById('ep_mag').checked = !!d.mag;
+                    document.getElementById('ep_flat').checked = !!d.flat;
+                    document.getElementById('modalEditPatient').classList.add('open');
+                }
+                function openEditQa(btn) {
+                    const d = btn.dataset;
+                    document.getElementById('editQaTitle').textContent = 'Edit QA: ' + d.name;
+                    document.getElementById('formEditQa').action = '/adaptfit/admin/qa/' + d.id + '/update';
+                    document.getElementById('eq_seam').checked = !!d.seam;
+                    document.getElementById('eq_mag').checked = !!d.mag;
+                    document.getElementById('eq_port').checked = !!d.port;
+                    document.getElementById('eq_tol').checked = !!d.tol;
+                    document.getElementById('eq_reason').value = d.reason || '';
+                    document.getElementById('modalEditQa').classList.add('open');
+                }
+                function openEditSettlement(btn) {
+                    const d = btn.dataset;
+                    document.getElementById('editSettlementTitle').textContent = 'Edit Settlement: ' + d.name;
+                    document.getElementById('formEditSettlement').action = '/adaptfit/admin/settlement/' + d.id + '/update';
+                    document.getElementById('es_bonus').value = d.bonus || 0;
+                    document.getElementById('es_penalty').value = d.penalty || 0;
+                    document.getElementById('modalEditSettlement').classList.add('open');
+                }
+            </script>
+        </body>
+        </html>
+    </template>
+</odoo>

@@ -6,6 +6,12 @@
         <field name="target">new</field>
     </record>
 
+    <record id="action_adaptfit_admin_portal" model="ir.actions.act_url">
+        <field name="name">Command Center</field>
+        <field name="url">/adaptfit/admin</field>
+        <field name="target">self</field>
+    </record>
+
     <menuitem id="menu_adaptfit_root"
               name="AdaptFit ERP"
               sequence="10"/>
@@ -57,4 +63,10 @@
               parent="menu_adaptfit_root"
               action="action_artisan_chat_portal"
               sequence="70"/>
+
+    <menuitem id="menu_adaptfit_command_center"
+              name="Command Center"
+              parent="menu_adaptfit_root"
+              action="action_adaptfit_admin_portal"
+              sequence="5"/>
 </odoo>

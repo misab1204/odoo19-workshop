@@ -8,7 +8,7 @@
             <list decoration-danger="urgency_level == 'clinical_rush'"
                   decoration-warning="urgency_level == 'urgent'">
                 <field name="name"/>
-                <field name="partner_id"/>
+                <field name="partner_id" widget="many2one_avatar"/>
                 <field name="garment_type"/>
                 <field name="fabric_id"/>
                 <field name="calculated_yardage" string="Yardage (m)"/>
@@ -93,7 +93,7 @@
                     </div>
                     <group>
                         <group string="Clinical &amp; Order Intake">
-                            <field name="partner_id" domain="[('is_adaptive_patient', '=', True)]"/>
+                            <field name="partner_id" widget="many2one_avatar" domain="[('is_adaptive_patient', '=', True)]"/>
                             <field name="patient_ref"/>
                             <field name="urgency_level"/>
                             <field name="target_date"/>
