@@ -9,14 +9,14 @@
             <title>AdaptFit ERP — Command Center</title>
             <style>
                 :root {
-                    --af-navy-deep: #162044;
-                    --af-navy: #243266;
-                    --af-indigo: #314485;
-                    --af-grad-card: linear-gradient(145deg, #18234D 0%, #243266 55%, #314485 100%);
-                    --af-grad-bar: linear-gradient(175deg, #162044 0%, #243266 55%, #314485 100%);
+                    --af-navy-deep: #0F1633;
+                    --af-navy: #18224A;
+                    --af-indigo: #222F61;
+                    --af-grad-card: linear-gradient(145deg, #111838 0%, #18224A 55%, #222F61 100%);
+                    --af-grad-bar: linear-gradient(175deg, #0F1633 0%, #18224A 55%, #222F61 100%);
                     --af-cream: #EEEBDA;
                     --af-cream-soft: #F7F5EA;
-                    --af-blue: #243266;
+                    --af-blue: #18224A;
                     --af-blue-bright: #3B529E;
                     --af-cyan: #EEEBDA;
                     --af-emerald: #10B981;
@@ -24,7 +24,7 @@
                     --af-rose: #EF4444;
                     --af-text-light: #EEEBDA;
                     --af-text-muted: #D5D2C3;
-                    --af-text-dark: #243266;
+                    --af-text-dark: #18224A;
                     --af-border-glow: rgba(238, 235, 218, 0.22);
                     --af-float-shadow: 0 20px 42px -10px rgba(22, 32, 68, 0.45), 0 8px 18px -4px rgba(22, 32, 68, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
                     --af-float-shadow-hover: 0 26px 50px -10px rgba(22, 32, 68, 0.55), 0 10px 24px -4px rgba(238, 235, 218, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -32,12 +32,12 @@
 
                 * { box-sizing: border-box; }
                 html {
-                    background: #162044;
+                    background: #0F1633;
                 }
                 body {
                     margin: 0;
                     font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-                    background: linear-gradient(145deg, #162044 0%, #243266 52%, #314485 100%);
+                    background: linear-gradient(145deg, #0F1633 0%, #18224A 52%, #222F61 100%);
                     background-attachment: fixed;
                     color: #EEEBDA;
                     display: flex;
@@ -137,7 +137,7 @@
                     color: #fff;
                 }
 
-                /* Main Rounded Cream Sheet */
+                /* Main Rounded Cream Sheet with Vignette and Depth */
                 .af-main {
                     margin-left: 248px;
                     margin-top: 14px;
@@ -147,10 +147,16 @@
                     display: flex;
                     flex-direction: column;
                     min-width: 0;
-                    background: linear-gradient(165deg, #FAF8F0 0%, #EEEBDA 100%);
-                    color: #282B4A;
+                    background:
+                        radial-gradient(ellipse at 50% 35%, rgba(255, 253, 245, 0.92) 0%, rgba(238, 235, 218, 0.55) 60%, rgba(214, 208, 184, 0.72) 100%),
+                        linear-gradient(165deg, #FAF8F0 0%, #EEEBDA 60%, #E0DAC0 100%);
+                    color: #18224A;
                     border-radius: 26px;
-                    box-shadow: 0 24px 60px rgba(10, 14, 34, 0.45);
+                    border: 1px solid rgba(255, 255, 255, 0.65);
+                    box-shadow:
+                        0 28px 65px rgba(8, 12, 30, 0.55),
+                        inset 0 0 80px rgba(168, 158, 124, 0.24),
+                        inset 0 2px 0 rgba(255, 255, 255, 0.85);
                     overflow: hidden;
                 }
                 .af-topbar {
@@ -285,7 +291,7 @@
                     margin-bottom: 22px;
                 }
                 .af-stat-box {
-                    background: linear-gradient(145deg, #162044 0%, #243266 55%, #314485 100%);
+                    background: linear-gradient(145deg, #0F1633 0%, #18224A 55%, #222F61 100%);
                     border: 1px solid rgba(238, 235, 218, 0.16);
                     border-radius: 16px;
                     padding: 18px 20px;
@@ -300,7 +306,7 @@
                 .af-stat-val { font-size: 26px; font-weight: 800; color: #EEEBDA; letter-spacing: -0.5px; }
                 .af-stat-sub { font-size: 11px; color: #34D399; font-weight: 600; margin-top: 6px; }
                 .af-bento-card {
-                    background: linear-gradient(145deg, #162044 0%, #243266 55%, #314485 100%);
+                    background: linear-gradient(145deg, #0F1633 0%, #18224A 55%, #222F61 100%);
                     border: 1px solid rgba(238, 235, 218, 0.16);
                     border-radius: 16px;
                     padding: 20px;
@@ -328,17 +334,17 @@
                     box-shadow: 0 10px 24px rgba(22, 32, 68, 0.2);
                 }
                 .af-ring-dark {
-                    background: linear-gradient(135deg, #162044 0%, #243266 58%, #314485 100%);
+                    background: linear-gradient(135deg, #0F1633 0%, #18224A 58%, #222F61 100%);
                     color: #EEEBDA;
                     border: 1px solid rgba(238, 235, 218, 0.16);
                 }
                 .af-ring-light {
-                    background: linear-gradient(145deg, #162044 0%, #243266 55%, #314485 100%);
+                    background: linear-gradient(145deg, #0F1633 0%, #18224A 55%, #222F61 100%);
                     color: #EEEBDA;
                     border: 1px solid rgba(238, 235, 218, 0.16);
                 }
                 .af-feature-card {
-                    background: linear-gradient(135deg, #162044 0%, #243266 55%, #314485 100%);
+                    background: linear-gradient(135deg, #0F1633 0%, #18224A 55%, #222F61 100%);
                     color: #EEEBDA;
                     border-radius: 18px;
                     padding: 22px 24px;
@@ -435,7 +441,7 @@
                 }
                 .af-panel-head {
                     padding: 16px 22px;
-                    background: linear-gradient(90deg, #1F223D 0%, #282B4A 65%, #343860 100%);
+                    background: linear-gradient(90deg, #0F1633 0%, #18224A 65%, #222F61 100%);
                     border-bottom: 1px solid var(--af-border-glow);
                     display: flex;
                     justify-content: space-between;
@@ -492,7 +498,7 @@
                     gap: 18px;
                 }
                 .af-card {
-                    background: linear-gradient(145deg, #162044 0%, #243266 55%, #314485 100%);
+                    background: linear-gradient(145deg, #0F1633 0%, #18224A 55%, #222F61 100%);
                     color: #EEEBDA;
                     border-radius: 18px;
                     padding: 22px;
@@ -594,7 +600,7 @@
                     display: none;
                     position: fixed;
                     inset: 0;
-                    background: linear-gradient(145deg, #162044 0%, #243266 55%, #314485 100%);
+                    background: linear-gradient(145deg, #0F1633 0%, #18224A 55%, #222F61 100%);
                     z-index: 100;
                     align-items: stretch;
                     justify-content: center;
@@ -602,7 +608,7 @@
                 }
                 .af-modal-backdrop.open { display: flex; }
                 .af-modal {
-                    background: linear-gradient(145deg, #162044 0%, #243266 55%, #314485 100%);
+                    background: linear-gradient(145deg, #0F1633 0%, #18224A 55%, #222F61 100%);
                     color: #EEEBDA;
                     border: none;
                     border-radius: 0;
