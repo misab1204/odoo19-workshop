@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <template id="adaptfit_google_fonts_head" inherit_id="web.layout" name="AdaptFit Fonts Head">
+        <xpath expr="//head" position="inside">
+            <link rel="preconnect" href="https://fonts.googleapis.com"/>
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+            <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/>
+        </xpath>
+    </template>
+
     <record id="action_artisan_chat_portal" model="ir.actions.act_url">
         <field name="name">ArtisanChat Mobile Portal</field>
         <field name="url">/adaptfit/artisan</field>

@@ -1,0 +1,175 @@
+:root {
+    --af-blue-jay: #394E6E;
+    --af-blue-jay-deep: #25354D;
+    --af-gull-grey: #A0ADC2;
+    --af-link-water: #DCE4EF;
+    --af-ice-surface: #F4F7FB;
+    --af-ink: #1E2B3D;
+}
+
+/* Global Typography */
+.o_web_client,
+.o_web_client input,
+.o_web_client button,
+.o_web_client select,
+.o_web_client textarea {
+    font-family: 'Inter Tight', system-ui, -apple-system, sans-serif !important;
+}
+
+.o_web_client h1,
+.o_web_client h2,
+.o_web_client h3,
+.o_web_client .o_form_label,
+.o_web_client .o_kanban_record_title,
+.o_web_client .o_menu_brand {
+    letter-spacing: -0.025em;
+}
+
+/* Blue Jay Navbar */
+.o_main_navbar {
+    background: linear-gradient(135deg, var(--af-blue-jay-deep) 0%, var(--af-blue-jay) 100%) !important;
+    border-bottom: 2px solid var(--af-gull-grey) !important;
+    box-shadow: 0 4px 16px rgba(37, 53, 77, 0.25);
+}
+
+.o_main_navbar .o_menu_brand,
+.o_main_navbar .o_nav_entry,
+.o_main_navbar .dropdown-toggle,
+.o_main_navbar .o_menu_sections .o-dropdown > button,
+.o_main_navbar a,
+.o_main_navbar button {
+    color: var(--af-link-water) !important;
+    font-weight: 600;
+}
+
+.o_main_navbar .o_menu_brand {
+    font-weight: 800 !important;
+    letter-spacing: -0.03em;
+    color: #ffffff !important;
+}
+
+.o_main_navbar .o_nav_entry:hover,
+.o_main_navbar .o_menu_sections .o-dropdown > button:hover,
+.o_main_navbar .o_menu_sections .o-dropdown.show > button {
+    background: rgba(220, 228, 239, 0.16) !important;
+    border-radius: 8px;
+}
+
+/* Control Panel & Workspace Surface */
+.o_control_panel {
+    background: var(--af-ice-surface) !important;
+    border-bottom: 1px solid var(--af-gull-grey) !important;
+}
+
+.o_action_manager,
+.o_content {
+    background-color: var(--af-link-water) !important;
+}
+
+/* Form Sheets */
+.o_form_view .o_form_sheet_bg {
+    background: var(--af-link-water) !important;
+}
+
+.o_form_view .o_form_sheet {
+    background: var(--af-ice-surface) !important;
+    border: 1px solid var(--af-gull-grey) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 10px 28px rgba(57, 78, 110, 0.10) !important;
+}
+
+.o_form_view .o_horizontal_separator {
+    color: var(--af-blue-jay) !important;
+    border-bottom: 2px solid var(--af-gull-grey) !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em;
+}
+
+/* Buttons */
+.o_web_client .btn-primary {
+    background: var(--af-blue-jay) !important;
+    border-color: var(--af-blue-jay) !important;
+    color: var(--af-link-water) !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 3px 10px rgba(57, 78, 110, 0.22);
+}
+
+.o_web_client .btn-primary:hover {
+    background: var(--af-blue-jay-deep) !important;
+    border-color: var(--af-gull-grey) !important;
+    color: #ffffff !important;
+}
+
+.o_web_client .btn-secondary {
+    background: var(--af-ice-surface) !important;
+    border: 1px solid var(--af-gull-grey) !important;
+    color: var(--af-blue-jay) !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+}
+
+.o_web_client .btn-secondary:hover {
+    background: var(--af-link-water) !important;
+    border-color: var(--af-blue-jay) !important;
+}
+
+/* Statusbar */
+.o_form_view .o_statusbar_status .o_arrow_button_current {
+    background: var(--af-blue-jay) !important;
+    color: var(--af-link-water) !important;
+    font-weight: 800 !important;
+}
+
+/* Kanban Board & Cards */
+.o_kanban_view {
+    background: var(--af-link-water) !important;
+}
+
+.o_kanban_view .o_kanban_group {
+    background: rgba(244, 247, 251, 0.72) !important;
+    border-radius: 12px;
+}
+
+.o_kanban_view .o_kanban_record {
+    background: #ffffff !important;
+    border: 1px solid var(--af-gull-grey) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 8px rgba(57, 78, 110, 0.06) !important;
+    transition: transform 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.o_kanban_view .o_kanban_record:hover {
+    border-color: var(--af-blue-jay) !important;
+    box-shadow: 0 6px 16px rgba(57, 78, 110, 0.15) !important;
+    transform: translateY(-1px);
+}
+
+/* List View */
+.o_list_view .o_list_table thead th {
+    background: var(--af-ice-surface) !important;
+    color: var(--af-blue-jay) !important;
+    font-weight: 700 !important;
+    border-bottom: 2px solid var(--af-gull-grey) !important;
+}
+
+.o_list_view .o_list_table tbody tr:hover {
+    background: rgba(160, 173, 194, 0.18) !important;
+}
+
+/* Links & Notebook Tabs */
+.o_web_client a {
+    color: var(--af-blue-jay);
+}
+
+.o_form_view .nav-tabs .nav-link.active {
+    color: var(--af-blue-jay) !important;
+    border-bottom: 2.5px solid var(--af-blue-jay) !important;
+    font-weight: 700 !important;
+}
+
+/* Chatter */
+.o-mail-Chatter {
+    background: var(--af-ice-surface) !important;
+    border-left: 1px solid var(--af-gull-grey) !important;
+}

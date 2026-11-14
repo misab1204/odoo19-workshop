@@ -25,6 +25,11 @@ blueprinting, zero-waste sustainable manufacturing, and a mobile-first ArtisanCh
         'views/artisan_chat_templates.xml',
         'views/adaptfit_menus.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'adaptfit_apparel/static/src/css/adaptfit_theme.css',
+        ],
+    },
     'application': True,
     'installable': True,
 }
