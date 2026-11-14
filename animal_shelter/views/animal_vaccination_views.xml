@@ -5,9 +5,9 @@
         <field name="model">animal.vaccination</field>
         <field name="arch" type="xml">
             <list>
-                <field name = "animal_id"/>
-                <field name = "vaccine_id"/>
-                <field name = "status"/>
+                <field name = "animal_id" />
+                <field name = "vaccine_id" />
+                <field name = "status" />
             </list>
         </field>
     </record>
@@ -19,9 +19,9 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <field name = "animal_id" readonly = "1"/>
+                    <field name = "animal_id" readonly = "1" />
                     <field name = "vaccine_id" />
-                    <field name = "status"/>
+                    <field name = "status" />
                 </group>
             </form>
         </field>

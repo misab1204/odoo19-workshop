@@ -2,16 +2,16 @@
     <record id="res_users_view_form_shelters" model="ir.ui.view">
         <field name="name">res.users.form.shelters</field>
         <field name="model">res.users</field>
-        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name = "inherit_id" ref = "base.view_users_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//notebook" position="inside">
-                <page string="Allocated Shelters">
-                    <field name="responsible_shelter_ids" readonly="1">
-                        <list>
-                            <field name="name"/>
-                        </list>
-                    </field>
-                </page>
+           <xpath expr="//notebook" position ="inside">
+            <page string="Allocated Shelters">
+                <field name="responsible_shelter_ids" readonly = "1">
+                    <list>
+                        <field name = "name"/>
+                    </list>
+                </field>
+            </page>
             </xpath>
         </field>
     </record>

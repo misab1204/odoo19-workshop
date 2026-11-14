@@ -12,12 +12,12 @@
         <field name="model">animals</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="animal_type_id"/>
-                <field name="weight"/>
-                <field name="gender"/>
-                <field name="birth_date"/>
-                
+                <field name = "name" />
+                <field name = "animal_type_id" />
+                <field name =  "weight" />
+                <field name = "gender" />
+                <field name ="birth_date" />
+ 
              </list>
         </field>
     </record>
@@ -28,50 +28,53 @@
         <field name="model">animals</field>
         <field name="arch" type="xml">
             <form>
-               <header>
-                   <button name="at_center" type="object" string="Arrived at Center" invisible="animal_status in ('at_the_shelter','released')" />
-                   <button name="release_animal" type="object" string="Release Animal" invisible="animal_status in ('not_received','released')"/>
-                   <field name="animal_status" widget="statusbar"/>
-               </header>
+                <header>
+                    <button name = "at_center" type = "object" string = "Arrived at Center" invisible="animal_status in
+                    ('at_the_shelter','released')" />
+                    <button name="release_animal" type="object" string="Release Animal" invisible="animal_status in
+                    ('not_received','released')" />
+                    <field name = "animal_status" widget="statusbar" />
+                </header>
                 <sheet>
-                    <h1> <field name="name"/></h1>
+                    <h1> <field name = "name" /></h1>
                     <group>
-                          <field name="picture" widget = "image"
-                          style="width:200px; height:200px; object-fit:cover;
-                          overflow:hidden"/>
-                          <group>
-                              <field name="animal_type_id"/>
-                              <field name="gender" widget="radio" options="{'horizontal':true}"/>
-                              <field name="all_vaccinated"/>
-                              <field name="feeding_time" widget="float_time"/>
-                              <field name="location_id"/>
-                              <field name="sponsor_id"/>
-                          </group>   
+                         <field name = "picture" widget="image"
+                         style="width:200px; height:200px; object-fit:cover;
+                         overflow:hidden" />
+                         <group>
+                            <field name = "animal_type_id"/>
+                            <field name = "gender" widget = "radio" options = "{'horizontal':true}" />
+                            <field name = "all_vaccinated" />
+                            <field name = "feeding_time" widget="float_time" />
+                            <field name = "location_id" />
+                            <field name = "sponsor_id" />
+                         </group>
                     </group>
                     <notebook>
-                         <page string="Description">
-                            <group>
-                                 <field name="description"/>
-                                 <field name="birth_date"/>
-                                 <filed name="weight"/>
-                                 <field name="diet"/>
-                                 <field name="arrival_time"/>
+                       <page string = "Description">
+                           <group>
+                               <field name = "description" />
+                               <field name = "birth_date" />
+                               <field name = "weight" />
+                               <field name = "diet" />
+                               <field name = "arrival_time" />
                             </group>
                         </page>
-                        <page string="Vaccines">
-                            <field name="animal_vaccination_ids">
-                                <list 
-                                    decoration-danger = "status == 'not_vaccinated'" 
-                                    decoration-success = "status == 'vaccinated'" >
-                                    <!-- no need to learn all these deco byheart, juz search in google for odoo decorations -->
+                        <page string = "Vaccines">
+                            <field name = "animal_vaccination_ids">
 
-                                    <field name = "vaccine_id"/>
-                                    <field name = "status"/>
-                                    <button name = "vaccinated_action" type = "object" string ="Mark as Vaccinated" invisible = "status == 'vaccinated'"/>
+                                <list
+                                    decoration-danger = "status == 'not_vaccinated' "
+                                    decoration-success="status == 'vaccinated' "
+                                >
+                                   <field name = "vaccine_id"/>
+                                   <field name = "status"/>
+                                   <button name = "vaccinated_action" type = "object" string = "Mark as Vaccinated"
+                                   invisible  = "status == 'vaccinated'" />                             
                                 </list>
                             </field>
                         </page>
-                    </notebook>
+                    </notebook>   
                 </sheet>
             </form>
         </field>

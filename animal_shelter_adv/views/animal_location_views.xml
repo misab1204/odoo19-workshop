@@ -4,12 +4,11 @@
         <field name="model">animal.location</field>
         <field name="inherit_id" ref="animal_shelter.animal_location_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//sheet/group" position="inside">
-                <field name="cleaner_user_id"/>
-            </xpath>
+            <xpath expr="//sheet/h1" position="after">      
+                <group>
+                    <field name="cleaner_user_id"/>
+                </group>
+             </xpath>   
         </field>
     </record>
 </odoo>
-<!-- <odoo>
-
-</odoo> -->

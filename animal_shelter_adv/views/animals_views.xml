@@ -1,5 +1,5 @@
 <odoo>
-    <record id="animal_shelter.animals_action" model="ir.actions.act_window">
+    <record id="animal.animals_action" model="ir.actions.act_window">
         <field name="view_mode">list,form</field>
     </record>
 

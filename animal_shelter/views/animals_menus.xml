@@ -11,7 +11,7 @@
         <menuitem id="animal_shelter_types_first_level_menu" name="Specification">
             <menuitem id="animal_shelter_type_menu_action" action="animal_type_action"/>
             <menuitem id="animal_shelter_vaccine_menu_action" action="animal_vaccine_action"/>
-        </menuitem>
+        </menuitem> 
 
         <!-- MENUITEM 3 -->
 

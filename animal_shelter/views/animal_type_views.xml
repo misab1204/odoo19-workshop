@@ -7,7 +7,7 @@
     </record>
 
     <!-- Form VIEW -->
-    <!-- <record id="animal_type_view_form" model="ir.ui.view">
+    <record id="animal_type_view_form" model="ir.ui.view">
         <field name="name">animal.type.form</field>
         <field name="model">animal.type</field>
         <field name="arch" type="xml">
@@ -19,5 +19,5 @@
                 </sheet>
             </form>
         </field>
-    </record> -->
+    </record>
 </odoo>
