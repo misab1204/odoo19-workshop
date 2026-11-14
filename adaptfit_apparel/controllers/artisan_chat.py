@@ -19,11 +19,19 @@ class ArtisanChatController(http.Controller):
             or request.httprequest.headers.get('X-Requested-With') == 'XMLHttpRequest'
         )
 
-    def _serialize_message(self, message, is_system=False):
-        text_body = html2plaintext(message.body or '').strip()
+    def _split_attachments(self, message):
         img_attachments = message.attachment_ids.filtered(
             lambda a: a.mimetype and a.mimetype.startswith('image/')
         )
+        audio_attachments = message.attachment_ids.filtered(
+            lambda a: (a.mimetype and a.mimetype.startswith('audio/'))
+            or (a.name and a.name.startswith('voice_note'))
+        )
+        return img_attachments, audio_attachments
+
+    def _serialize_message(self, message, is_system=False):
+        text_body = html2plaintext(message.body or '').strip()
+        img_attachments, audio_attachments = self._split_attachments(message)
         return {
             'id': message.id,
             'author': message.author_id.name or _('System'),
@@ -32,6 +40,7 @@ class ArtisanChatController(http.Controller):
             'time': message.date.strftime('%H:%M') if message.date else '',
             'body': text_body,
             'image_ids': img_attachments.ids,
+            'audio_ids': audio_attachments.ids,
         }
 
     def _get_order_cards(self):
@@ -92,9 +101,7 @@ class ArtisanChatController(http.Controller):
         chat_messages = []
         for m in messages:
             text_body = html2plaintext(m.body or '').strip()
-            img_attachments = m.attachment_ids.filtered(
-                lambda a: a.mimetype and a.mimetype.startswith('image/')
-            )
+            img_attachments, audio_attachments = self._split_attachments(m)
             is_system = (
                 m.message_type == 'notification'
                 or text_body.startswith('Stage updated to:')
@@ -108,6 +115,7 @@ class ArtisanChatController(http.Controller):
                 'time': m.date.strftime('%H:%M') if m.date else '',
                 'body': text_body,
                 'images': img_attachments,
+                'audios': audio_attachments,
             })
 
         return request.render('adaptfit_apparel.artisan_chat_detail_template', {
@@ -120,21 +128,31 @@ class ArtisanChatController(http.Controller):
         })
 
     @http.route('/adaptfit/artisan/<int:order_id>/message', type='http', auth='user', methods=['POST'], website=False)
-    def artisan_chat_post_message(self, order_id, body='', photo=None, **kwargs):
+    def artisan_chat_post_message(self, order_id, body='', photo=None, voice=None, **kwargs):
         order = request.env['adaptive.order'].browse(order_id).exists()
         if not order:
             return request.redirect('/adaptfit/artisan')
 
         attachments = []
+        has_voice = False
         if photo and hasattr(photo, 'read'):
             raw = photo.read()
             if raw:
                 attachments.append((photo.filename or 'seam_photo.jpg', raw))
+        if voice and hasattr(voice, 'read'):
+            raw_voice = voice.read()
+            if raw_voice:
+                fname = voice.filename or 'voice_note.webm'
+                if not fname.startswith('voice_note'):
+                    fname = f'voice_note_{fname}'
+                attachments.append((fname, raw_voice))
+                has_voice = True
 
         msg = False
         if body.strip() or attachments:
+            fallback_body = _('Voice note') if has_voice else _('Workshop photo uploaded')
             msg = order.message_post(
-                body=body.strip() or _('Workshop photo uploaded'),
+                body=body.strip() or fallback_body,
                 message_type='comment',
                 subtype_xmlid='mail.mt_comment',
                 attachments=attachments,

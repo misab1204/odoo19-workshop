@@ -697,6 +697,15 @@ body {
     cursor: zoom-in;
 }
 
+.ac-msg-audio {
+    width: 240px;
+    max-width: 100%;
+    height: 36px;
+    margin-top: 4px;
+    margin-bottom: 2px;
+    display: block;
+}
+
 .ac-system-event {
     align-self: center;
     background: #FFFFFF;
@@ -824,6 +833,106 @@ body {
 
 .ac-send-btn:disabled {
     opacity: 0.6;
+}
+
+.ac-mic-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: #54656F;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.ac-mic-btn:hover {
+    background: rgba(11, 20, 26, 0.06);
+    color: #111B21;
+}
+
+/* Recording Bar */
+.ac-rec-bar {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    height: 42px;
+    padding: 0 6px;
+}
+
+.ac-rec-bar.is-active {
+    display: flex;
+}
+
+.ac-composer-form.is-hidden {
+    display: none;
+}
+
+.ac-rec-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #111B21;
+}
+
+.ac-rec-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #DC2626;
+    animation: ac-pulse 1s infinite ease-in-out;
+}
+
+@keyframes ac-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.ac-rec-timer {
+    font-variant-numeric: tabular-nums;
+    color: #54656F;
+}
+
+.ac-rec-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ac-rec-cancel {
+    background: none;
+    border: none;
+    color: #DC2626;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.ac-rec-cancel:hover {
+    background: rgba(220, 38, 38, 0.08);
+}
+
+.ac-rec-error {
+    display: none;
+    margin-bottom: 6px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: #FEF2F2;
+    color: #B91C1C;
+    font-size: 12.5px;
+    font-weight: 600;
+}
+
+.ac-rec-error.is-visible {
+    display: block;
 }
 
 /* Lightbox */

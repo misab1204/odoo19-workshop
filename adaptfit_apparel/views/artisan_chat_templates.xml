@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="adaptfit_pos_styles" name="AdaptFit Workshop Styles">
-        <link rel="stylesheet" href="/adaptfit_apparel/static/src/css/artisan_chat.css?v=5"/>
-        <script src="/adaptfit_apparel/static/src/js/artisan_chat.js?v=5" defer="defer"></script>
+        <link rel="stylesheet" href="/adaptfit_apparel/static/src/css/artisan_chat.css?v=6"/>
+        <script src="/adaptfit_apparel/static/src/js/artisan_chat.js?v=6" defer="defer"></script>
     </template>
 
     <!-- Reusable Sidebar Order Row -->
@@ -224,6 +224,9 @@
                                         <t t-foreach="msg['images']" t-as="img">
                                             <img class="ac-msg-img" t-attf-src="/web/image/#{img.id}" alt="Seam photo"/>
                                         </t>
+                                        <t t-foreach="msg.get('audios', [])" t-as="aud">
+                                            <audio class="ac-msg-audio" controls="controls" preload="metadata" t-attf-src="/web/content/#{aud.id}"></audio>
+                                        </t>
                                         <div class="ac-msg-content">
                                             <t t-if="msg_body">
                                                 <span class="ac-msg-body"><t t-esc="msg_body"/></span>
@@ -237,12 +240,31 @@
 
                         <!-- 62px WhatsApp Bottom Composer -->
                         <div class="ac-composer">
+                            <div id="ac-rec-error" class="ac-rec-error"></div>
+
                             <div id="ac-photo-preview" class="ac-photo-preview">
                                 <div class="ac-photo-preview-info">
                                     <img id="ac-photo-thumb" class="ac-photo-thumb" alt="Selected photo"/>
                                     <span id="ac-photo-name" class="ac-photo-name"></span>
                                 </div>
                                 <button type="button" id="ac-photo-clear" class="ac-photo-clear">Remove</button>
+                            </div>
+
+                            <div id="ac-rec-bar" class="ac-rec-bar">
+                                <div class="ac-rec-status">
+                                    <span class="ac-rec-dot"></span>
+                                    <span>Recording voice note</span>
+                                    <span id="ac-rec-timer" class="ac-rec-timer">0:00</span>
+                                </div>
+                                <div class="ac-rec-actions">
+                                    <button type="button" id="ac-rec-cancel" class="ac-rec-cancel">Cancel</button>
+                                    <button type="button" id="ac-rec-send" class="ac-send-btn" title="Send Voice Note">
+                                        <svg class="ac-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                            <line x1="22" y1="2" x2="11" y2="13"/>
+                                            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
 
                             <form id="ac-msg-form"
@@ -263,6 +285,14 @@
                                        name="body"
                                        class="ac-msg-input"
                                        placeholder="Type a message"/>
+                                <button id="ac-mic-btn" type="button" class="ac-mic-btn" title="Record Voice Note">
+                                    <svg class="ac-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                                        <line x1="12" y1="19" x2="12" y2="23"/>
+                                        <line x1="8" y1="23" x2="16" y2="23"/>
+                                    </svg>
+                                </button>
                                 <button id="ac-send-btn" type="submit" class="ac-send-btn" title="Send">
                                     <svg class="ac-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                         <line x1="22" y1="2" x2="11" y2="13"/>
