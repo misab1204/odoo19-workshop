@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_adaptfit" model="ir.ui.view">
+        <field name="name">res.partner.form.adaptfit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_adaptive_orders"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-medkit"
+                        invisible="not is_adaptive_patient">
+                    <field name="adaptive_order_count" widget="statinfo" string="Adaptive Orders"/>
+                </button>
+            </div>
+
+            <sheet position="before">
+                <header invisible="not is_adaptive_patient">
+                    <button name="action_create_adaptive_order"
+                            string="+ New Adaptive Order"
+                            type="object"
+                            class="btn-primary"/>
+                </header>
+            </sheet>
+
+            <field name="vat" position="after">
+                <field name="is_adaptive_patient"/>
+                <field name="patient_identifier" invisible="not is_adaptive_patient"/>
+            </field>
+
+            <notebook position="inside">
+                <page string="Patient Dignity &amp; Clinical Profile" name="adaptfit_profile" invisible="not is_adaptive_patient">
+                    <group>
+                        <group string="Medical Adaptive Conditions (Confidential)">
+                            <field name="condition_amputation"/>
+                            <field name="condition_burn_graft"/>
+                            <field name="condition_stroke_mobility"/>
+                            <field name="condition_medical_port"/>
+                            <field name="condition_wheelchair"/>
+                            <field name="condition_sensory"/>
+                        </group>
+                        <group string="Permanent Adaptive Preferences">
+                            <field name="pref_magnetic_closures"/>
+                            <field name="pref_tagless_only"/>
+                            <field name="pref_flatlock_seams"/>
+                            <field name="pref_bamboo_lining"/>
+                            <field name="medical_notes" placeholder="Confidential clinical instructions (collected once, protected forever)..."/>
+                        </group>
+                    </group>
+                    <group string="Asymmetric Anatomical Specifications (Inches)">
+                        <group string="Upper Body">
+                            <field name="meas_neck"/>
+                            <field name="meas_shoulder"/>
+                            <field name="meas_chest"/>
+                            <field name="meas_arm_left"/>
+                            <field name="meas_arm_right"/>
+                            <field name="meas_stump_circ_left"/>
+                            <field name="meas_stump_circ_right"/>
+                        </group>
+                        <group string="Lower Body &amp; Seated Fit">
+                            <field name="meas_waist"/>
+                            <field name="meas_hip"/>
+                            <field name="meas_inseam_left"/>
+                            <field name="meas_inseam_right"/>
+                            <field name="meas_seated_rise"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="action_adaptfit_patients" model="ir.actions.act_window">
+        <field name="name">Patient Dignity Profiles</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="domain">[('is_adaptive_patient', '=', True)]</field>
+        <field name="context">{'default_is_adaptive_patient': True}</field>
+    </record>
+</odoo>

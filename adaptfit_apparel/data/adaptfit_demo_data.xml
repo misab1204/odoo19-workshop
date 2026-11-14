@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sustainable Adaptive Fabrics -->
+        <record id="fabric_organic_bamboo" model="product.product">
+            <field name="name">Organic Bamboo Jersey (Hypoallergenic White)</field>
+            <field name="type">consu</field>
+            <field name="list_price">85.0</field>
+            <field name="is_sustainable_fabric" eval="True"/>
+            <field name="fabric_certification">GOTS Organic Bamboo</field>
+            <field name="eco_co2_saved_per_m">1.85</field>
+            <field name="eco_water_saved_per_m">270.0</field>
+        </record>
+
+        <record id="fabric_oekotex_cotton" model="product.product">
+            <field name="name">OEKO-TEX 100 Medical Breathable Cotton</field>
+            <field name="type">consu</field>
+            <field name="list_price">70.0</field>
+            <field name="is_sustainable_fabric" eval="True"/>
+            <field name="fabric_certification">OEKO-TEX Standard 100</field>
+            <field name="eco_co2_saved_per_m">1.40</field>
+            <field name="eco_water_saved_per_m">180.0</field>
+        </record>
+
+        <record id="fabric_tencel_modal" model="product.product">
+            <field name="name">Tencel Lyocell Cooling Silk-Touch</field>
+            <field name="type">consu</field>
+            <field name="list_price">95.0</field>
+            <field name="is_sustainable_fabric" eval="True"/>
+            <field name="fabric_certification">Closed-Loop Tencel</field>
+            <field name="eco_co2_saved_per_m">2.10</field>
+            <field name="eco_water_saved_per_m">320.0</field>
+        </record>
+
+        <!-- Sample Patient Persona: Tariq Al-Mansoor -->
+        <record id="demo_patient_tariq" model="res.partner">
+            <field name="name">Tariq Al-Mansoor</field>
+            <field name="is_adaptive_patient" eval="True"/>
+            <field name="patient_identifier">PT-8042</field>
+            <field name="condition_amputation" eval="True"/>
+            <field name="condition_burn_graft" eval="True"/>
+            <field name="condition_medical_port" eval="True"/>
+            <field name="condition_sensory" eval="True"/>
+            <field name="medical_notes">Left upper-limb residual arm (11.5"). Skin graft on left rib/torso — flat-lock seams mandatory. Right collarbone chemo port.</field>
+            <field name="meas_neck">16.0</field>
+            <field name="meas_shoulder">18.5</field>
+            <field name="meas_arm_left">11.5</field>
+            <field name="meas_arm_right">26.5</field>
+            <field name="meas_stump_circ_left">12.0</field>
+            <field name="meas_stump_circ_right">13.5</field>
+            <field name="meas_chest">42.0</field>
+            <field name="meas_waist">34.0</field>
+            <field name="meas_hip">40.0</field>
+            <field name="meas_inseam_left">31.0</field>
+            <field name="meas_inseam_right">31.0</field>
+            <field name="pref_magnetic_closures" eval="True"/>
+            <field name="pref_tagless_only" eval="True"/>
+            <field name="pref_flatlock_seams" eval="True"/>
+            <field name="pref_bamboo_lining" eval="True"/>
+        </record>
+
+        <!-- Sample Patient Persona 2: Layla Hassan -->
+        <record id="demo_patient_layla" model="res.partner">
+            <field name="name">Layla Hassan</field>
+            <field name="is_adaptive_patient" eval="True"/>
+            <field name="patient_identifier">PT-8043</field>
+            <field name="condition_wheelchair" eval="True"/>
+            <field name="condition_stroke_mobility" eval="True"/>
+            <field name="medical_notes">Wheelchair user requiring high-rise seated rear waist and one-handed magnetic side closures.</field>
+            <field name="meas_waist">30.0</field>
+            <field name="meas_hip">39.0</field>
+            <field name="meas_inseam_left">29.5</field>
+            <field name="meas_inseam_right">29.5</field>
+            <field name="meas_seated_rise">14.5</field>
+            <field name="pref_magnetic_closures" eval="True"/>
+            <field name="pref_tagless_only" eval="True"/>
+        </record>
+
+        <!-- Sample Adaptive Orders -->
+        <record id="demo_order_1049" model="adaptive.order">
+            <field name="name">AD-1049</field>
+            <field name="partner_id" ref="demo_patient_tariq"/>
+            <field name="state">stitching</field>
+            <field name="urgency_level">clinical_rush</field>
+            <field name="garment_type">shirt_top</field>
+            <field name="fabric_id" ref="fabric_organic_bamboo"/>
+            <field name="has_magnetic_placket" eval="True"/>
+            <field name="has_port_access_zip" eval="True"/>
+            <field name="port_location">chest_right</field>
+            <field name="has_flatlock_frictionless" eval="True"/>
+            <field name="has_prosthetic_reinforcement" eval="True"/>
+            <field name="has_tagless_label" eval="True"/>
+            <field name="order_neck">16.0</field>
+            <field name="order_shoulder">18.5</field>
+            <field name="order_arm_left">11.5</field>
+            <field name="order_arm_right">26.5</field>
+            <field name="order_stump_left">12.0</field>
+            <field name="order_stump_right">13.5</field>
+            <field name="order_chest">42.0</field>
+            <field name="order_waist">34.0</field>
+            <field name="blueprint_marker_json">[{"type": "sensitive", "x": 170, "y": 155, "label": "Graft Sensitive"}]</field>
+            <field name="artisan_id" ref="base.user_admin"/>
+            <field name="piece_rate_fee">65.0</field>
+            <field name="total_amount">450.0</field>
+            <field name="advance_deposit">225.0</field>
+        </record>
+
+        <record id="demo_order_1050" model="adaptive.order">
+            <field name="name">AD-1050</field>
+            <field name="partner_id" ref="demo_patient_layla"/>
+            <field name="state">pattern</field>
+            <field name="urgency_level">urgent</field>
+            <field name="garment_type">trousers_pant</field>
+            <field name="fabric_id" ref="fabric_tencel_modal"/>
+            <field name="has_magnetic_placket" eval="True"/>
+            <field name="has_high_seated_rise" eval="True"/>
+            <field name="has_tagless_label" eval="True"/>
+            <field name="order_waist">30.0</field>
+            <field name="order_inseam_left">29.5</field>
+            <field name="order_inseam_right">29.5</field>
+            <field name="order_seated_rise">14.5</field>
+            <field name="artisan_id" ref="base.user_admin"/>
+            <field name="piece_rate_fee">55.0</field>
+            <field name="total_amount">380.0</field>
+            <field name="advance_deposit">190.0</field>
+        </record>
+    </data>
+</odoo>

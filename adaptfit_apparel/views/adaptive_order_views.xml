@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Adaptive Order List View -->
+    <record id="view_adaptive_order_list" model="ir.ui.view">
+        <field name="name">adaptive.order.list</field>
+        <field name="model">adaptive.order</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="urgency_level == 'clinical_rush'"
+                  decoration-warning="urgency_level == 'urgent'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="garment_type"/>
+                <field name="fabric_id"/>
+                <field name="calculated_yardage" string="Yardage (m)"/>
+                <field name="eco_carbon_saved_kg" string="CO2 Saved (kg)"/>
+                <field name="artisan_id"/>
+                <field name="target_date"/>
+                <field name="urgency_level" widget="badge"
+                       decoration-danger="urgency_level == 'clinical_rush'"
+                       decoration-warning="urgency_level == 'urgent'"
+                       decoration-success="urgency_level == 'standard'"/>
+                <field name="state" widget="badge"
+                       decoration-info="state in ('draft', 'pattern', 'stitching')"
+                       decoration-warning="state in ('transit', 'fitting')"
+                       decoration-success="state == 'delivered'"/>
+                <field name="balance_due" widget="monetary"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Adaptive Order Kanban View (Workshop Dispatch Board) -->
+    <record id="view_adaptive_order_kanban" model="ir.ui.view">
+        <field name="name">adaptive.order.kanban</field>
+        <field name="model">adaptive.order</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="garment_type"/>
+                <field name="urgency_level"/>
+                <field name="artisan_id"/>
+                <field name="artisan_code"/>
+                <field name="calculated_yardage"/>
+                <field name="eco_carbon_saved_kg"/>
+                <field name="qa_passed"/>
+                <field name="clinic_dispatch_batch"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click p-2">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                <field name="urgency_level" widget="badge"
+                                       decoration-danger="urgency_level == 'clinical_rush'"
+                                       decoration-warning="urgency_level == 'urgent'"
+                                       decoration-success="urgency_level == 'standard'"/>
+                            </div>
+                            <div class="text-muted small mb-1">
+                                <field name="garment_type"/>
+                            </div>
+                            <div class="small">
+                                <span>🌿 <field name="calculated_yardage"/>m</span>
+                                <span class="ms-2">CO₂: <field name="eco_carbon_saved_kg"/>kg</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-2 pt-1 border-top small">
+                                <span>Artisan: <field name="artisan_id"/></span>
+                                <span t-if="record.qa_passed.raw_value" class="badge text-bg-success">QA ✅</span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Adaptive Order Form View -->
+    <record id="view_adaptive_order_form" model="ir.ui.view">
+        <field name="name">adaptive.order.form</field>
+        <field name="model">adaptive.order</field>
+        <field name="arch" type="xml">
+            <form string="Adaptive Medical Garment Order">
+                <header>
+                    <button name="action_start_pattern" string="Send to Pattern &amp; Cutting" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_start_stitching" string="Start Artisan Stitching" type="object" class="btn-primary" invisible="state != 'pattern'"/>
+                    <button name="action_send_transit" string="Dispatch to Clinic Transit" type="object" class="btn-primary" invisible="state != 'stitching'"/>
+                    <button name="action_start_fitting" string="Begin Clinical Fitting" type="object" class="btn-primary" invisible="state != 'transit'"/>
+                    <button name="action_deliver_settle" string="Deliver &amp; Settle Balance" type="object" class="btn-success" invisible="state != 'fitting'"/>
+                    <button name="action_open_artisan_chat" string="Open ArtisanChat (Mobile)" type="object" class="btn-secondary"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state in ('delivered', 'cancel')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,pattern,stitching,transit,fitting,delivered"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Clinical &amp; Order Intake">
+                            <field name="partner_id" domain="[('is_adaptive_patient', '=', True)]"/>
+                            <field name="patient_ref"/>
+                            <field name="urgency_level"/>
+                            <field name="target_date"/>
+                            <field name="garment_type"/>
+                            <field name="fabric_id"/>
+                        </group>
+                        <group string="Zero-Waste Sustainable Impact &amp; Dispatch">
+                            <field name="calculated_yardage"/>
+                            <field name="eco_carbon_saved_kg"/>
+                            <field name="eco_water_saved_l"/>
+                            <field name="artisan_id"/>
+                            <field name="artisan_code"/>
+                            <field name="piece_rate_fee"/>
+                            <field name="clinic_dispatch_batch"/>
+                        </group>
+                    </group>
+
+                    <group string="Clinical Ergonomic Advisor (AI / Rule-Driven)">
+                        <group>
+                            <field name="clinical_notes_input" placeholder="e.g., Patient has sensitive pacemaker on upper left chest and reduced grip in left hand..."/>
+                            <button name="action_run_clinical_advisor" string="Run Clinical Advisor" type="object" class="btn-secondary"/>
+                        </group>
+                        <group>
+                            <field name="advisor_summary"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Active Medical Accommodations">
+                            <field name="has_magnetic_placket"/>
+                            <field name="has_port_access_zip"/>
+                            <field name="port_location" invisible="not has_port_access_zip"/>
+                            <field name="has_prosthetic_reinforcement"/>
+                            <field name="has_flatlock_frictionless"/>
+                            <field name="has_high_seated_rise"/>
+                            <field name="has_tagless_label"/>
+                        </group>
+                        <group string="Interactive Anatomical Blueprint">
+                            <field name="blueprint_svg_preview" nolabel="1" colspan="2"/>
+                            <div colspan="2" class="d-flex gap-2 flex-wrap mt-2">
+                                <button name="action_add_port_marker" string="+ Port Pin" type="object" class="btn-sm btn-outline-danger"/>
+                                <button name="action_add_sensitive_marker" string="+ Sensitive Zone" type="object" class="btn-sm btn-outline-warning"/>
+                                <button name="action_add_reinforcement_marker" string="+ Socket Shield" type="object" class="btn-sm btn-outline-primary"/>
+                                <button name="action_clear_markers" string="Clear Pins" type="object" class="btn-sm btn-outline-secondary"/>
+                            </div>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Asymmetric Measurements (Inches)">
+                            <group>
+                                <group string="Upper Body Snapshot">
+                                    <field name="order_neck"/>
+                                    <field name="order_shoulder"/>
+                                    <field name="order_chest"/>
+                                    <field name="order_arm_left"/>
+                                    <field name="order_arm_right"/>
+                                    <field name="order_stump_left"/>
+                                    <field name="order_stump_right"/>
+                                </group>
+                                <group string="Lower Body Snapshot">
+                                    <field name="order_waist"/>
+                                    <field name="order_inseam_left"/>
+                                    <field name="order_inseam_right"/>
+                                    <field name="order_seated_rise"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Financial Ledger">
+                            <group>
+                                <group>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="total_amount" widget="monetary"/>
+                                    <field name="advance_deposit" widget="monetary"/>
+                                    <field name="balance_due" widget="monetary" class="fw-bold"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Technical Blueprint JSON">
+                            <field name="blueprint_marker_json"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_adaptive_order_search" model="ir.ui.view">
+        <field name="name">adaptive.order.search</field>
+        <field name="model">adaptive.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="artisan_id"/>
+                <filter string="Clinical Rush" name="rush" domain="[('urgency_level', '=', 'clinical_rush')]"/>
+                <filter string="In Workshop" name="workshop" domain="[('state', 'in', ('pattern', 'stitching'))]"/>
+                <group>
+                    <filter string="Stage" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Artisan" name="group_artisan" context="{'group_by': 'artisan_id'}"/>
+                    <filter string="Urgency" name="group_urgency" context="{'group_by': 'urgency_level'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Batch Dispatch Server Action -->
+    <record id="action_server_dispatch_batch" model="ir.actions.server">
+        <field name="name">Prepare Clinic Dispatch Batch</field>
+        <field name="model_id" ref="model_adaptive_order"/>
+        <field name="binding_model_id" ref="model_adaptive_order"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">records.action_prepare_dispatch_batch()</field>
+    </record>
+
+    <!-- Graph & Pivot Views (ESG & Workshop Analytics) -->
+    <record id="view_adaptive_order_graph" model="ir.ui.view">
+        <field name="name">adaptive.order.graph</field>
+        <field name="model">adaptive.order</field>
+        <field name="arch" type="xml">
+            <graph string="ESG &amp; Workshop Impact" type="bar">
+                <field name="fabric_id"/>
+                <field name="eco_carbon_saved_kg" type="measure"/>
+                <field name="calculated_yardage" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_adaptive_order_pivot" model="ir.ui.view">
+        <field name="name">adaptive.order.pivot</field>
+        <field name="model">adaptive.order</field>
+        <field name="arch" type="xml">
+            <pivot string="ESG &amp; Workshop Impact">
+                <field name="garment_type" type="row"/>
+                <field name="state" type="col"/>
+                <field name="eco_carbon_saved_kg" type="measure"/>
+                <field name="eco_water_saved_l" type="measure"/>
+                <field name="calculated_yardage" type="measure"/>
+                <field name="total_amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_adaptive_orders" model="ir.actions.act_window">
+        <field name="name">Adaptive Orders</field>
+        <field name="res_model">adaptive.order</field>
+        <field name="view_mode">list,kanban,form,graph,pivot</field>
+    </record>
+
+    <record id="action_workshop_dispatch_kanban" model="ir.actions.act_window">
+        <field name="name">Workshop Dispatch Board</field>
+        <field name="res_model">adaptive.order</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <record id="action_adaptfit_esg_analytics" model="ir.actions.act_window">
+        <field name="name">ESG &amp; Workshop Analytics</field>
+        <field name="res_model">adaptive.order</field>
+        <field name="view_mode">graph,pivot,list</field>
+    </record>
+</odoo>

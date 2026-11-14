@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_discreet_job_card" model="ir.actions.report">
+        <field name="name">Discreet Workshop Job Card</field>
+        <field name="model">adaptive.order</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">adaptfit_apparel.report_discreet_job_card</field>
+        <field name="report_file">adaptfit_apparel.report_discreet_job_card</field>
+        <field name="binding_model_id" ref="model_adaptive_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_discreet_job_card">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-family:system-ui,sans-serif;padding:16px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #075E54;padding-bottom:12px;margin-bottom:16px;">
+                            <div>
+                                <h2 style="margin:0;color:#075E54;">ADAPTFIT DISCREET JOB TICKET</h2>
+                                <div style="font-size:13px;color:#475569;margin-top:4px;">
+                                    🔒 Patient PII Stripped — Technical Workshop Specifications Only
+                                </div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-size:22px;font-weight:800;color:#0f172a;">#<t t-esc="o.name"/></div>
+                                <div style="font-size:12px;color:#b91c1c;font-weight:700;" t-if="o.urgency_level == 'clinical_rush'">
+                                    🔴 CLINICAL RUSH
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="display:flex;gap:20px;margin-bottom:16px;">
+                            <div style="flex:1;border:1px solid #cbd5e1;border-radius:8px;padding:12px;">
+                                <h4 style="margin-top:0;color:#0f172a;">Garment &amp; Eco-Material</h4>
+                                <p style="margin:4px 0;"><strong>Category:</strong> <span t-field="o.garment_type"/></p>
+                                <p style="margin:4px 0;"><strong>Fabric:</strong> <t t-esc="o.fabric_id.name"/></p>
+                                <p style="margin:4px 0;"><strong>Allocated Yardage:</strong> <t t-esc="o.calculated_yardage"/> m</p>
+                                <p style="margin:4px 0;"><strong>CO₂ Prevented:</strong> <t t-esc="o.eco_carbon_saved_kg"/> kg</p>
+                                <p style="margin:4px 0;"><strong>Artisan Code:</strong> <t t-esc="o.artisan_code or o.artisan_id.name or 'Unassigned'"/></p>
+                            </div>
+                            <div style="width:160px;text-align:center;border:1px solid #cbd5e1;border-radius:8px;padding:10px;">
+                                <img t-attf-src="/report/barcode/?barcode_type=QR&amp;value=#{request.httprequest.host_url}adaptfit/artisan/#{o.id}&amp;width=130&amp;height=130"
+                                     style="width:130px;height:130px;"/>
+                                <div style="font-size:11px;color:#475569;margin-top:4px;">Scan for ArtisanChat</div>
+                            </div>
+                        </div>
+
+                        <div style="border:1px solid #cbd5e1;border-radius:8px;padding:12px;margin-bottom:16px;">
+                            <h4 style="margin-top:0;color:#0f172a;">Asymmetric Anatomical Dimensions (Inches)</h4>
+                            <table class="table table-sm table-bordered" style="margin-bottom:0;">
+                                <tr>
+                                    <th>Neck</th><td><t t-esc="o.order_neck"/>"</td>
+                                    <th>Shoulder</th><td><t t-esc="o.order_shoulder"/>"</td>
+                                    <th>Chest</th><td><t t-esc="o.order_chest"/>"</td>
+                                    <th>Waist</th><td><t t-esc="o.order_waist"/>"</td>
+                                </tr>
+                                <tr>
+                                    <th>Left Arm</th><td><strong><t t-esc="o.order_arm_left"/>"</strong></td>
+                                    <th>Right Arm</th><td><strong><t t-esc="o.order_arm_right"/>"</strong></td>
+                                    <th>Left Inseam</th><td><t t-esc="o.order_inseam_left"/>"</td>
+                                    <th>Right Inseam</th><td><t t-esc="o.order_inseam_right"/>"</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div style="border:1px solid #fde68a;background:#fffbeb;border-radius:8px;padding:12px;">
+                            <h4 style="margin-top:0;color:#92400e;">Mandatory Adaptive Fixtures</h4>
+                            <ul style="margin:0;padding-left:18px;">
+                                <li t-if="o.has_magnetic_placket">🧲 One-Handed Magnetic Placket (Faux Exterior Buttons)</li>
+                                <li t-if="o.has_port_access_zip">🤐 Concealed 2-Way Port Zipper (<span t-field="o.port_location"/>)</li>
+                                <li t-if="o.has_flatlock_frictionless">🛡️ Zero-Friction Flat-Lock Seams (Burn/Graft Safe)</li>
+                                <li t-if="o.has_prosthetic_reinforcement">🦾 Abrasion-Proof Prosthetic Socket Shield</li>
+                                <li t-if="o.has_high_seated_rise">♿ Seated Ergonomic High-Rise Back</li>
+                                <li t-if="o.has_tagless_label">🏷️ Strictly Tag-Less Heat-Transfer Label</li>
+                            </ul>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

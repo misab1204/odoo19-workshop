@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_adaptive_order_user,adaptive.order.user,model_adaptive_order,base.group_user,1,1,1,1
+access_adaptive_qa_check_user,adaptive.qa.check.user,model_adaptive_qa_check,base.group_user,1,1,1,1
+access_adaptive_artisan_settlement_user,adaptive.artisan.settlement.user,model_adaptive_artisan_settlement,base.group_user,1,1,1,1

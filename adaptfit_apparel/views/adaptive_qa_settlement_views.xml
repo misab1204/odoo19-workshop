@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Clinical QA Check Views -->
+    <record id="view_adaptive_qa_check_list" model="ir.ui.view">
+        <field name="name">adaptive.qa.check.list</field>
+        <field name="model">adaptive.qa.check</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="order_id"/>
+                <field name="patient_ref"/>
+                <field name="artisan_id"/>
+                <field name="inspector_id"/>
+                <field name="check_date"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'passed'"
+                       decoration-danger="state == 'rework'"
+                       decoration-info="state == 'pending'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_adaptive_qa_check_form" model="ir.ui.view">
+        <field name="name">adaptive.qa.check.form</field>
+        <field name="model">adaptive.qa.check</field>
+        <field name="arch" type="xml">
+            <form string="Clinical Fitting &amp; Discharge QA">
+                <header>
+                    <button name="action_pass_qa" string="Pass Clinical QA" type="object" class="btn-primary" invisible="state == 'passed'"/>
+                    <button name="action_flag_rework" string="Flag Rework Needed" type="object" class="btn-danger" invisible="state == 'rework'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="pending,passed,rework"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="order_id"/>
+                            <field name="patient_ref"/>
+                            <field name="artisan_id"/>
+                        </group>
+                        <group>
+                            <field name="inspector_id"/>
+                            <field name="check_date"/>
+                        </group>
+                    </group>
+                    <group string="4-Point Clinical Quality Checklist">
+                        <group>
+                            <field name="tactile_seam_audit"/>
+                            <field name="magnetic_polarity_test"/>
+                        </group>
+                        <group>
+                            <field name="port_access_clearance"/>
+                            <field name="asymmetric_tolerance_ok"/>
+                        </group>
+                    </group>
+                    <group string="Defect &amp; Rework Notes">
+                        <field name="rework_reason" nolabel="1" placeholder="Specify defect details if routing back to artisan..."/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_adaptive_qa_check" model="ir.actions.act_window">
+        <field name="name">Clinical Fitting &amp; QA</field>
+        <field name="res_model">adaptive.qa.check</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Artisan Settlement Views -->
+    <record id="view_adaptive_artisan_settlement_list" model="ir.ui.view">
+        <field name="name">adaptive.artisan.settlement.list</field>
+        <field name="model">adaptive.artisan.settlement</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="artisan_id"/>
+                <field name="artisan_code"/>
+                <field name="completed_count"/>
+                <field name="total_payout" widget="monetary"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'paid'"
+                       decoration-info="state == 'confirmed'"
+                       decoration-muted="state == 'draft'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_adaptive_artisan_settlement_form" model="ir.ui.view">
+        <field name="name">adaptive.artisan.settlement.form</field>
+        <field name="model">adaptive.artisan.settlement</field>
+        <field name="arch" type="xml">
+            <form string="Artisan Piece-Rate Settlement">
+                <header>
+                    <button name="action_fetch_completed_orders" string="Fetch Completed Orders" type="object" class="btn-secondary" invisible="state != 'draft'"/>
+                    <button name="action_confirm" string="Approve Payout" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_mark_paid" string="Mark Paid" type="object" class="btn-success" invisible="state != 'confirmed'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,paid"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="artisan_id"/>
+                            <field name="artisan_code"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                        <group>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="completed_count"/>
+                            <field name="base_payout" widget="monetary"/>
+                            <field name="complexity_bonus" widget="monetary"/>
+                            <field name="defect_penalty" widget="monetary"/>
+                            <field name="total_payout" widget="monetary" class="fw-bold"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Completed Adaptive Orders">
+                            <field name="order_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="garment_type"/>
+                                    <field name="urgency_level"/>
+                                    <field name="piece_rate_fee"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_adaptive_artisan_settlement" model="ir.actions.act_window">
+        <field name="name">Artisan Piece-Rate Settlements</field>
+        <field name="res_model">adaptive.artisan.settlement</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_artisan_chat_portal" model="ir.actions.act_url">
+        <field name="name">ArtisanChat Mobile Portal</field>
+        <field name="url">/adaptfit/artisan</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_adaptfit_root"
+              name="AdaptFit ERP"
+              sequence="10"/>
+
+    <menuitem id="menu_adaptfit_orders"
+              name="Adaptive Order Desk"
+              parent="menu_adaptfit_root"
+              action="action_adaptive_orders"
+              sequence="10"/>
+
+    <menuitem id="menu_adaptfit_workshop_kanban"
+              name="Workshop Dispatch Board"
+              parent="menu_adaptfit_root"
+              action="action_workshop_dispatch_kanban"
+              sequence="20"/>
+
+    <menuitem id="menu_adaptfit_patients"
+              name="Patient Dignity Hub"
+              parent="menu_adaptfit_root"
+              action="action_adaptfit_patients"
+              sequence="30"/>
+
+    <menuitem id="menu_adaptfit_qa"
+              name="Clinical Fitting &amp; QA"
+              parent="menu_adaptfit_root"
+              action="action_adaptive_qa_check"
+              sequence="40"/>
+
+    <menuitem id="menu_adaptfit_settlements"
+              name="Artisan Settlements"
+              parent="menu_adaptfit_root"
+              action="action_adaptive_artisan_settlement"
+              sequence="50"/>
+
+    <menuitem id="menu_adaptfit_fabrics"
+              name="Sustainable Fabrics"
+              parent="menu_adaptfit_root"
+              action="action_adaptfit_fabrics"
+              sequence="60"/>
+
+    <menuitem id="menu_adaptfit_esg"
+              name="ESG &amp; Workshop Analytics"
+              parent="menu_adaptfit_root"
+              action="action_adaptfit_esg_analytics"
+              sequence="65"/>
+
+    <menuitem id="menu_adaptfit_artisan_chat"
+              name="ArtisanChat (Mobile)"
+              parent="menu_adaptfit_root"
+              action="action_artisan_chat_portal"
+              sequence="70"/>
+</odoo>
