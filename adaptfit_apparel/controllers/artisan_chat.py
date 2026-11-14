@@ -172,6 +172,7 @@ class ArtisanChatController(http.Controller):
         if not order:
             return request.redirect('/adaptfit/artisan')
 
+        stage_order = ['draft', 'pattern', 'stitching', 'transit']
         allowed = {
             'draft': _('Intake & Sizing'),
             'pattern': _('Cutting Started'),
@@ -179,7 +180,15 @@ class ArtisanChatController(http.Controller):
             'transit': _('Ready for Clinic Transit'),
         }
         msg = False
-        if target_state in allowed and order.state != target_state:
+        can_advance = (
+            target_state in allowed
+            and order.state != target_state
+            and (
+                order.state not in stage_order
+                or stage_order.index(target_state) > stage_order.index(order.state)
+            )
+        )
+        if can_advance:
             order.write({'state': target_state})
             msg = order.message_post(
                 body=_("Stage updated to: %s") % allowed[target_state],
@@ -188,7 +197,7 @@ class ArtisanChatController(http.Controller):
             )
 
         if self._is_ajax(**kwargs):
-            payload = {'ok': True, 'state': order.state}
+            payload = {'ok': bool(can_advance), 'state': order.state}
             if msg:
                 payload['message'] = self._serialize_message(msg, is_system=True)
             return request.make_json_response(payload)
