@@ -1,176 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Mobile ArtisanChat List View (WhatsApp-style Zero-Training UI) -->
+    <template id="adaptfit_pos_styles" name="AdaptFit Workshop Styles">
+        <link rel="stylesheet" href="/adaptfit_apparel/static/src/css/artisan_chat.css"/>
+        <script src="/adaptfit_apparel/static/src/js/artisan_chat.js" defer="defer"></script>
+    </template>
+
+    <!-- Left Sidebar: Plain Order List -->
+    <template id="artisan_chat_sidebar" name="AdaptFit ArtisanChat Sidebar">
+        <aside class="ac-sidebar">
+            <header class="ac-topbar">
+                <div style="min-width:0;">
+                    <div class="ac-topbar-title">Workshop Chats</div>
+                    <div class="ac-topbar-sub"><t t-esc="artisan_user.name"/></div>
+                </div>
+                <a href="/odoo" class="ac-link-btn">ERP</a>
+            </header>
+
+            <div class="ac-search-box">
+                <input id="ac-order-search"
+                       type="text"
+                       class="ac-search-input"
+                       placeholder="Search order # or garment..."/>
+            </div>
+
+            <div id="ac-order-list" class="ac-order-list">
+                <t t-if="not order_cards">
+                    <div class="ac-empty">No active orders.</div>
+                </t>
+                <t t-foreach="order_cards" t-as="card">
+                    <t t-set="o" t-value="card['order']"/>
+                    <a t-attf-href="/adaptfit/artisan/#{o.id}"
+                       t-attf-class="ac-order-row #{'is-selected' if active_order_id == o.id else ''}"
+                       t-att-data-search="#{o.name} #{card['garment_label']} #{card['state_label']} #{card['preview']}">
+                        <div class="ac-row-head">
+                            <span class="ac-row-name">#<t t-esc="o.name"/></span>
+                            <span class="ac-row-time"><t t-esc="card['last_time']"/></span>
+                        </div>
+                        <div class="ac-row-garment">
+                            <span><t t-esc="card['garment_label']"/> · <t t-esc="card['state_label']"/></span>
+                            <t t-if="o.urgency_level == 'clinical_rush'">
+                                <span class="ac-rush-tag">RUSH</span>
+                            </t>
+                        </div>
+                        <div class="ac-row-preview">
+                            <t t-esc="card['preview']"/>
+                        </div>
+                    </a>
+                </t>
+            </div>
+        </aside>
+    </template>
+
+    <!-- Chat List View -->
     <template id="artisan_chat_list_template" name="AdaptFit ArtisanChat List">
         <t t-call="web.layout">
-            <t t-set="title">AdaptFit ArtisanChat</t>
-            <div style="max-width:480px;margin:0 auto;min-height:100vh;background:#ffffff;font-family:system-ui,-apple-system,sans-serif;box-shadow:0 0 20px rgba(0,0,0,0.08);">
-                <!-- Header -->
-                <div style="background:#075E54;color:#ffffff;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;">
-                    <div>
-                        <div style="font-size:18px;font-weight:700;">🟢 AdaptFit ArtisanChat</div>
-                        <div style="font-size:12px;opacity:0.85;">
-                            Master Artisan: <t t-esc="artisan_user.name"/>
-                            <t t-if="artisan_user.artisan_identifier"> (<t t-esc="artisan_user.artisan_identifier"/>)</t>
-                        </div>
+            <t t-set="title">Workshop Chats</t>
+            <t t-call="adaptfit_apparel.adaptfit_pos_styles"/>
+
+            <div class="ac-app ac-app--list">
+                <t t-set="active_order_id" t-value="0"/>
+                <t t-call="adaptfit_apparel.artisan_chat_sidebar"/>
+
+                <main class="ac-main">
+                    <div class="ac-welcome">
+                        <h2>Select an order</h2>
+                        <p>Choose an order on the left to view measurements, update the stage, or send a message.</p>
                     </div>
-                    <a href="/odoo" style="color:#ffffff;text-decoration:none;font-size:12px;background:rgba(255,255,255,0.18);padding:6px 10px;border-radius:6px;">
-                        ERP Desk
-                    </a>
-                </div>
-
-                <!-- Confidentiality Banner -->
-                <div style="background:#E8F5E9;color:#1B5E20;padding:8px 16px;font-size:12px;border-bottom:1px solid #C8E6C9;">
-                    🔒 Discreet Workshop Mode: Patient names &amp; diagnoses hidden. Technical specs only.
-                </div>
-
-                <!-- Order Chats -->
-                <div>
-                    <t t-if="not order_cards">
-                        <div style="padding:40px 20px;text-align:center;color:#64748b;">
-                            No active workshop orders in queue.
-                        </div>
-                    </t>
-                    <t t-foreach="order_cards" t-as="card">
-                        <t t-set="o" t-value="card['order']"/>
-                        <a t-attf-href="/adaptfit/artisan/#{o.id}" style="display:flex;align-items:center;padding:14px 16px;border-bottom:1px solid #f1f5f9;text-decoration:none;color:#0f172a;">
-                            <div style="width:46px;height:46px;border-radius:50%;background:#128C7E;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">
-                                🧵
-                            </div>
-                            <div style="margin-left:12px;flex:1;min-width:0;">
-                                <div style="display:flex;justify-content:space-between;align-items:center;">
-                                    <span style="font-weight:700;font-size:15px;">
-                                        Order #<t t-esc="o.name"/>
-                                    </span>
-                                    <t t-if="o.urgency_level == 'clinical_rush'">
-                                        <span style="background:#FEE2E2;color:#B91C1C;font-size:11px;font-weight:700;padding:2px 7px;border-radius:10px;">🔴 RUSH</span>
-                                    </t>
-                                    <t t-elif="o.urgency_level == 'urgent'">
-                                        <span style="background:#FEF3C7;color:#B45309;font-size:11px;font-weight:700;padding:2px 7px;border-radius:10px;">🟡 &lt;48H</span>
-                                    </t>
-                                    <t t-else="">
-                                        <span style="background:#DCFCE7;color:#15803D;font-size:11px;font-weight:600;padding:2px 7px;border-radius:10px;">🟢 Std</span>
-                                    </t>
-                                </div>
-                                <div style="font-size:13px;color:#334155;font-weight:600;margin-top:2px;">
-                                    <t t-esc="card['garment_label']"/> · <span style="color:#0d9488;"><t t-esc="card['state_label']"/></span>
-                                </div>
-                                <div style="font-size:12px;color:#64748b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;">
-                                    <t t-esc="card['preview']"/>
-                                </div>
-                            </div>
-                        </a>
-                    </t>
-                </div>
+                </main>
             </div>
         </t>
     </template>
 
-    <!-- Mobile ArtisanChat Detail View -->
+    <!-- Chat Detail View -->
     <template id="artisan_chat_detail_template" name="AdaptFit ArtisanChat Detail">
         <t t-call="web.layout">
-            <t t-set="title">ArtisanChat · <t t-esc="order.name"/></t>
-            <div style="max-width:480px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:#ECE5DD;font-family:system-ui,-apple-system,sans-serif;box-shadow:0 0 20px rgba(0,0,0,0.1);">
-                <!-- Top Bar -->
-                <div style="background:#075E54;color:#ffffff;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;">
-                    <div style="display:flex;align-items:center;gap:10px;">
-                        <a href="/adaptfit/artisan" style="color:#ffffff;text-decoration:none;font-size:20px;font-weight:700;">←</a>
-                        <div>
-                            <div style="font-weight:700;font-size:15px;">
-                                #<t t-esc="order.name"/> · Discreet Ticket
-                            </div>
-                            <div style="font-size:11px;opacity:0.85;">
-                                <t t-esc="garment_label"/> · <t t-esc="order.calculated_yardage"/>m <t t-esc="order.fabric_id.name"/>
+            <t t-set="title">#<t t-esc="order.name"/> · Workshop Chat</t>
+            <t t-call="adaptfit_apparel.adaptfit_pos_styles"/>
+
+            <div class="ac-app ac-app--detail">
+                <t t-set="active_order_id" t-value="order.id"/>
+                <t t-call="adaptfit_apparel.artisan_chat_sidebar"/>
+
+                <main class="ac-main">
+                    <!-- Chat Topbar -->
+                    <header class="ac-topbar">
+                        <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+                            <a href="/adaptfit/artisan" class="ac-link-btn ac-back-btn">← Back</a>
+                            <div style="min-width:0;">
+                                <div class="ac-topbar-title">
+                                    #<t t-esc="order.name"/>
+                                    <t t-if="order.urgency_level == 'clinical_rush'">
+                                        <span class="ac-rush-tag" style="margin-left:6px;">RUSH</span>
+                                    </t>
+                                </div>
+                                <div class="ac-topbar-sub">
+                                    <t t-esc="garment_label"/> · <t t-esc="order.calculated_yardage"/>m <t t-esc="order.fabric_id.name"/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <t t-if="order.urgency_level == 'clinical_rush'">
-                        <span style="background:#ef4444;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px;">🔴 RUSH</span>
-                    </t>
-                </div>
+                        <a t-attf-href="/adaptfit/artisan/#{order.id}" class="ac-link-btn">Refresh</a>
+                    </header>
 
-                <!-- Pinned Technical Blueprint Card -->
-                <div style="background:#FFFBEB;border-bottom:2px solid #FDE68A;padding:10px 14px;font-size:12px;color:#1e293b;">
-                    <div style="font-weight:700;color:#92400E;margin-bottom:4px;">📌 PINNED TECHNICAL SPECIFICATIONS</div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
-                        <div>• Left Arm: <strong><t t-esc="order.order_arm_left"/>"</strong></div>
-                        <div>• Right Arm: <strong><t t-esc="order.order_arm_right"/>"</strong></div>
-                        <div>• Chest/Waist: <strong><t t-esc="order.order_chest"/>" / <t t-esc="order.order_waist"/>"</strong></div>
-                        <div>• Inseam L/R: <strong><t t-esc="order.order_inseam_left"/>" / <t t-esc="order.order_inseam_right"/>"</strong></div>
+                    <!-- Simple Controls: Stage Dropdown + View Specs -->
+                    <div class="ac-controls-bar">
+                        <form id="ac-stage-form" t-attf-action="/adaptfit/artisan/#{order.id}/stage" method="post" class="ac-stage-select-wrap">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <label for="ac-stage-select">Stage:</label>
+                            <select id="ac-stage-select" name="target_state" class="ac-stage-select">
+                                <option value="draft" t-att-selected="'selected' if order.state == 'draft' else None">Intake</option>
+                                <option value="pattern" t-att-selected="'selected' if order.state == 'pattern' else None">Cutting</option>
+                                <option value="stitching" t-att-selected="'selected' if order.state == 'stitching' else None">Sewing</option>
+                                <option value="transit" t-att-selected="'selected' if order.state == 'transit' else None">Ready</option>
+                            </select>
+                        </form>
+                        <button type="button" id="ac-toggle-specs" class="ac-link-btn">View Specs</button>
                     </div>
-                    <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:4px;">
-                        <t t-if="order.has_magnetic_placket">
-                            <span style="background:#DBEAFE;color:#1E40AF;padding:2px 6px;border-radius:4px;font-weight:600;">🧲 Magnetic Placket</span>
-                        </t>
-                        <t t-if="order.has_port_access_zip">
-                            <span style="background:#FEE2E2;color:#991B1B;padding:2px 6px;border-radius:4px;font-weight:600;">🤐 2-Way Port (<t t-esc="port_label"/>)</span>
-                        </t>
-                        <t t-if="order.has_flatlock_frictionless">
-                            <span style="background:#FEF3C7;color:#92400E;padding:2px 6px;border-radius:4px;font-weight:600;">🛡️ Flat-Lock Seams</span>
-                        </t>
-                        <t t-if="order.has_prosthetic_reinforcement">
-                            <span style="background:#E0E7FF;color:#3730A3;padding:2px 6px;border-radius:4px;font-weight:600;">🦾 Socket Shield</span>
-                        </t>
-                        <t t-if="order.has_high_seated_rise">
-                            <span style="background:#D1FAE5;color:#065F46;padding:2px 6px;border-radius:4px;font-weight:600;">♿ Seated High-Rise</span>
-                        </t>
-                    </div>
-                </div>
 
-                <!-- Chat Thread -->
-                <div style="flex:1;padding:12px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;">
-                    <t t-foreach="chat_messages" t-as="msg">
-                        <div t-attf-style="max-width:82%;padding:8px 12px;border-radius:10px;font-size:13px;box-shadow:0 1px 2px rgba(0,0,0,0.08);#{ 'align-self:flex-end;background:#DCF8C6;' if msg['is_me'] else 'align-self:flex-start;background:#ffffff;' }">
-                            <div style="font-size:11px;font-weight:700;color:#075E54;margin-bottom:2px;">
-                                <t t-esc="msg['author']"/>
+                    <!-- Collapsible Measurements & Features -->
+                    <div id="ac-specs-panel" class="ac-specs-panel is-hidden">
+                        <div class="ac-specs-list">
+                            <div class="ac-spec-item">Arm L / R<strong><t t-esc="order.order_arm_left"/>" / <t t-esc="order.order_arm_right"/>"</strong></div>
+                            <div class="ac-spec-item">Chest / Waist<strong><t t-esc="order.order_chest"/>" / <t t-esc="order.order_waist"/>"</strong></div>
+                            <div class="ac-spec-item">Inseam L / R<strong><t t-esc="order.order_inseam_left"/>" / <t t-esc="order.order_inseam_right"/>"</strong></div>
+                            <div class="ac-spec-item">Fabric<strong><t t-esc="order.calculated_yardage"/> m</strong></div>
+                        </div>
+                        <t t-if="order.has_magnetic_placket or order.has_port_access_zip or order.has_flatlock_frictionless or order.has_prosthetic_reinforcement or order.has_high_seated_rise">
+                            <div class="ac-spec-features">
+                                <strong>Features:</strong>
+                                <t t-if="order.has_magnetic_placket"> Magnetic Placket ·</t>
+                                <t t-if="order.has_port_access_zip"> 2-Way Port (<t t-esc="port_label"/>) ·</t>
+                                <t t-if="order.has_flatlock_frictionless"> Flat-Lock Seams ·</t>
+                                <t t-if="order.has_prosthetic_reinforcement"> Socket Shield ·</t>
+                                <t t-if="order.has_high_seated_rise"> Seated High-Rise</t>
                             </div>
-                            <t t-if="msg['body']">
-                                <div style="white-space:pre-wrap;color:#111827;"><t t-esc="msg['body']"/></div>
-                            </t>
-                            <t t-foreach="msg['images']" t-as="img">
-                                <div style="margin-top:6px;">
-                                    <img t-attf-src="/web/image/#{img.id}" style="max-width:100%;border-radius:6px;border:1px solid #cbd5e1;"/>
+                        </t>
+                    </div>
+
+                    <!-- Chat Messages -->
+                    <div id="ac-chat-thread" class="ac-thread">
+                        <t t-foreach="chat_messages" t-as="msg">
+                            <t t-if="msg['is_system']">
+                                <div class="ac-system-event">
+                                    <t t-esc="msg['body']"/> · <t t-esc="msg['time']"/>
                                 </div>
                             </t>
-                            <div style="text-align:right;font-size:10px;color:#64748b;margin-top:3px;">
-                                <t t-esc="msg['time']"/>
+                            <t t-else="">
+                                <div t-attf-class="ac-msg #{'ac-msg--me' if msg['is_me'] else ''}">
+                                    <t t-if="not msg['is_me']">
+                                        <div class="ac-msg-author"><t t-esc="msg['author']"/></div>
+                                    </t>
+                                    <t t-if="msg['body']">
+                                        <div class="ac-msg-body"><t t-esc="msg['body']"/></div>
+                                    </t>
+                                    <t t-foreach="msg['images']" t-as="img">
+                                        <img class="ac-msg-img" t-attf-src="/web/image/#{img.id}" alt="Seam photo"/>
+                                    </t>
+                                    <div class="ac-msg-time"><t t-esc="msg['time']"/></div>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+
+                    <!-- Bottom Message Input -->
+                    <div class="ac-composer">
+                        <div id="ac-photo-preview" class="ac-photo-preview">
+                            <div class="ac-photo-preview-info">
+                                <img id="ac-photo-thumb" class="ac-photo-thumb" alt="Selected photo"/>
+                                <span id="ac-photo-name" class="ac-photo-name"></span>
                             </div>
+                            <button type="button" id="ac-photo-clear" class="ac-photo-clear">Remove</button>
                         </div>
-                    </t>
-                </div>
 
-                <!-- Message & Photo Input -->
-                <form t-attf-action="/adaptfit/artisan/#{order.id}/message" method="post" enctype="multipart/form-data"
-                      style="background:#F0F2F5;padding:8px 10px;display:flex;align-items:center;gap:6px;border-top:1px solid #d1d5db;">
-                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                    <label style="cursor:pointer;background:#ffffff;border:1px solid #cbd5e1;border-radius:20px;padding:6px 10px;font-size:14px;margin:0;" title="Upload Seam Photo">
-                        📷
-                        <input type="file" name="photo" accept="image/*" style="display:none;"/>
-                    </label>
-                    <input type="text" name="body" placeholder="Type update or seam note..."
-                           style="flex:1;border:1px solid #cbd5e1;border-radius:20px;padding:8px 12px;font-size:13px;outline:none;"/>
-                    <button type="submit" style="background:#128C7E;color:#fff;border:none;border-radius:20px;padding:8px 14px;font-weight:700;font-size:13px;cursor:pointer;">
-                        Send
-                    </button>
-                </form>
+                        <form id="ac-msg-form"
+                              t-attf-action="/adaptfit/artisan/#{order.id}/message"
+                              method="post"
+                              enctype="multipart/form-data"
+                              class="ac-composer-form">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <label class="ac-attach-btn">
+                                Photo
+                                <input id="ac-photo-input" type="file" name="photo" accept="image/*" style="display:none;"/>
+                            </label>
+                            <input id="ac-msg-input"
+                                   type="text"
+                                   name="body"
+                                   class="ac-msg-input"
+                                   placeholder="Type a message..."/>
+                            <button id="ac-send-btn" type="submit" class="ac-send-btn">Send</button>
+                        </form>
+                    </div>
+                </main>
+            </div>
 
-                <!-- One-Touch Stage Progress Bar -->
-                <form t-attf-action="/adaptfit/artisan/#{order.id}/stage" method="post"
-                      style="background:#ffffff;padding:8px 10px;display:flex;gap:6px;border-top:1px solid #e2e8f0;">
-                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                    <button type="submit" name="target_state" value="pattern"
-                            t-attf-style="flex:1;padding:8px 4px;border-radius:8px;border:1px solid #cbd5e1;font-size:12px;font-weight:700;cursor:pointer;#{ 'background:#0d9488;color:#fff;' if order.state == 'pattern' else 'background:#f8fafc;color:#334155;' }">
-                        ✂️ Cutting
-                    </button>
-                    <button type="submit" name="target_state" value="stitching"
-                            t-attf-style="flex:1;padding:8px 4px;border-radius:8px;border:1px solid #cbd5e1;font-size:12px;font-weight:700;cursor:pointer;#{ 'background:#0d9488;color:#fff;' if order.state == 'stitching' else 'background:#f8fafc;color:#334155;' }">
-                        🧵 Sewing
-                    </button>
-                    <button type="submit" name="target_state" value="transit"
-                            t-attf-style="flex:1;padding:8px 4px;border-radius:8px;border:1px solid #cbd5e1;font-size:12px;font-weight:700;cursor:pointer;#{ 'background:#16a34a;color:#fff;' if order.state == 'transit' else 'background:#f8fafc;color:#334155;' }">
-                        📦 Ready
-                    </button>
-                </form>
+            <!-- Photo Lightbox -->
+            <div id="ac-lightbox" class="ac-lightbox" role="dialog" aria-modal="true">
+                <button type="button" id="ac-lightbox-close" class="ac-lightbox-close">Close</button>
+                <img id="ac-lightbox-img" alt="Seam photo"/>
             </div>
         </t>
     </template>
