@@ -9,35 +9,35 @@
             <title>AdaptFit ERP — Command Center</title>
             <style>
                 :root {
-                    --af-navy-deep: #1F223D;
-                    --af-navy: #282B4A;
-                    --af-indigo: #33375E;
-                    --af-grad-card: linear-gradient(145deg, #212440 0%, #282B4A 58%, #343860 100%);
-                    --af-grad-bar: linear-gradient(175deg, #1F223D 0%, #282B4A 60%, #33375E 100%);
+                    --af-navy-deep: #162044;
+                    --af-navy: #243266;
+                    --af-indigo: #314485;
+                    --af-grad-card: linear-gradient(145deg, #18234D 0%, #243266 55%, #314485 100%);
+                    --af-grad-bar: linear-gradient(175deg, #162044 0%, #243266 55%, #314485 100%);
                     --af-cream: #EEEBDA;
                     --af-cream-soft: #F7F5EA;
-                    --af-blue: #3B82F6;
-                    --af-blue-bright: #60A5FA;
+                    --af-blue: #243266;
+                    --af-blue-bright: #3B529E;
                     --af-cyan: #EEEBDA;
                     --af-emerald: #10B981;
                     --af-amber: #F59E0B;
                     --af-rose: #EF4444;
                     --af-text-light: #EEEBDA;
                     --af-text-muted: #D5D2C3;
-                    --af-text-dark: #282B4A;
+                    --af-text-dark: #243266;
                     --af-border-glow: rgba(238, 235, 218, 0.22);
-                    --af-float-shadow: 0 20px 42px -10px rgba(24, 26, 48, 0.55), 0 8px 18px -4px rgba(24, 26, 48, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-                    --af-float-shadow-hover: 0 26px 50px -10px rgba(24, 26, 48, 0.65), 0 10px 24px -4px rgba(238, 235, 218, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                    --af-float-shadow: 0 20px 42px -10px rgba(22, 32, 68, 0.45), 0 8px 18px -4px rgba(22, 32, 68, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+                    --af-float-shadow-hover: 0 26px 50px -10px rgba(22, 32, 68, 0.55), 0 10px 24px -4px rgba(238, 235, 218, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.2);
                 }
 
                 * { box-sizing: border-box; }
                 html {
-                    background: #191C36;
+                    background: #162044;
                 }
                 body {
                     margin: 0;
                     font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-                    background: linear-gradient(145deg, #191C36 0%, #282B4A 52%, #353B68 100%);
+                    background: linear-gradient(145deg, #162044 0%, #243266 52%, #314485 100%);
                     background-attachment: fixed;
                     color: #EEEBDA;
                     display: flex;
@@ -285,38 +285,38 @@
                     margin-bottom: 22px;
                 }
                 .af-stat-box {
-                    background: #FFFFFF;
-                    border: 1px solid rgba(40, 43, 74, 0.08);
+                    background: linear-gradient(145deg, #162044 0%, #243266 55%, #314485 100%);
+                    border: 1px solid rgba(238, 235, 218, 0.16);
                     border-radius: 16px;
                     padding: 18px 20px;
                     display: flex;
                     justify-content: space-between;
                     align-items: flex-end;
                     gap: 12px;
-                    color: #282B4A;
-                    box-shadow: 0 4px 14px rgba(40, 43, 74, 0.05);
+                    color: #EEEBDA;
+                    box-shadow: 0 12px 26px rgba(22, 32, 68, 0.22);
                 }
-                .af-stat-label { font-size: 12px; color: #64748B; font-weight: 600; margin-bottom: 6px; }
-                .af-stat-val { font-size: 26px; font-weight: 800; color: #282B4A; letter-spacing: -0.5px; }
-                .af-stat-sub { font-size: 11px; color: #10B981; font-weight: 600; margin-top: 6px; }
+                .af-stat-label { font-size: 12px; color: rgba(238, 235, 218, 0.75); font-weight: 600; margin-bottom: 6px; }
+                .af-stat-val { font-size: 26px; font-weight: 800; color: #EEEBDA; letter-spacing: -0.5px; }
+                .af-stat-sub { font-size: 11px; color: #34D399; font-weight: 600; margin-top: 6px; }
                 .af-bento-card {
-                    background: #FFFFFF;
-                    border: 1px solid rgba(40, 43, 74, 0.08);
+                    background: linear-gradient(145deg, #162044 0%, #243266 55%, #314485 100%);
+                    border: 1px solid rgba(238, 235, 218, 0.16);
                     border-radius: 16px;
                     padding: 20px;
-                    color: #282B4A;
-                    box-shadow: 0 4px 14px rgba(40, 43, 74, 0.05);
+                    color: #EEEBDA;
+                    box-shadow: 0 12px 26px rgba(22, 32, 68, 0.22);
                     display: flex;
                     flex-direction: column;
                 }
-                .af-bento-title { font-size: 14px; font-weight: 700; color: #282B4A; margin: 0 0 10px; }
+                .af-bento-title { font-size: 14px; font-weight: 700; color: #EEEBDA; margin: 0 0 10px; }
                 .af-dot-row {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     font-size: 12px;
                     padding: 5px 0;
-                    color: #334155;
+                    color: rgba(238, 235, 218, 0.85);
                 }
                 .af-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 8px; }
                 .af-ring-pill {
@@ -325,27 +325,27 @@
                     display: flex;
                     align-items: center;
                     gap: 16px;
-                    box-shadow: 0 6px 18px rgba(40, 43, 74, 0.08);
+                    box-shadow: 0 10px 24px rgba(22, 32, 68, 0.2);
                 }
                 .af-ring-dark {
-                    background: linear-gradient(135deg, #1E213D 0%, #282B4A 100%);
+                    background: linear-gradient(135deg, #162044 0%, #243266 58%, #314485 100%);
                     color: #EEEBDA;
                     border: 1px solid rgba(238, 235, 218, 0.16);
                 }
                 .af-ring-light {
-                    background: #FFFFFF;
-                    color: #282B4A;
-                    border: 1px solid rgba(40, 43, 74, 0.08);
+                    background: linear-gradient(145deg, #162044 0%, #243266 55%, #314485 100%);
+                    color: #EEEBDA;
+                    border: 1px solid rgba(238, 235, 218, 0.16);
                 }
                 .af-feature-card {
-                    background: linear-gradient(135deg, #1E213D 0%, #282B4A 55%, #3B4378 100%);
+                    background: linear-gradient(135deg, #162044 0%, #243266 55%, #314485 100%);
                     color: #EEEBDA;
                     border-radius: 18px;
                     padding: 22px 24px;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-                    box-shadow: 0 12px 28px rgba(40, 43, 74, 0.25);
+                    box-shadow: 0 12px 28px rgba(22, 32, 68, 0.25);
                     text-decoration: none;
                 }
                 @media (max-width: 1100px) {
@@ -492,13 +492,13 @@
                     gap: 18px;
                 }
                 .af-card {
-                    background: linear-gradient(160deg, #FFFFFF 0%, #FAF8F0 100%);
-                    color: #282B4A;
+                    background: linear-gradient(145deg, #162044 0%, #243266 55%, #314485 100%);
+                    color: #EEEBDA;
                     border-radius: 18px;
                     padding: 22px;
-                    border: 1px solid rgba(40, 43, 74, 0.10);
-                    border-top: 4px solid #282B4A;
-                    box-shadow: 0 8px 22px rgba(40, 43, 74, 0.08);
+                    border: 1px solid rgba(238, 235, 218, 0.16);
+                    border-top: 4px solid #EEEBDA;
+                    box-shadow: var(--af-float-shadow);
                     display: flex;
                     flex-direction: column;
                     gap: 14px;
@@ -589,45 +589,52 @@
                     border-color: var(--af-cyan);
                 }
 
-                /* Modal */
+                /* Full-Screen Modal */
                 .af-modal-backdrop {
                     display: none;
                     position: fixed;
                     inset: 0;
-                    background: rgba(11, 17, 32, 0.72);
-                    backdrop-filter: blur(4px);
+                    background: linear-gradient(145deg, #162044 0%, #243266 55%, #314485 100%);
                     z-index: 100;
-                    align-items: center;
+                    align-items: stretch;
                     justify-content: center;
-                    padding: 20px;
+                    padding: 0;
                 }
                 .af-modal-backdrop.open { display: flex; }
                 .af-modal {
-                    background: var(--af-navy);
-                    color: var(--af-text-light);
-                    border: 1px solid var(--af-cyan);
-                    border-radius: 16px;
-                    width: 100%;
-                    max-width: 540px;
-                    padding: 24px;
-                    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
-                    max-height: 90vh;
+                    background: linear-gradient(145deg, #162044 0%, #243266 55%, #314485 100%);
+                    color: #EEEBDA;
+                    border: none;
+                    border-radius: 0;
+                    width: 100vw;
+                    max-width: none;
+                    height: 100vh;
+                    max-height: 100vh;
+                    padding: 36px 48px;
                     overflow-y: auto;
                 }
-                .af-form-group { margin-bottom: 14px; }
+                .af-modal > div:first-child,
+                .af-modal > form {
+                    max-width: 760px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+                .af-form-group { margin-bottom: 16px; }
                 .af-form-group label {
                     display: block;
                     font-size: 12px;
                     font-weight: 600;
-                    color: var(--af-cyan);
-                    margin-bottom: 5px;
+                    color: #EEEBDA;
+                    margin-bottom: 6px;
                 }
                 .af-input, .af-select, .af-textarea {
                     width: 100%;
-                    background: var(--af-navy-deep);
-                    border: 1px solid var(--af-border-glow);
-                    color: #fff;
-                    padding: 9px 12px;
+                    background: rgba(15, 22, 48, 0.72);
+                    border: 1px solid rgba(238, 235, 218, 0.24);
+                    color: #EEEBDA;
+                    padding: 11px 14px;
+                    border-radius: 9px;
+                    font-size: 14px;
                     border-radius: 8px;
                     font-size: 13px;
                 }
@@ -658,28 +665,34 @@
 
                 <nav class="af-nav">
                     <a t-attf-href="/adaptfit/admin?tab=overview" t-attf-class="af-nav-item #{'active' if tab == 'overview' else ''}">
-                        <span>⚡</span><span class="af-nav-label">Overview</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+                        <span class="af-nav-label">Overview</span>
                     </a>
                     <a t-attf-href="/adaptfit/admin?tab=patients" t-attf-class="af-nav-item #{'active' if tab == 'patients' else ''}">
-                        <span>🩺</span><span class="af-nav-label">Patient Dignity Hub</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span class="af-nav-label">Patient Dignity Hub</span>
                     </a>
                     <a t-attf-href="/adaptfit/admin?tab=orders" t-attf-class="af-nav-item #{'active' if tab == 'orders' else ''}">
-                        <span>🧵</span><span class="af-nav-label">Order Desk &amp; Dispatch</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        <span class="af-nav-label">Order Desk &amp; Dispatch</span>
                     </a>
                     <a t-attf-href="/adaptfit/admin?tab=qa" t-attf-class="af-nav-item #{'active' if tab == 'qa' else ''}">
-                        <span>✅</span><span class="af-nav-label">Clinical Fitting &amp; QA</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                        <span class="af-nav-label">Clinical Fitting &amp; QA</span>
                     </a>
                     <a t-attf-href="/adaptfit/admin?tab=settlements" t-attf-class="af-nav-item #{'active' if tab == 'settlements' else ''}">
-                        <span>💳</span><span class="af-nav-label">Artisan Settlements</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                        <span class="af-nav-label">Artisan Settlements</span>
                     </a>
                     <a t-attf-href="/adaptfit/admin?tab=esg" t-attf-class="af-nav-item #{'active' if tab == 'esg' else ''}">
-                        <span>🌿</span><span class="af-nav-label">ESG &amp; Analytics</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        <span class="af-nav-label">ESG &amp; Analytics</span>
                     </a>
                 </nav>
 
                 <div class="af-sidebar-footer">
-                    <a href="/adaptfit/artisan" class="af-ext-link">💬 Open ArtisanChat</a>
-                    <a href="/web" class="af-ext-link">⚙️ Raw Odoo Backend</a>
+                    <a href="/adaptfit/artisan" class="af-ext-link">Open ArtisanChat</a>
+                    <a href="/web" class="af-ext-link">Raw Odoo Backend</a>
                 </div>
             </aside>
 
@@ -692,16 +705,17 @@
                         <button type="submit" class="af-btn af-btn-primary af-btn-sm">Search</button>
                     </form>
                     <div class="af-user-pill">
-                        <span>👤 <t t-esc="user.name"/></span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span><t t-esc="user.name"/></span>
                     </div>
                 </header>
 
                 <main class="af-content">
                     <t t-if="msg">
-                        <div class="af-alert af-alert-ok">✅ <t t-esc="msg"/></div>
+                        <div class="af-alert af-alert-ok"><t t-esc="msg"/></div>
                     </t>
                     <t t-if="err">
-                        <div class="af-alert af-alert-err">⚠️ <t t-esc="err"/></div>
+                        <div class="af-alert af-alert-err"><t t-esc="err"/></div>
                     </t>
 
                     <!-- TAB 1: OVERVIEW (AeuxGlobal Bento Style) -->
@@ -723,14 +737,14 @@
                                 <div>
                                     <div class="af-stat-label">Active Workshop Orders</div>
                                     <div class="af-stat-val"><t t-esc="kpi['active_count']"/></div>
-                                    <div class="af-stat-sub" style="color:#282B4A;"><t t-esc="kpi['rush_count']"/> Clinical Rush</div>
+                                    <div class="af-stat-sub" style="color:#FBBF24;"><t t-esc="kpi['rush_count']"/> Clinical Rush</div>
                                 </div>
                                 <svg width="68" height="38" viewBox="0 0 68 38">
-                                    <rect x="2" y="16" width="8" height="22" rx="3" fill="#CBD5E1"/>
-                                    <rect x="16" y="22" width="8" height="16" rx="3" fill="#CBD5E1"/>
-                                    <rect x="30" y="10" width="8" height="28" rx="3" fill="#3B82F6"/>
-                                    <rect x="44" y="18" width="8" height="20" rx="3" fill="#CBD5E1"/>
-                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#282B4A"/>
+                                    <rect x="2" y="16" width="8" height="22" rx="3" fill="rgba(238,235,218,0.22)"/>
+                                    <rect x="16" y="22" width="8" height="16" rx="3" fill="rgba(238,235,218,0.22)"/>
+                                    <rect x="30" y="10" width="8" height="28" rx="3" fill="#60A5FA"/>
+                                    <rect x="44" y="18" width="8" height="20" rx="3" fill="rgba(238,235,218,0.35)"/>
+                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#EEEBDA"/>
                                 </svg>
                             </div>
                             <div class="af-stat-box">
@@ -740,25 +754,25 @@
                                     <div class="af-stat-sub">De-identified IDs active</div>
                                 </div>
                                 <svg width="68" height="38" viewBox="0 0 68 38">
-                                    <rect x="2" y="20" width="8" height="18" rx="3" fill="#CBD5E1"/>
-                                    <rect x="16" y="14" width="8" height="24" rx="3" fill="#10B981"/>
-                                    <rect x="30" y="22" width="8" height="16" rx="3" fill="#CBD5E1"/>
-                                    <rect x="44" y="8" width="8" height="30" rx="3" fill="#10B981"/>
-                                    <rect x="58" y="12" width="8" height="26" rx="3" fill="#282B4A"/>
+                                    <rect x="2" y="20" width="8" height="18" rx="3" fill="rgba(238,235,218,0.22)"/>
+                                    <rect x="16" y="14" width="8" height="24" rx="3" fill="#34D399"/>
+                                    <rect x="30" y="22" width="8" height="16" rx="3" fill="rgba(238,235,218,0.22)"/>
+                                    <rect x="44" y="8" width="8" height="30" rx="3" fill="#34D399"/>
+                                    <rect x="58" y="12" width="8" height="26" rx="3" fill="#EEEBDA"/>
                                 </svg>
                             </div>
                             <div class="af-stat-box">
                                 <div>
                                     <div class="af-stat-label">CO₂ Prevented (ESG)</div>
-                                    <div class="af-stat-val"><t t-esc="kpi['total_co2']"/> <span style="font-size:15px;font-weight:600;color:#64748B;">kg</span></div>
+                                    <div class="af-stat-val"><t t-esc="kpi['total_co2']"/> <span style="font-size:15px;font-weight:600;color:rgba(238,235,218,0.72);">kg</span></div>
                                     <div class="af-stat-sub"><t t-esc="kpi['total_water']"/> L water saved</div>
                                 </div>
                                 <svg width="68" height="38" viewBox="0 0 68 38">
-                                    <rect x="2" y="24" width="8" height="14" rx="3" fill="#CBD5E1"/>
-                                    <rect x="16" y="18" width="8" height="20" rx="3" fill="#CBD5E1"/>
-                                    <rect x="30" y="14" width="8" height="24" rx="3" fill="#3B82F6"/>
-                                    <rect x="44" y="10" width="8" height="28" rx="3" fill="#10B981"/>
-                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#282B4A"/>
+                                    <rect x="2" y="24" width="8" height="14" rx="3" fill="rgba(238,235,218,0.22)"/>
+                                    <rect x="16" y="18" width="8" height="20" rx="3" fill="rgba(238,235,218,0.28)"/>
+                                    <rect x="30" y="14" width="8" height="24" rx="3" fill="#60A5FA"/>
+                                    <rect x="44" y="10" width="8" height="28" rx="3" fill="#34D399"/>
+                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#EEEBDA"/>
                                 </svg>
                             </div>
                         </div>
@@ -767,42 +781,42 @@
                         <div class="af-bento-mid">
                             <div class="af-bento-card" style="align-items:center;text-align:center;">
                                 <h3 class="af-bento-title" style="align-self:flex-start;">Clinical QA Readiness</h3>
-                                <div style="font-size:34px;font-weight:800;color:#282B4A;margin:6px 0 8px;">
-                                    <t t-esc="kpi['delivered_count']"/> <span style="font-size:14px;font-weight:600;color:#64748B;">Delivered</span>
+                                <div style="font-size:34px;font-weight:800;color:#EEEBDA;margin:6px 0 8px;">
+                                    <t t-esc="kpi['delivered_count']"/> <span style="font-size:14px;font-weight:600;color:rgba(238,235,218,0.72);">Delivered</span>
                                 </div>
                                 <svg width="160" height="88" viewBox="0 0 160 88">
-                                    <path d="M 16 80 A 64 64 0 0 1 144 80" fill="none" stroke="#E2E8F0" stroke-width="18" stroke-linecap="round"/>
-                                    <path d="M 16 80 A 64 64 0 0 1 118 28" fill="none" stroke="#282B4A" stroke-width="18" stroke-linecap="round"/>
+                                    <path d="M 16 80 A 64 64 0 0 1 144 80" fill="none" stroke="rgba(238,235,218,0.18)" stroke-width="18" stroke-linecap="round"/>
+                                    <path d="M 16 80 A 64 64 0 0 1 118 28" fill="none" stroke="#EEEBDA" stroke-width="18" stroke-linecap="round"/>
                                 </svg>
-                                <div style="font-size:12px;color:#64748B;margin-top:4px;"><t t-esc="kpi['pending_qa_count']"/> Pending Clinical QA Audits</div>
+                                <div style="font-size:12px;color:rgba(238,235,218,0.72);margin-top:4px;"><t t-esc="kpi['pending_qa_count']"/> Pending Clinical QA Audits</div>
                             </div>
 
                             <div class="af-bento-card">
                                 <h3 class="af-bento-title">Workshop Stages</h3>
-                                <div style="font-size:32px;font-weight:800;color:#282B4A;margin-bottom:8px;">
-                                    <t t-esc="kpi['total_yardage']"/> <span style="font-size:14px;font-weight:600;color:#64748B;">m fabric</span>
+                                <div style="font-size:32px;font-weight:800;color:#EEEBDA;margin-bottom:8px;">
+                                    <t t-esc="kpi['total_yardage']"/> <span style="font-size:14px;font-weight:600;color:rgba(238,235,218,0.72);">m fabric</span>
                                 </div>
                                 <div style="flex:1;">
                                     <t t-foreach="stage_counts[:4]" t-as="st">
                                         <div class="af-dot-row">
-                                            <span><span class="af-dot" style="background:#282B4A;"/><t t-esc="st['label']"/></span>
-                                            <strong><t t-esc="st['count']"/></strong>
+                                            <span><span class="af-dot" style="background:#EEEBDA;"/><t t-esc="st['label']"/></span>
+                                            <strong style="color:#EEEBDA;"><t t-esc="st['count']"/></strong>
                                         </div>
                                     </t>
                                 </div>
-                                <a href="/adaptfit/admin?tab=orders" class="af-btn af-btn-sm" style="margin-top:10px;justify-content:center;border:1px solid rgba(40,43,74,0.2);color:#282B4A;background:#FAF8F0;">View Order Desk</a>
+                                <a href="/adaptfit/admin?tab=orders" class="af-btn af-btn-sm" style="margin-top:10px;justify-content:center;border:1px solid rgba(238,235,218,0.24);color:#EEEBDA;background:rgba(238,235,218,0.10);">View Order Desk</a>
                             </div>
 
                             <div class="af-bento-card">
                                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
                                     <h3 class="af-bento-title" style="margin:0;">Production Pipeline</h3>
-                                    <a href="/adaptfit/admin?tab=orders" style="font-size:12px;font-weight:600;color:#3B82F6;text-decoration:none;">Filter →</a>
+                                    <a href="/adaptfit/admin?tab=orders" style="font-size:12px;font-weight:600;color:#93C5FD;text-decoration:none;">Filter →</a>
                                 </div>
                                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;">
                                     <t t-foreach="stage_counts" t-as="st">
-                                        <a t-attf-href="/adaptfit/admin?tab=orders&amp;stage={{st['key']}}" style="background:#FAF8F0;border:1px solid rgba(40,43,74,0.08);border-radius:10px;padding:10px 12px;text-decoration:none;color:#282B4A;display:flex;justify-content:space-between;align-items:center;">
+                                        <a t-attf-href="/adaptfit/admin?tab=orders&amp;stage={{st['key']}}" style="background:rgba(238,235,218,0.10);border:1px solid rgba(238,235,218,0.16);border-radius:10px;padding:10px 12px;text-decoration:none;color:#EEEBDA;display:flex;justify-content:space-between;align-items:center;">
                                             <span style="font-size:12px;font-weight:600;"><t t-esc="st['label']"/></span>
-                                            <strong style="font-size:16px;color:#3B82F6;"><t t-esc="st['count']"/></strong>
+                                            <strong style="font-size:16px;color:#93C5FD;"><t t-esc="st['count']"/></strong>
                                         </a>
                                     </t>
                                 </div>
@@ -820,18 +834,18 @@
                                     </svg>
                                     <div>
                                         <div style="font-weight:700;font-size:14px;">Pending Artisan Settlements</div>
-                                        <div style="font-size:12px;color:#CBD5E1;"><t t-esc="kpi['pending_payout_total']"/> AED awaiting payout approval</div>
+                                        <div style="font-size:12px;color:rgba(238,235,218,0.75);"><t t-esc="kpi['pending_payout_total']"/> AED awaiting payout approval</div>
                                     </div>
                                 </div>
                                 <div class="af-ring-pill af-ring-light">
                                     <svg width="52" height="52" viewBox="0 0 52 52">
-                                        <circle cx="26" cy="26" r="20" fill="none" stroke="#E2E8F0" stroke-width="5"/>
-                                        <circle cx="26" cy="26" r="20" fill="none" stroke="#10B981" stroke-width="5" stroke-dasharray="105 126" stroke-linecap="round" transform="rotate(-90 26 26)"/>
-                                        <text x="26" y="30" text-anchor="middle" fill="#282B4A" font-size="11" font-weight="700"><t t-esc="kpi['patient_count']"/></text>
+                                        <circle cx="26" cy="26" r="20" fill="none" stroke="rgba(238,235,218,0.18)" stroke-width="5"/>
+                                        <circle cx="26" cy="26" r="20" fill="none" stroke="#34D399" stroke-width="5" stroke-dasharray="105 126" stroke-linecap="round" transform="rotate(-90 26 26)"/>
+                                        <text x="26" y="30" text-anchor="middle" fill="#EEEBDA" font-size="11" font-weight="700"><t t-esc="kpi['patient_count']"/></text>
                                     </svg>
                                     <div>
                                         <div style="font-weight:700;font-size:14px;">Patient Dignity Profiles</div>
-                                        <div style="font-size:12px;color:#64748B;">1-click photo upload &amp; asymmetric measurements</div>
+                                        <div style="font-size:12px;color:rgba(238,235,218,0.75);">1-click photo upload &amp; asymmetric measurements</div>
                                     </div>
                                 </div>
                             </div>
@@ -1023,17 +1037,17 @@
                                             <label class="af-avatar-upload" title="Click to upload or change profile picture">
                                                 <img t-attf-src="/web/image/res.partner/{{p.id}}/image_1920" alt="Patient Profile" class="af-avatar-lg"/>
                                                 <div class="af-avatar-overlay">
-                                                    <span style="font-size:18px;">📷</span>
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
                                                     <span>Change Photo</span>
                                                 </div>
                                                 <input type="file" name="photo" accept="image/*" style="display:none;" onchange="this.form.submit()"/>
                                             </label>
                                         </form>
                                         <div style="flex:1;">
-                                            <div style="font-size:17px;font-weight:700;color:#282B4A;"><t t-esc="p.name"/></div>
-                                            <div style="font-size:12px;color:#2563EB;font-weight:700;"><t t-esc="p.patient_identifier"/></div>
-                                            <div style="font-size:12px;color:#475569;margin-top:4px;"><t t-esc="p.adaptive_order_count"/> Adaptive Order(s)</div>
-                                            <div style="font-size:11px;color:#2563EB;margin-top:4px;font-weight:600;">Click photo to upload</div>
+                                            <div style="font-size:17px;font-weight:700;color:#EEEBDA;"><t t-esc="p.name"/></div>
+                                            <div style="font-size:12px;color:#93C5FD;font-weight:700;"><t t-esc="p.patient_identifier"/></div>
+                                            <div style="font-size:12px;color:rgba(238,235,218,0.75);margin-top:4px;"><t t-esc="p.adaptive_order_count"/> Adaptive Order(s)</div>
+                                            <div style="font-size:11px;color:#93C5FD;margin-top:4px;font-weight:600;">Click photo to upload</div>
                                         </div>
                                         <button type="button" class="af-btn af-btn-primary af-btn-sm"
                                             onclick="openEditPatient(this)"
@@ -1048,7 +1062,7 @@
                                             t-att-data-wheel="'1' if p.condition_wheelchair else ''"
                                             t-att-data-sens="'1' if p.condition_sensory else ''"
                                             t-att-data-mag="'1' if p.pref_magnetic_closures else ''"
-                                            t-att-data-flat="'1' if p.pref_flatlock_seams else ''">✏️ Edit</button>
+                                            t-att-data-flat="'1' if p.pref_flatlock_seams else ''">Edit</button>
                                     </div>
 
                                     <div class="af-tag-list">
@@ -1060,7 +1074,7 @@
                                         <span t-if="p.pref_magnetic_closures" class="af-tag">Magnetic Closures</span>
                                     </div>
 
-                                    <div t-if="p.medical_notes" style="font-size:12px;color:#282B4A;background:rgba(40,43,74,0.08);border:1px solid rgba(40,43,74,0.12);padding:10px;border-radius:8px;">
+                                    <div t-if="p.medical_notes" style="font-size:12px;color:#EEEBDA;background:rgba(238,235,218,0.08);border:1px solid rgba(238,235,218,0.16);padding:10px;border-radius:8px;">
                                         <t t-esc="p.medical_notes"/>
                                     </div>
                                 </div>
@@ -1086,14 +1100,14 @@
                                             <t t-esc="qa.state.upper()"/>
                                         </span>
                                     </div>
-                                    <div style="font-size:13px;color:#282B4A;">
+                                    <div style="font-size:13px;color:#EEEBDA;">
                                         Order: <strong><t t-esc="qa.order_id.name"/></strong> · Patient Ref: <t t-esc="qa.patient_ref"/>
                                     </div>
-                                    <div style="font-size:12px;color:#475569;display:flex;flex-direction:column;gap:4px;">
-                                        <div><t t-esc="'✅' if qa.tactile_seam_audit else '⬜'"/> Tactile Seam Audit (Zero Chafing)</div>
-                                        <div><t t-esc="'✅' if qa.magnetic_polarity_test else '⬜'"/> Magnetic Polarity &amp; One-Handed Snap</div>
-                                        <div><t t-esc="'✅' if qa.port_access_clearance else '⬜'"/> Port Access Clearance Verified</div>
-                                        <div><t t-esc="'✅' if qa.asymmetric_tolerance_ok else '⬜'"/> Asymmetric Tolerance (±0.25 in)</div>
+                                    <div style="font-size:12px;color:rgba(238,235,218,0.75);display:flex;flex-direction:column;gap:4px;">
+                                        <div><span t-attf-style="font-weight:700;color:#{'#10B981' if qa.tactile_seam_audit else '#94A3B8'};"><t t-esc="'[PASS]' if qa.tactile_seam_audit else '[ ]'"/></span> Tactile Seam Audit (Zero Chafing)</div>
+                                        <div><span t-attf-style="font-weight:700;color:#{'#10B981' if qa.magnetic_polarity_test else '#94A3B8'};"><t t-esc="'[PASS]' if qa.magnetic_polarity_test else '[ ]'"/></span> Magnetic Polarity &amp; One-Handed Snap</div>
+                                        <div><span t-attf-style="font-weight:700;color:#{'#10B981' if qa.port_access_clearance else '#94A3B8'};"><t t-esc="'[PASS]' if qa.port_access_clearance else '[ ]'"/></span> Port Access Clearance Verified</div>
+                                        <div><span t-attf-style="font-weight:700;color:#{'#10B981' if qa.asymmetric_tolerance_ok else '#94A3B8'};"><t t-esc="'[PASS]' if qa.asymmetric_tolerance_ok else '[ ]'"/></span> Asymmetric Tolerance (±0.25 in)</div>
                                     </div>
                                     <div style="display:flex;gap:8px;margin-top:auto;flex-wrap:wrap;">
                                         <button type="button" class="af-btn af-btn-primary af-btn-sm"
@@ -1104,7 +1118,7 @@
                                             t-att-data-mag="'1' if qa.magnetic_polarity_test else ''"
                                             t-att-data-port="'1' if qa.port_access_clearance else ''"
                                             t-att-data-tol="'1' if qa.asymmetric_tolerance_ok else ''"
-                                            t-att-data-reason="qa.rework_reason or ''">✏️ Edit Checklist</button>
+                                            t-att-data-reason="qa.rework_reason or ''">Edit Checklist</button>
                                         <t t-if="qa.state == 'pending'">
                                             <form t-attf-action="/adaptfit/admin/qa/{{qa.id}}/action" method="post">
                                                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
@@ -1167,7 +1181,7 @@
                                                         t-att-data-id="s.id"
                                                         t-att-data-name="s.name"
                                                         t-att-data-bonus="s.complexity_bonus"
-                                                        t-att-data-penalty="s.defect_penalty">✏️ Edit</button>
+                                                        t-att-data-penalty="s.defect_penalty">Edit</button>
                                                     <form t-attf-action="/adaptfit/admin/settlement/{{s.id}}/action" method="post">
                                                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                                         <input type="hidden" name="action" value="fetch"/>
