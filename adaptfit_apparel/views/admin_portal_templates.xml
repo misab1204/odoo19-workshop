@@ -9,48 +9,48 @@
             <title>AdaptFit ERP — Command Center</title>
             <style>
                 :root {
-                    --af-navy-deep: #1E293B;
-                    --af-navy: #0F172A;
-                    --af-indigo: #4F46E5;
-                    --af-grad-card: linear-gradient(145deg, rgba(255,255,255,0.74) 0%, rgba(240,244,255,0.48) 100%);
-                    --af-grad-bar: linear-gradient(135deg, #3B82F6 0%, #4F46E5 100%);
+                    --af-navy-deep: #223427;
+                    --af-navy: #1C2B20;
+                    --af-indigo: #344E3B;
+                    --af-grad-card: linear-gradient(145deg, rgba(255,255,255,0.76) 0%, rgba(235,240,234,0.52) 100%);
+                    --af-grad-bar: linear-gradient(135deg, #4A6550 0%, #344E3B 100%);
                     --af-cream: #FFFFFF;
-                    --af-cream-soft: #F8FAFC;
-                    --af-blue: #3B82F6;
-                    --af-blue-bright: #6366F1;
-                    --af-cyan: #3B82F6;
+                    --af-cream-soft: #F5F6F2;
+                    --af-blue: #4A6550;
+                    --af-blue-bright: #5E7B64;
+                    --af-cyan: #4A6550;
                     --af-emerald: #10B981;
                     --af-amber: #F59E0B;
                     --af-rose: #EF4444;
                     --af-text-light: #FFFFFF;
-                    --af-text-muted: #64748B;
-                    --af-text-dark: #0F172A;
+                    --af-text-muted: #55665A;
+                    --af-text-dark: #1C2B20;
                     --af-border-glow: rgba(255, 255, 255, 0.78);
-                    --af-float-shadow: 0 12px 30px rgba(30, 41, 90, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.88);
-                    --af-float-shadow-hover: 0 18px 36px rgba(30, 41, 90, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+                    --af-float-shadow: 0 12px 30px rgba(34, 52, 39, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.88);
+                    --af-float-shadow-hover: 0 18px 36px rgba(34, 52, 39, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.95);
                 }
 
                 * { box-sizing: border-box; }
                 html {
-                    background: #DCE3F0;
+                    background: #344E3B;
                 }
                 body {
                     margin: 0;
                     font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-                    background: linear-gradient(135deg, #D5DDE9 0%, #E7ECF5 55%, #CED8EC 100%);
+                    background: linear-gradient(180deg, #E6E5DC 0%, #B6C0B4 32%, #6F8773 68%, #344E3B 100%);
                     background-attachment: fixed;
-                    color: #0F172A;
+                    color: #1C2B20;
                     display: flex;
                     min-height: 100vh;
                 }
 
-                /* Astra Frosted Glass Sidebar */
+                /* Sage Forest Frosted Glass Sidebar */
                 .af-sidebar {
                     width: 248px;
-                    background: linear-gradient(175deg, rgba(244, 247, 255, 0.86) 0%, rgba(226, 233, 250, 0.74) 55%, rgba(155, 168, 232, 0.58) 100%);
+                    background: linear-gradient(180deg, rgba(230, 229, 220, 0.88) 0%, rgba(182, 192, 180, 0.82) 35%, rgba(111, 135, 115, 0.82) 70%, rgba(52, 78, 59, 0.88) 100%);
                     backdrop-filter: blur(22px);
                     -webkit-backdrop-filter: blur(22px);
-                    color: #0F172A;
+                    color: #1C2B20;
                     display: flex;
                     flex-direction: column;
                     position: fixed;
@@ -58,15 +58,15 @@
                     bottom: 14px;
                     left: 14px;
                     border-radius: 24px 0 0 24px;
-                    border: 3px solid rgba(79, 110, 247, 0.58);
-                    border-right: 1px solid rgba(15, 23, 42, 0.08);
+                    border: 2px solid rgba(255, 255, 255, 0.45);
+                    border-right: 1px solid rgba(255, 255, 255, 0.30);
                     padding: 18px 12px;
                     z-index: 40;
-                    box-shadow: 0 24px 55px rgba(30, 41, 90, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+                    box-shadow: 0 24px 55px rgba(24, 38, 28, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.75);
                 }
                 .af-brand {
                     padding: 18px 16px;
-                    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+                    border-bottom: 1px solid rgba(34, 52, 39, 0.10);
                     display: flex;
                     align-items: center;
                     gap: 12px;
@@ -75,17 +75,17 @@
                     width: 38px;
                     height: 38px;
                     border-radius: 11px;
-                    background: linear-gradient(135deg, #3B82F6 0%, #6366F1 100%);
+                    background: linear-gradient(135deg, #5E7B64 0%, #344E3B 100%);
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     font-weight: 800;
                     font-size: 16px;
                     color: #FFFFFF;
-                    box-shadow: 0 6px 14px rgba(59, 130, 246, 0.30);
+                    box-shadow: 0 6px 14px rgba(52, 78, 59, 0.30);
                 }
-                .af-brand-title { font-weight: 800; font-size: 15px; letter-spacing: 0.2px; color: #0F172A; }
-                .af-brand-sub { font-size: 10px; color: #475569; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+                .af-brand-title { font-weight: 800; font-size: 15px; letter-spacing: 0.2px; color: #1C2B20; }
+                .af-brand-sub { font-size: 10px; color: #4B5E50; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
 
                 .af-nav {
                     padding: 16px 8px;
@@ -100,7 +100,7 @@
                     gap: 11px;
                     padding: 11px 14px;
                     border-radius: 12px;
-                    color: #334155;
+                    color: #2D3F31;
                     text-decoration: none;
                     font-size: 13.5px;
                     font-weight: 500;
@@ -109,19 +109,19 @@
                 }
                 .af-nav-item:hover {
                     background: rgba(255, 255, 255, 0.55);
-                    color: #0F172A;
+                    color: #1C2B20;
                 }
                 .af-nav-item.active {
                     background: rgba(255, 255, 255, 0.88);
-                    color: #0F172A;
+                    color: #1C2B20;
                     font-weight: 700;
                     border: 1px solid rgba(255, 255, 255, 0.95);
-                    box-shadow: 0 6px 16px rgba(30, 41, 90, 0.08);
+                    box-shadow: 0 6px 16px rgba(34, 52, 39, 0.10);
                 }
 
                 .af-sidebar-footer {
                     padding: 14px 8px 8px;
-                    border-top: 1px solid rgba(15, 23, 42, 0.08);
+                    border-top: 1px solid rgba(34, 52, 39, 0.10);
                     display: flex;
                     flex-direction: column;
                     gap: 8px;
@@ -132,18 +132,18 @@
                     border-radius: 10px;
                     background: rgba(255, 255, 255, 0.55);
                     border: 1px solid rgba(255, 255, 255, 0.8);
-                    color: #0F172A;
+                    color: #1C2B20;
                     text-decoration: none;
                     font-size: 12.5px;
                     font-weight: 600;
                     text-align: center;
                 }
                 .af-ext-link:hover {
-                    background: rgba(255, 255, 255, 0.85);
-                    color: #3B82F6;
+                    background: rgba(255, 255, 255, 0.88);
+                    color: #344E3B;
                 }
 
-                /* Main Astra Frosted Glass Sheet */
+                /* Main Sage Forest Frosted Glass Sheet */
                 .af-main {
                     margin-left: 262px;
                     margin-top: 14px;
@@ -155,17 +155,14 @@
                     display: flex;
                     flex-direction: column;
                     min-width: 0;
-                    background:
-                        radial-gradient(circle at 92% 18%, rgba(79, 110, 247, 0.45) 0%, transparent 50%),
-                        radial-gradient(circle at 84% 86%, rgba(109, 92, 231, 0.36) 0%, transparent 48%),
-                        linear-gradient(155deg, #EDF1FA 0%, #E0E7F7 55%, #C9D3F2 100%);
-                    color: #0F172A;
+                    background: linear-gradient(180deg, #E6E5DC 0%, #B6C0B4 32%, #6F8773 68%, #344E3B 100%);
+                    color: #1C2B20;
                     border-radius: 0 24px 24px 0;
-                    border: 3px solid rgba(79, 110, 247, 0.58);
+                    border: 2px solid rgba(255, 255, 255, 0.45);
                     border-left: none;
                     box-shadow:
-                        0 24px 55px rgba(30, 41, 90, 0.14),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.85);
+                        0 24px 55px rgba(24, 38, 28, 0.25),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.75);
                     overflow: hidden;
                 }
                 .af-topbar {
@@ -174,13 +171,13 @@
                     background: rgba(255, 255, 255, 0.24);
                     backdrop-filter: blur(14px);
                     -webkit-backdrop-filter: blur(14px);
-                    color: #0F172A;
+                    color: #1C2B20;
                     padding: 16px 28px;
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
                     gap: 16px;
-                    border-bottom: 1px solid rgba(99, 102, 241, 0.12);
+                    border-bottom: 1px solid rgba(52, 78, 59, 0.12);
                 }
                 .af-search-form {
                     display: flex;
@@ -196,31 +193,31 @@
                     box-sizing: border-box;
                     background: rgba(255, 255, 255, 0.82);
                     border: 1px solid rgba(255, 255, 255, 0.92);
-                    color: #0F172A;
+                    color: #1C2B20;
                     padding: 9px 16px;
                     border-radius: 12px;
                     font-size: 13px;
                     text-overflow: ellipsis;
                     outline: none;
-                    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.06);
+                    box-shadow: 0 4px 14px rgba(34, 52, 39, 0.06);
                 }
                 .af-search-input:focus {
-                    border-color: #3B82F6;
+                    border-color: #4A6550;
                     background: #FFFFFF;
-                    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.16);
+                    box-shadow: 0 0 0 3px rgba(74, 101, 80, 0.18);
                 }
                 .af-user-pill {
                     display: flex;
                     align-items: center;
                     gap: 8px;
                     background: rgba(255, 255, 255, 0.82);
-                    color: #0F172A;
+                    color: #1C2B20;
                     padding: 7px 14px;
                     border-radius: 999px;
                     border: 1px solid rgba(255, 255, 255, 0.92);
                     font-size: 12px;
                     font-weight: 600;
-                    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.06);
+                    box-shadow: 0 4px 14px rgba(34, 52, 39, 0.06);
                     flex-shrink: 0;
                 }
 
@@ -264,13 +261,13 @@
                     margin: 0;
                     font-size: 24px;
                     font-weight: 800;
-                    color: #0F172A;
+                    color: #1C2B20;
                     letter-spacing: -0.3px;
                 }
                 .af-page-sub {
                     margin: 4px 0 0;
                     font-size: 13px;
-                    color: #475569;
+                    color: #4B5E50;
                 }
 
                 /* Buttons */
@@ -288,13 +285,13 @@
                     transition: all 0.15s ease;
                 }
                 .af-btn-primary {
-                    background: linear-gradient(135deg, #3B82F6 0%, #4F46E5 100%);
+                    background: linear-gradient(135deg, #4A6550 0%, #344E3B 100%);
                     color: #FFFFFF;
-                    box-shadow: 0 6px 18px rgba(79, 70, 229, 0.25);
+                    box-shadow: 0 6px 18px rgba(52, 78, 59, 0.28);
                 }
                 .af-btn-primary:hover { filter: brightness(1.08); color: #FFFFFF; }
 
-                /* Bento Dashboard Cards (AeuxGlobal Style) */
+                /* Bento Dashboard Cards */
                 .af-bento-3 {
                     display: grid;
                     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -314,7 +311,7 @@
                     margin-bottom: 22px;
                 }
                 .af-stat-box {
-                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(241, 245, 255, 0.56) 100%);
+                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(235, 240, 234, 0.56) 100%);
                     backdrop-filter: blur(20px);
                     -webkit-backdrop-filter: blur(20px);
                     border: 1px solid rgba(255, 255, 255, 0.85);
@@ -324,32 +321,32 @@
                     justify-content: space-between;
                     align-items: flex-end;
                     gap: 12px;
-                    color: #0F172A;
-                    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.90);
+                    color: #1C2B20;
+                    box-shadow: 0 10px 28px rgba(34, 52, 39, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.90);
                 }
-                .af-stat-label { font-size: 12px; color: #475569; font-weight: 600; margin-bottom: 6px; }
-                .af-stat-val { font-size: 26px; font-weight: 800; color: #0F172A; letter-spacing: -0.5px; }
-                .af-stat-sub { font-size: 11px; color: #10B981; font-weight: 700; margin-top: 6px; }
+                .af-stat-label { font-size: 12px; color: #4B5E50; font-weight: 600; margin-bottom: 6px; }
+                .af-stat-val { font-size: 26px; font-weight: 800; color: #1C2B20; letter-spacing: -0.5px; }
+                .af-stat-sub { font-size: 11px; color: #2E6F4E; font-weight: 700; margin-top: 6px; }
                 .af-bento-card {
-                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(241, 245, 255, 0.56) 100%);
+                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(235, 240, 234, 0.56) 100%);
                     backdrop-filter: blur(20px);
                     -webkit-backdrop-filter: blur(20px);
                     border: 1px solid rgba(255, 255, 255, 0.85);
                     border-radius: 18px;
                     padding: 20px;
-                    color: #0F172A;
-                    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.90);
+                    color: #1C2B20;
+                    box-shadow: 0 10px 28px rgba(34, 52, 39, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.90);
                     display: flex;
                     flex-direction: column;
                 }
-                .af-bento-title { font-size: 14px; font-weight: 700; color: #0F172A; margin: 0 0 10px; }
+                .af-bento-title { font-size: 14px; font-weight: 700; color: #1C2B20; margin: 0 0 10px; }
                 .af-dot-row {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     font-size: 12px;
                     padding: 5px 0;
-                    color: #334155;
+                    color: #2D3F31;
                 }
                 .af-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 8px; }
                 .af-ring-pill {
@@ -360,20 +357,20 @@
                     gap: 16px;
                     backdrop-filter: blur(20px);
                     -webkit-backdrop-filter: blur(20px);
-                    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+                    box-shadow: 0 10px 28px rgba(34, 52, 39, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.85);
                 }
                 .af-ring-dark {
-                    background: linear-gradient(135deg, rgba(59, 130, 246, 0.92) 0%, rgba(79, 70, 229, 0.88) 100%);
+                    background: linear-gradient(135deg, rgba(74, 101, 80, 0.94) 0%, rgba(52, 78, 59, 0.92) 100%);
                     color: #FFFFFF;
                     border: 1px solid rgba(255, 255, 255, 0.45);
                 }
                 .af-ring-light {
-                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(241, 245, 255, 0.56) 100%);
-                    color: #0F172A;
+                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(235, 240, 234, 0.56) 100%);
+                    color: #1C2B20;
                     border: 1px solid rgba(255, 255, 255, 0.85);
                 }
                 .af-feature-card {
-                    background: linear-gradient(135deg, rgba(59, 130, 246, 0.92) 0%, rgba(79, 70, 229, 0.88) 100%);
+                    background: linear-gradient(135deg, rgba(74, 101, 80, 0.94) 0%, rgba(52, 78, 59, 0.92) 100%);
                     backdrop-filter: blur(20px);
                     -webkit-backdrop-filter: blur(20px);
                     color: #FFFFFF;
@@ -383,7 +380,7 @@
                     flex-direction: column;
                     justify-content: space-between;
                     border: 1px solid rgba(255, 255, 255, 0.45);
-                    box-shadow: 0 12px 30px rgba(79, 70, 229, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+                    box-shadow: 0 12px 30px rgba(34, 52, 39, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.45);
                     text-decoration: none;
                 }
                 @media (max-width: 1100px) {
@@ -391,14 +388,14 @@
                 }
                 .af-btn-navy {
                     background: rgba(255, 255, 255, 0.80);
-                    color: #0F172A;
-                    border: 1px solid rgba(99, 102, 241, 0.24);
-                    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.08);
+                    color: #1C2B20;
+                    border: 1px solid rgba(74, 101, 80, 0.24);
+                    box-shadow: 0 4px 12px rgba(34, 52, 39, 0.08);
                 }
                 .af-btn-navy:hover {
                     background: #FFFFFF;
-                    color: #3B82F6;
-                    border-color: #3B82F6;
+                    color: #344E3B;
+                    border-color: #4A6550;
                 }
                 .af-btn-emerald { background: var(--af-emerald); color: #fff; }
                 .af-btn-rose { background: var(--af-rose); color: #fff; }
@@ -466,21 +463,21 @@
                 .af-pipe-count { font-size: 22px; font-weight: 800; color: var(--af-cyan); }
                 .af-pipe-name { font-size: 12px; color: #E2E8F0; }
 
-                /* Astra Frosted Milky-White Glass Panel + Cobalt-Indigo Header */
+                /* Sage Forest Frosted Milky-White Glass Panel + Forest Green Header */
                 .af-panel {
-                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(241, 245, 255, 0.56) 100%);
+                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(235, 240, 234, 0.56) 100%);
                     backdrop-filter: blur(20px);
                     -webkit-backdrop-filter: blur(20px);
-                    color: #0F172A;
+                    color: #1C2B20;
                     border-radius: 18px;
                     border: 1px solid rgba(255, 255, 255, 0.85);
                     overflow: hidden;
-                    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.90);
+                    box-shadow: 0 10px 28px rgba(34, 52, 39, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.90);
                     margin-bottom: 24px;
                 }
                 .af-panel-head {
                     padding: 16px 22px;
-                    background: linear-gradient(90deg, rgba(59, 130, 246, 0.92) 0%, rgba(79, 70, 229, 0.90) 100%);
+                    background: linear-gradient(90deg, rgba(74, 101, 80, 0.94) 0%, rgba(52, 78, 59, 0.92) 100%);
                     border-bottom: 1px solid rgba(255, 255, 255, 0.35);
                     display: flex;
                     justify-content: space-between;
@@ -499,17 +496,17 @@
                 table.af-table th {
                     text-align: left;
                     padding: 12px 16px;
-                    background: rgba(226, 232, 248, 0.65);
-                    color: #475569;
+                    background: rgba(223, 230, 222, 0.72);
+                    color: #3D5042;
                     font-size: 11px;
                     text-transform: uppercase;
                     letter-spacing: 0.7px;
-                    border-bottom: 1px solid rgba(99, 102, 241, 0.16);
+                    border-bottom: 1px solid rgba(74, 101, 80, 0.16);
                 }
                 table.af-table td {
                     padding: 13px 16px;
-                    border-bottom: 1px solid rgba(99, 102, 241, 0.10);
-                    color: #0F172A;
+                    border-bottom: 1px solid rgba(74, 101, 80, 0.10);
+                    color: #1C2B20;
                     vertical-align: middle;
                 }
                 table.af-table tr:hover td {
@@ -528,7 +525,7 @@
                 .b-rush { background: #FEE2E2; color: #B91C1C; border: 1px solid #EF4444; }
                 .b-urgent { background: #FEF3C7; color: #B45309; border: 1px solid #F59E0B; }
                 .b-std { background: #D1FAE5; color: #047857; border: 1px solid #10B981; }
-                .b-stage { background: #E0E7FF; color: #282B4A; border: 1px solid #3B82F6; }
+                .b-stage { background: #E3EAE3; color: #223427; border: 1px solid #4A6550; }
 
                 /* Patient &amp; QA Floating Cards */
                 .af-cards-grid {
@@ -537,15 +534,15 @@
                     gap: 18px;
                 }
                 .af-card {
-                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(241, 245, 255, 0.56) 100%);
+                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.78) 0%, rgba(235, 240, 234, 0.56) 100%);
                     backdrop-filter: blur(20px);
                     -webkit-backdrop-filter: blur(20px);
-                    color: #0F172A;
+                    color: #1C2B20;
                     border-radius: 18px;
                     padding: 22px;
                     border: 1px solid rgba(255, 255, 255, 0.85);
-                    border-top: 3px solid #4F46E5;
-                    box-shadow: 0 10px 28px rgba(79, 70, 229, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.90);
+                    border-top: 3px solid #4A6550;
+                    box-shadow: 0 10px 28px rgba(34, 52, 39, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.90);
                     display: flex;
                     flex-direction: column;
                     gap: 14px;
@@ -604,9 +601,9 @@
                     gap: 6px;
                 }
                 .af-tag {
-                    background: #E0E7FF;
-                    color: #282B4A;
-                    border: 1px solid rgba(59, 130, 246, 0.35);
+                    background: #E3EAE3;
+                    color: #223427;
+                    border: 1px solid rgba(74, 101, 80, 0.35);
                     padding: 3px 8px;
                     border-radius: 6px;
                     font-size: 11px;
@@ -624,29 +621,26 @@
                     padding: 7px 14px;
                     border-radius: 999px;
                     background: rgba(255, 255, 255, 0.76);
-                    color: #334155;
+                    color: #2D3F31;
                     text-decoration: none;
                     font-size: 12px;
                     font-weight: 600;
                     border: 1px solid rgba(255, 255, 255, 0.92);
-                    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.06);
+                    box-shadow: 0 4px 12px rgba(34, 52, 39, 0.06);
                 }
                 .af-pill.active {
-                    background: linear-gradient(135deg, #3B82F6 0%, #4F46E5 100%);
+                    background: linear-gradient(135deg, #4A6550 0%, #344E3B 100%);
                     color: #FFFFFF;
                     border-color: rgba(255, 255, 255, 0.45);
-                    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.24);
+                    box-shadow: 0 6px 16px rgba(52, 78, 59, 0.24);
                 }
 
-                /* Full-Screen Astra Frosted Glass Modal */
+                /* Full-Screen Sage Forest Frosted Glass Modal */
                 .af-modal-backdrop {
                     display: none;
                     position: fixed;
                     inset: 0;
-                    background:
-                        radial-gradient(circle at 90% 15%, rgba(79, 110, 247, 0.40) 0%, transparent 50%),
-                        radial-gradient(circle at 12% 85%, rgba(109, 92, 231, 0.30) 0%, transparent 48%),
-                        linear-gradient(155deg, #EDF1FA 0%, #E0E7F7 55%, #C9D3F2 100%);
+                    background: linear-gradient(180deg, #E6E5DC 0%, #B6C0B4 32%, #6F8773 68%, #344E3B 100%);
                     z-index: 100;
                     align-items: stretch;
                     justify-content: center;
@@ -655,7 +649,7 @@
                 .af-modal-backdrop.open { display: flex; }
                 .af-modal {
                     background: transparent;
-                    color: #0F172A;
+                    color: #1C2B20;
                     border: none;
                     border-radius: 0;
                     width: 100vw;
@@ -672,7 +666,7 @@
                     margin-right: auto;
                 }
                 .af-modal > div:first-child h3 {
-                    color: #0F172A;
+                    color: #1C2B20;
                     font-size: 22px;
                     font-weight: 800;
                     letter-spacing: -0.3px;
@@ -681,39 +675,39 @@
                     max-width: 760px;
                     margin-left: auto;
                     margin-right: auto;
-                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.84) 0%, rgba(241, 245, 255, 0.68) 100%);
+                    background: linear-gradient(145deg, rgba(255, 255, 255, 0.84) 0%, rgba(235, 240, 234, 0.68) 100%);
                     backdrop-filter: blur(22px);
                     -webkit-backdrop-filter: blur(22px);
-                    border: 2px solid rgba(79, 110, 247, 0.38);
+                    border: 2px solid rgba(74, 101, 80, 0.38);
                     border-radius: 22px;
                     padding: 28px 32px;
-                    box-shadow: 0 22px 55px rgba(30, 41, 90, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+                    box-shadow: 0 22px 55px rgba(34, 52, 39, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.92);
                 }
                 .af-form-group { margin-bottom: 16px; }
                 .af-form-group label {
                     display: block;
                     font-size: 12.5px;
                     font-weight: 700;
-                    color: #1E293B;
+                    color: #223427;
                     margin-bottom: 6px;
                 }
                 .af-input, .af-select, .af-textarea {
                     width: 100%;
                     box-sizing: border-box;
                     background: rgba(255, 255, 255, 0.88);
-                    border: 1px solid rgba(99, 102, 241, 0.22);
-                    color: #0F172A;
+                    border: 1px solid rgba(74, 101, 80, 0.24);
+                    color: #1C2B20;
                     padding: 10px 14px;
                     border-radius: 12px;
                     font-size: 13.5px;
                     outline: none;
-                    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.04);
+                    box-shadow: 0 2px 8px rgba(34, 52, 39, 0.04);
                     transition: border-color 0.15s ease, box-shadow 0.15s ease;
                 }
                 .af-input:focus, .af-select:focus, .af-textarea:focus {
-                    border-color: #3B82F6;
+                    border-color: #4A6550;
                     background: #FFFFFF;
-                    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.16);
+                    box-shadow: 0 0 0 3px rgba(74, 101, 80, 0.18);
                 }
                 .af-check-grid {
                     display: grid;
@@ -728,14 +722,14 @@
                     margin-bottom: 0;
                     padding: 9px 12px;
                     background: rgba(255, 255, 255, 0.72);
-                    border: 1px solid rgba(99, 102, 241, 0.18);
+                    border: 1px solid rgba(74, 101, 80, 0.18);
                     border-radius: 10px;
-                    color: #0F172A;
+                    color: #1C2B20;
                     font-weight: 600;
                     cursor: pointer;
                 }
                 .af-check-grid input[type="checkbox"] {
-                    accent-color: #4F46E5;
+                    accent-color: #344E3B;
                     width: 15px;
                     height: 15px;
                 }
@@ -835,11 +829,11 @@
                                     <div class="af-stat-sub" style="color:#D97706;"><t t-esc="kpi['rush_count']"/> Clinical Rush</div>
                                 </div>
                                 <svg width="68" height="38" viewBox="0 0 68 38">
-                                    <rect x="2" y="16" width="8" height="22" rx="3" fill="rgba(99,102,241,0.22)"/>
-                                    <rect x="16" y="22" width="8" height="16" rx="3" fill="rgba(99,102,241,0.22)"/>
-                                    <rect x="30" y="10" width="8" height="28" rx="3" fill="#3B82F6"/>
-                                    <rect x="44" y="18" width="8" height="20" rx="3" fill="rgba(99,102,241,0.35)"/>
-                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#4F46E5"/>
+                                    <rect x="2" y="16" width="8" height="22" rx="3" fill="rgba(74,101,80,0.22)"/>
+                                    <rect x="16" y="22" width="8" height="16" rx="3" fill="rgba(74,101,80,0.22)"/>
+                                    <rect x="30" y="10" width="8" height="28" rx="3" fill="#5E7B64"/>
+                                    <rect x="44" y="18" width="8" height="20" rx="3" fill="rgba(74,101,80,0.35)"/>
+                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#344E3B"/>
                                 </svg>
                             </div>
                             <div class="af-stat-box">
@@ -849,25 +843,25 @@
                                     <div class="af-stat-sub">De-identified IDs active</div>
                                 </div>
                                 <svg width="68" height="38" viewBox="0 0 68 38">
-                                    <rect x="2" y="20" width="8" height="18" rx="3" fill="rgba(99,102,241,0.22)"/>
+                                    <rect x="2" y="20" width="8" height="18" rx="3" fill="rgba(74,101,80,0.22)"/>
                                     <rect x="16" y="14" width="8" height="24" rx="3" fill="#10B981"/>
-                                    <rect x="30" y="22" width="8" height="16" rx="3" fill="rgba(99,102,241,0.22)"/>
-                                    <rect x="44" y="8" width="8" height="30" rx="3" fill="#3B82F6"/>
-                                    <rect x="58" y="12" width="8" height="26" rx="3" fill="#4F46E5"/>
+                                    <rect x="30" y="22" width="8" height="16" rx="3" fill="rgba(74,101,80,0.22)"/>
+                                    <rect x="44" y="8" width="8" height="30" rx="3" fill="#5E7B64"/>
+                                    <rect x="58" y="12" width="8" height="26" rx="3" fill="#344E3B"/>
                                 </svg>
                             </div>
                             <div class="af-stat-box">
                                 <div>
                                     <div class="af-stat-label">CO₂ Prevented (ESG)</div>
-                                    <div class="af-stat-val"><t t-esc="kpi['total_co2']"/> <span style="font-size:15px;font-weight:600;color:#475569;">kg</span></div>
+                                    <div class="af-stat-val"><t t-esc="kpi['total_co2']"/> <span style="font-size:15px;font-weight:600;color:#4B5E50;">kg</span></div>
                                     <div class="af-stat-sub"><t t-esc="kpi['total_water']"/> L water saved</div>
                                 </div>
                                 <svg width="68" height="38" viewBox="0 0 68 38">
-                                    <rect x="2" y="24" width="8" height="14" rx="3" fill="rgba(99,102,241,0.22)"/>
-                                    <rect x="16" y="18" width="8" height="20" rx="3" fill="rgba(99,102,241,0.32)"/>
-                                    <rect x="30" y="14" width="8" height="24" rx="3" fill="#3B82F6"/>
+                                    <rect x="2" y="24" width="8" height="14" rx="3" fill="rgba(74,101,80,0.22)"/>
+                                    <rect x="16" y="18" width="8" height="20" rx="3" fill="rgba(74,101,80,0.32)"/>
+                                    <rect x="30" y="14" width="8" height="24" rx="3" fill="#5E7B64"/>
                                     <rect x="44" y="10" width="8" height="28" rx="3" fill="#10B981"/>
-                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#4F46E5"/>
+                                    <rect x="58" y="4" width="8" height="34" rx="3" fill="#344E3B"/>
                                 </svg>
                             </div>
                         </div>
@@ -876,42 +870,42 @@
                         <div class="af-bento-mid">
                             <div class="af-bento-card" style="align-items:center;text-align:center;">
                                 <h3 class="af-bento-title" style="align-self:flex-start;">Clinical QA Readiness</h3>
-                                <div style="font-size:34px;font-weight:800;color:#0F172A;margin:6px 0 8px;">
-                                    <t t-esc="kpi['delivered_count']"/> <span style="font-size:14px;font-weight:600;color:#475569;">Delivered</span>
+                                <div style="font-size:34px;font-weight:800;color:#1C2B20;margin:6px 0 8px;">
+                                    <t t-esc="kpi['delivered_count']"/> <span style="font-size:14px;font-weight:600;color:#4B5E50;">Delivered</span>
                                 </div>
                                 <svg width="160" height="88" viewBox="0 0 160 88">
-                                    <path d="M 16 80 A 64 64 0 0 1 144 80" fill="none" stroke="rgba(99,102,241,0.16)" stroke-width="18" stroke-linecap="round"/>
-                                    <path d="M 16 80 A 64 64 0 0 1 118 28" fill="none" stroke="#4F46E5" stroke-width="18" stroke-linecap="round"/>
+                                    <path d="M 16 80 A 64 64 0 0 1 144 80" fill="none" stroke="rgba(74,101,80,0.18)" stroke-width="18" stroke-linecap="round"/>
+                                    <path d="M 16 80 A 64 64 0 0 1 118 28" fill="none" stroke="#344E3B" stroke-width="18" stroke-linecap="round"/>
                                 </svg>
-                                <div style="font-size:12px;color:#475569;margin-top:4px;"><t t-esc="kpi['pending_qa_count']"/> Pending Clinical QA Audits</div>
+                                <div style="font-size:12px;color:#4B5E50;margin-top:4px;"><t t-esc="kpi['pending_qa_count']"/> Pending Clinical QA Audits</div>
                             </div>
 
                             <div class="af-bento-card">
                                 <h3 class="af-bento-title">Workshop Stages</h3>
-                                <div style="font-size:32px;font-weight:800;color:#0F172A;margin-bottom:8px;">
-                                    <t t-esc="kpi['total_yardage']"/> <span style="font-size:14px;font-weight:600;color:#475569;">m fabric</span>
+                                <div style="font-size:32px;font-weight:800;color:#1C2B20;margin-bottom:8px;">
+                                    <t t-esc="kpi['total_yardage']"/> <span style="font-size:14px;font-weight:600;color:#4B5E50;">m fabric</span>
                                 </div>
                                 <div style="flex:1;">
                                     <t t-foreach="stage_counts[:4]" t-as="st">
                                         <div class="af-dot-row">
-                                            <span><span class="af-dot" style="background:#4F46E5;"/><t t-esc="st['label']"/></span>
-                                            <strong style="color:#0F172A;"><t t-esc="st['count']"/></strong>
+                                            <span><span class="af-dot" style="background:#344E3B;"/><t t-esc="st['label']"/></span>
+                                            <strong style="color:#1C2B20;"><t t-esc="st['count']"/></strong>
                                         </div>
                                     </t>
                                 </div>
-                                <a href="/adaptfit/admin?tab=orders" class="af-btn af-btn-sm" style="margin-top:10px;justify-content:center;border:1px solid rgba(99,102,241,0.22);color:#1E293B;background:rgba(255,255,255,0.65);">View Order Desk</a>
+                                <a href="/adaptfit/admin?tab=orders" class="af-btn af-btn-sm" style="margin-top:10px;justify-content:center;border:1px solid rgba(74,101,80,0.22);color:#223427;background:rgba(255,255,255,0.65);">View Order Desk</a>
                             </div>
 
                             <div class="af-bento-card">
                                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
                                     <h3 class="af-bento-title" style="margin:0;">Production Pipeline</h3>
-                                    <a href="/adaptfit/admin?tab=orders" style="font-size:12px;font-weight:700;color:#2563EB;text-decoration:none;">Filter →</a>
+                                    <a href="/adaptfit/admin?tab=orders" style="font-size:12px;font-weight:700;color:#344E3B;text-decoration:none;">Filter →</a>
                                 </div>
                                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;">
                                     <t t-foreach="stage_counts" t-as="st">
-                                        <a t-attf-href="/adaptfit/admin?tab=orders&amp;stage={{st['key']}}" style="background:rgba(255,255,255,0.58);border:1px solid rgba(255,255,255,0.85);border-radius:10px;padding:10px 12px;text-decoration:none;color:#0F172A;display:flex;justify-content:space-between;align-items:center;">
+                                        <a t-attf-href="/adaptfit/admin?tab=orders&amp;stage={{st['key']}}" style="background:rgba(255,255,255,0.58);border:1px solid rgba(255,255,255,0.85);border-radius:10px;padding:10px 12px;text-decoration:none;color:#1C2B20;display:flex;justify-content:space-between;align-items:center;">
                                             <span style="font-size:12px;font-weight:600;"><t t-esc="st['label']"/></span>
-                                            <strong style="font-size:16px;color:#4F46E5;"><t t-esc="st['count']"/></strong>
+                                            <strong style="font-size:16px;color:#344E3B;"><t t-esc="st['count']"/></strong>
                                         </a>
                                     </t>
                                 </div>
@@ -1061,7 +1055,7 @@
                                                 </td>
                                                 <td>
                                                     <div><t t-esc="garment_labels.get(o.garment_type, '')"/></div>
-                                                    <div style="font-size:11px;color:#2563EB;font-weight:600;"><t t-esc="o.fabric_id.name"/></div>
+                                                    <div style="font-size:11px;color:#344E3B;font-weight:600;"><t t-esc="o.fabric_id.name"/></div>
                                                 </td>
                                                 <td><t t-esc="o.calculated_yardage"/> m · <t t-esc="o.eco_carbon_saved_kg"/> kg</td>
                                                 <td>
@@ -1139,10 +1133,10 @@
                                             </label>
                                         </form>
                                         <div style="flex:1;">
-                                            <div style="font-size:17px;font-weight:700;color:#0F172A;"><t t-esc="p.name"/></div>
-                                            <div style="font-size:12px;color:#2563EB;font-weight:700;"><t t-esc="p.patient_identifier"/></div>
-                                            <div style="font-size:12px;color:#475569;margin-top:4px;"><t t-esc="p.adaptive_order_count"/> Adaptive Order(s)</div>
-                                            <div style="font-size:11px;color:#4F46E5;margin-top:4px;font-weight:600;">Click photo to upload</div>
+                                            <div style="font-size:17px;font-weight:700;color:#1C2B20;"><t t-esc="p.name"/></div>
+                                            <div style="font-size:12px;color:#344E3B;font-weight:700;"><t t-esc="p.patient_identifier"/></div>
+                                            <div style="font-size:12px;color:#4B5E50;margin-top:4px;"><t t-esc="p.adaptive_order_count"/> Adaptive Order(s)</div>
+                                            <div style="font-size:11px;color:#4A6550;margin-top:4px;font-weight:600;">Click photo to upload</div>
                                         </div>
                                         <button type="button" class="af-btn af-btn-primary af-btn-sm"
                                             onclick="openEditPatient(this)"
